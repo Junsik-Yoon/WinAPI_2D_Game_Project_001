@@ -41,9 +41,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
-    {
         return FALSE;
-    }
 
     //단축키에 대한 내용을 리소스에서 가져오는 함수
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DGAME01));
@@ -53,10 +51,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 기본 메시지 루프입니다:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))//메세지가 단축키메세지인지 번역
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            TranslateMessage(&msg); // 메세지번역
+            DispatchMessage(&msg);  // 메세지가 온대로 처리 //WndProc()가실행됨
         }
     }
 
@@ -126,14 +124,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    if (!hWnd)
       return FALSE;
+   
+   //사각형 만들기
    RECT rc;
    rc.left = 0;
    rc.top = 0;
-   rc.right = WINSIZEX;
+   rc.right = WINSIZEX;//pch
    rc.bottom = WINSIZEY;
 
    //실제 내용 창이 크기에 맞게끔 하도록 사이즈를 변경해야함 -> 외각선,메뉴크기같은걸 제외하고 게임에서 적용해야하므로
-   AdjustWindowRect(&rc, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, false);
+   AdjustWindowRect(&rc, WINSTYLE, false);
    //위에서 얻은 사이즈로 윈도우 사이즈를 세팅
    SetWindowPos(hWnd, NULL, WINSTARTX, WINSTARTY, (rc.right - rc.left), (rc.bottom - rc.top), SWP_NOZORDER | SWP_NOMOVE);
 
@@ -154,6 +154,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+
+POINT g_mouseStart = { 0,0 };
+POINT g_mouseEnd = { 0,0 };
+POINT g_mousePos = { 0,0 };
+POINT g_keyPos = {0,0};
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -175,11 +181,55 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+    case WM_LBUTTONDOWN:
+        g_mouseStart.x = LOWORD(lParam); //lparam은 8바이트
+        g_mouseStart.y = HIWORD(lParam); //LOWORD는 뒤의4바이트 HIWORD는 앞의4바이트
+       
+        break;
+    case WM_LBUTTONUP: 
+        InvalidateRect(hWnd, NULL, true);
+        break;
+    case WM_MOUSEMOVE:
+        g_mouseEnd.x = LOWORD(lParam);
+        g_mouseEnd.y = HIWORD(lParam);
+        
+        break;
+    case WM_KEYDOWN:
+    {
+        switch (wParam)
+        {
+        case VK_LEFT:
+        case 'A':
+            g_keyPos.x -= 10;
+            break;
+        case VK_RIGHT:
+        case 'D':
+            g_keyPos.x += 10;
+            break;
+        case VK_UP:
+        case 'W':
+            g_keyPos.y -= 10;
+            break;
+        case VK_DOWN:
+        case 'S':
+            g_keyPos.y += 10;
+            break;
+        }
+        InvalidateRect(hWnd, NULL, false);
+        break;
+    }
+      
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            
+           // Ellipse(hdc, g_mousePos.x - 50, g_mousePos.y - 50, g_mousePos.x + 50, g_mousePos.y + 50);
+            Rectangle(hdc, g_keyPos.x - 100, g_keyPos.y - 100, g_keyPos.x +100, g_keyPos.y+100);
+            Rectangle(hdc, g_mouseStart.x, g_mouseStart.y, g_mouseEnd.x, g_mouseEnd.y );
             EndPaint(hWnd, &ps);
         }
         break;
