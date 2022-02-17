@@ -12,6 +12,8 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
+//HWND wHnd;
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -47,14 +49,29 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DGAME01));
 
     MSG msg;
-
+    //GetMessage: 메세지queue에 메세지가 없으면 대기, 메세지가 들어오면 true 반환
+    //PeekMessage: 메세지 queue에 메세지가 없다면 false반환, 메세지가 있다면 true반환
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))//메세지가 단축키메세지인지 번역
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg); // 메세지번역
-            DispatchMessage(&msg);  // 메세지가 온대로 처리 //WndProc()가실행됨
+            if (WM_QUIT == msg.message)//윈도우종료시 프로그램도 종료되도록 처리
+                break;
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))//메세지가 단축키메세지인지 번역
+            {
+                TranslateMessage(&msg); // 메세지번역
+                DispatchMessage(&msg);  // 메세지가 온대로 처리 //WndProc()가실행됨
+            }
+        }
+        else
+        {
+            //게임 처리
+            //게임 업데이트
+            CCore::GetInst()->update();
+            //게임 렌더링
+            CCore::GetInst()->render();
+            
         }
     }
 
@@ -223,14 +240,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            //Device Context를 만들어서 ID를 반환
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+            HBRUSH hGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
+
+            HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
+            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+
 
             
            // Ellipse(hdc, g_mousePos.x - 50, g_mousePos.y - 50, g_mousePos.x + 50, g_mousePos.y + 50);
             Rectangle(hdc, g_keyPos.x - 100, g_keyPos.y - 100, g_keyPos.x +100, g_keyPos.y+100);
             Rectangle(hdc, g_mouseStart.x, g_mouseStart.y, g_mouseEnd.x, g_mouseEnd.y );
             EndPaint(hWnd, &ps);
+
+            SelectObject(hdc, hOldPen);
+            SelectObject(hdc, hOldBrush);
+
+            DeleteObject(hRedPen);
+            DeleteObject(hGreenBrush);
         }
         break;
     case WM_DESTROY:

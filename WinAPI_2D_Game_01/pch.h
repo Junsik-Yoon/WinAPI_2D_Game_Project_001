@@ -1,6 +1,8 @@
 #pragma once
 
-
+//
+#include "CCore.h"
+#include "CSingleton.h"
 
 //STL
 #include <vector>
@@ -14,3 +16,4 @@
 #define WINSTARTY 100
 #define WINSIZEX 1280
 #define WINSIZEY 720
+
