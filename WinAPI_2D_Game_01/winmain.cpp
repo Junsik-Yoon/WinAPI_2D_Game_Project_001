@@ -1,14 +1,15 @@
-﻿// WinAPI_2D_Game_01.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// main.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include "WinAPI_2D_Game_01.h"
+#include "winmain.h"
 #include "pch.h"
 
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
+HWND hWnd;                                      // 윈도우의 핸들
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
@@ -47,7 +48,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     //단축키에 대한 내용을 리소스에서 가져오는 함수
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DGAME01));
-
+    CCore::getInst()->init();
     MSG msg;
     //GetMessage: 메세지queue에 메세지가 없으면 대기, 메세지가 들어오면 true 반환
     //PeekMessage: 메세지 queue에 메세지가 없다면 false반환, 메세지가 있다면 true반환
@@ -68,9 +69,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             //게임 처리
             //게임 업데이트
-            CCore::GetInst()->update();
+            CCore::getInst()->update();
             //게임 렌더링
-            CCore::GetInst()->render();
+            CCore::getInst()->render();
             
         }
     }
@@ -123,7 +124,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    //윈도우를 생성하는 함수 -> hWnd에 담음
-   HWND hWnd = CreateWindowW(
+   hWnd = CreateWindowW(
                 szWindowClass,      //클래스이름
                 szTitle,            //윈도우 타이틀 String
                 //WS_OVERLAPPEDWINDOW,//윈도우 스타일
@@ -212,30 +213,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         g_mouseEnd.y = HIWORD(lParam);
         
         break;
-    case WM_KEYDOWN:
-    {
-        switch (wParam)
-        {
-        case VK_LEFT:
-        case 'A':
-            g_keyPos.x -= 10;
-            break;
-        case VK_RIGHT:
-        case 'D':
-            g_keyPos.x += 10;
-            break;
-        case VK_UP:
-        case 'W':
-            g_keyPos.y -= 10;
-            break;
-        case VK_DOWN:
-        case 'S':
-            g_keyPos.y += 10;
-            break;
-        }
-        InvalidateRect(hWnd, NULL, false);
-        break;
-    }
       
     case WM_PAINT:
         {
@@ -244,24 +221,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-            HBRUSH hGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
+            //HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
+            //HBRUSH hGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
 
-            HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
-            HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+            //HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
+            //HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
 
 
             
            // Ellipse(hdc, g_mousePos.x - 50, g_mousePos.y - 50, g_mousePos.x + 50, g_mousePos.y + 50);
-            Rectangle(hdc, g_keyPos.x - 100, g_keyPos.y - 100, g_keyPos.x +100, g_keyPos.y+100);
-            Rectangle(hdc, g_mouseStart.x, g_mouseStart.y, g_mouseEnd.x, g_mouseEnd.y );
+            //Rectangle(hdc, g_keyPos.x - 100, g_keyPos.y - 100, g_keyPos.x +100, g_keyPos.y+100);
+            //Rectangle(hdc, g_mouseStart.x, g_mouseStart.y, g_mouseEnd.x, g_mouseEnd.y );
             EndPaint(hWnd, &ps);
 
-            SelectObject(hdc, hOldPen);
-            SelectObject(hdc, hOldBrush);
+            //SelectObject(hdc, hOldPen);
+            //SelectObject(hdc, hOldBrush);
 
-            DeleteObject(hRedPen);
-            DeleteObject(hGreenBrush);
+            //DeleteObject(hRedPen);
+            //DeleteObject(hGreenBrush);
         }
         break;
     case WM_DESTROY:

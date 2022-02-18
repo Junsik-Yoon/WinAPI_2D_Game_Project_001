@@ -22,6 +22,9 @@
     <Filter Include="Util">
       <UniqueIdentifier>{2379f06a-509f-4ec7-b00b-84204f55320b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\TimeManager">
+      <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -30,7 +33,7 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="WinAPI_2D_Game_01.h">
+    <ClInclude Include="winmain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
@@ -45,13 +48,25 @@
     <ClInclude Include="CSingleton.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>Engine\TimeManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinAPI_2D_Game_01.cpp">
+    <ClCompile Include="winmain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>Engine\TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
