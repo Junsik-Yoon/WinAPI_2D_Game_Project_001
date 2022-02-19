@@ -2,19 +2,17 @@
 #include "CCore.h"
 #include "CObject.h"
 
-#define BSPEED 300//공속도
+#define BSPEED 600//공속도
 #define SSPEED 300//막대속도
 #define BLEFT vBallPos.x - vBallScale.x/2
 #define BRIGHT vBallPos.x + vBallScale.x/2
 #define BUP vBallPos.y - vBallScale.y/2
 #define BDOWN vBallPos.y + vBallScale.y/2
 bool isFirstTime = true;
-enum class DIREC { RUP, RDOWN, LDOWN, LUP };
+enum class DIREC { RUP, RDOWN, LDOWN, LUP, STILL };
 DIREC drc; //방향
 int leftPoint = 0;//왼쪽승점
 int rightPoint = 0;//오른쪽승점
-
-//DIREC DChange(DIREC* _drc);//반향전환함수
 
 CCore::CCore()
 {
@@ -115,17 +113,33 @@ void CCore::update()
 			drc = DIREC::LUP;
 	}
 	//공이 왼쪽을 통과한 상황
-	else if (vBallPos.x <= ball.getScale().x) //공의 x축이 공의사이즈만큼 0에서 -로 넘어갔을 때
+	else if (vBallPos.x <= 0-ball.getScale().x) //공의 x축이 공의사이즈만큼 0에서 -로 넘어갔을 때
 	{
 		++rightPoint;
-		//오른쪽승리 점수+=1 -> 공 초기화 오른쪽으로 쏘기
+		vBallPos.x = WINSIZEX / 2;
+		vBallPos.y = WINSIZEY / 2;
+		drc = DIREC::RUP;
+		if (5 == rightPoint)
+		{
+			MessageBoxW(hWnd, L"player2가 승리하였습니다", L"player2승리", MB_OK);
+			drc = DIREC::STILL;
+		}
 	}
 	//공이 오른쪽을 통과한 상황
 	else if (vBallPos.x >= WINSIZEX + ball.getScale().y)
 	{
 		++leftPoint;
-		//왼쪽승리 점수+=1 -> 공 초기화 왼쪽으로 쏘기
+		vBallPos.x = WINSIZEX / 2;
+		vBallPos.y = WINSIZEY / 2;
+		drc = DIREC::LUP;
+		if (5 == leftPoint)
+		{
+			MessageBoxW(hWnd, L"player1가 승리하였습니다", L"player1승리", MB_OK);
+			drc = DIREC::STILL;
+		}
 	}
+
+
 
 	switch (drc)
 	{
@@ -145,6 +159,8 @@ void CCore::update()
 		vBallPos.x -= BSPEED * CTimeManager::getInst()->getDT();
 		vBallPos.y -= BSPEED * CTimeManager::getInst()->getDT();
 		break;
+	default:
+		break;
 	}
 
 	leftStick.setPos(vLSPos);
@@ -162,15 +178,25 @@ void CCore::render()
 {
 	
 	//게임의 정보를 토대로 그려주는 작업
-	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);
+	Rectangle(m_hMemDC, -1, -1, WINSIZEX + 1, WINSIZEY + 1);//백지
+	
+	//게임스코어
+	for (int i = 0; i < 5; ++i)
+	{
+		if (i+1 <= leftPoint)
+			Rectangle(m_hMemDC, 30+i*5, 30, 32+i*5, 60);
+	}
+	for (int i = 0; i < 5; ++i)
+	{
+		if (i+1 <= rightPoint)
+			Rectangle(m_hMemDC, 1100+i*5, 30, 1102+i*5, 60);
+	}
+	
+	//도형
+	Rectangle(m_hMemDC, (WINSIZEX / 2) - 1, 0, (WINSIZEX / 2) + 1, WINSIZEY);
 	Rectangle(m_hMemDC, vLSPos.x - vLSScale.x / 2, vLSPos.y - vLSScale.y / 2, vLSPos.x + vLSScale.x / 2, vLSPos.y + vLSScale.y / 2);
 	Rectangle(m_hMemDC, vRSPos.x - vRSScale.x / 2, vRSPos.y - vRSScale.y / 2, vRSPos.x + vRSScale.x / 2, vRSPos.y + vRSScale.y / 2);
 	Ellipse(m_hMemDC, vBallPos.x - vBallScale.x / 2, vBallPos.y - vBallScale.y / 2, vBallPos.x + vBallScale.x / 2, vBallPos.y + vBallScale.y / 2);
-
-	//Rectangle(m_hMemDC, -1 ,- 1, WINSIZEX + 1, WINSIZEY + 1);
-	//Rectangle(m_hMemDC, leftStick.getPos().x - leftStick.getScale().x / 2, leftStick.getPos().y - leftStick.getScale().y / 2, leftStick.getPos().x + leftStick.getScale().x / 2, leftStick.getPos().y + leftStick.getScale().y / 2);
-	//Rectangle(m_hMemDC, rightStick.getPos().x - rightStick.getScale().x / 2, rightStick.getPos().y - rightStick.getScale().y / 2, rightStick.getPos().x + rightStick.getScale().x / 2, rightStick.getPos().y + rightStick.getScale().y / 2);
-	//Ellipse(m_hMemDC, ball.getPos().x - ball.getScale().x / 2, ball.getPos().y - ball.getScale().y / 2, ball.getPos().x + ball.getScale().x / 2, ball.getPos().y + ball.getScale().y / 2);
 
 	
 	//memDC 그린 복사본을 원본 DC에 그리는 작업
@@ -197,15 +223,6 @@ void CCore::init()
 	rightStick.setScale(vRSScale);
 	ball.setScale(vBallScale);
 }
-
-//DIREC DChange(DIREC* _drc)
-//{
-//	if (_drc == DIREC::LDOWN)
-//	{
-//		_drc = DIREC::RUP
-//	}
-//	return *_drc;
-//}
 
 
 
