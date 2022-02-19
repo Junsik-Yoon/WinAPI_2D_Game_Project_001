@@ -59,21 +59,21 @@ void CCore::update()
 	CTimeManager::GetInst()->update();
 	CKeyManager::GetInst()->update();
 	fPoint vPos = g_obj.GetPos();
-	if (CKeyManager::GetInst()->GetKeyState(KEY::LEFT)==KEY_STATE::TAP)//GetAsyncKeyState(VK_LEFT) & 0x8000)
+	if (CKeyManager::GetInst()->GetKeyState(KEY::LEFT)==KEY_STATE::HOLD)//GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		vPos.x -= 10;// *CTimeManager::GetInst()->getDT();
+		vPos.x -= 200 *CTimeManager::GetInst()->getDT();
 	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::TAP)
+	if (CKeyManager::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::HOLD)
 	{
-		vPos.x += (500 * CTimeManager::GetInst()->getDT());
+		vPos.x += (200 * CTimeManager::GetInst()->getDT());
 	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::TAP)
+	if (CKeyManager::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::HOLD)
 	{
-		vPos.y -= 500 * CTimeManager::GetInst()->getDT();
+		vPos.y -= 200 * CTimeManager::GetInst()->getDT();
 	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::TAP)
+	if (CKeyManager::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::HOLD)
 	{
-		vPos.y += 500 * CTimeManager::GetInst()->getDT();
+		vPos.y += 200 * CTimeManager::GetInst()->getDT();
 	}
 	g_obj.SetPos(vPos);
 
