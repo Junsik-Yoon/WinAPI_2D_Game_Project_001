@@ -1,11 +1,14 @@
 #pragma once
 #include "framework.h"
 //
+
 #include "CSingleton.h"
 #include "CTimeManager.h"
 #include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
+
+
 
 //STL
 #include <vector>

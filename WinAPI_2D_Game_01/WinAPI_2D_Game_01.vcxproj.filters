@@ -25,6 +25,9 @@
     <Filter Include="Engine\TimeManager">
       <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Object">
+      <UniqueIdentifier>{e56f053d-94aa-4879-b569-af0a2589cd72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -57,6 +60,9 @@
     <ClInclude Include="CTimeManager.h">
       <Filter>Engine\TimeManager</Filter>
     </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>Engine\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
       <Filter>Engine\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>Engine\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
