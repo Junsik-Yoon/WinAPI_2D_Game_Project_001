@@ -2,8 +2,8 @@
 #include "CCore.h"
 #include "CObject.h"
 
-#define BSPEED 300
-#define SSPEED 300
+#define BSPEED 300//공속도
+#define SSPEED 300//막대속도
 #define BLEFT vBallPos.x - vBallScale.x/2
 #define BRIGHT vBallPos.x + vBallScale.x/2
 #define BUP vBallPos.y - vBallScale.y/2
@@ -11,6 +11,8 @@
 bool isFirstTime = true;
 enum class DIREC { RUP, RDOWN, LDOWN, LUP };
 DIREC drc; //방향
+int leftPoint = 0;//왼쪽승점
+int rightPoint = 0;//오른쪽승점
 
 //DIREC DChange(DIREC* _drc);//반향전환함수
 
@@ -80,6 +82,51 @@ void CCore::update()
 		drc = DIREC::LUP;
 		isFirstTime = false;
 	}
+	//공이 왼쪽막대에 닿은 상황
+	else if ((vLSPos.x - vLSScale.x / 2 <= BLEFT) && (vLSPos.x + vLSScale.x / 2 >= BLEFT) && vBallPos.y > vLSPos.y - vLSScale.y / 2 && vBallPos.y < vLSPos.y + vLSScale.y / 2)
+	{
+		if (drc == DIREC::LDOWN)
+			drc = DIREC::RDOWN;
+		else if (drc == DIREC::LUP)
+			drc = DIREC::RUP;
+	}
+	//공이 오른쪽막대에 닿은 상황
+	else if ((vRSPos.x + vRSScale.x / 2 >= BRIGHT) && (vRSPos.x - vRSScale.x / 2 <= BRIGHT) && vBallPos.y > vRSPos.y - vRSScale.y / 2 && vBallPos.y < vRSPos.y + vRSScale.y / 2)
+	{
+		if (drc == DIREC::RDOWN)
+			drc = DIREC::LDOWN;
+		else if (drc == DIREC::RUP)
+			drc = DIREC::LUP;
+	}
+	//공이 천장에 닿은 상황
+	else if (vBallPos.y <= 0) //공의 y축중심이 공사이즈의절반y좌표와 같다면(천장에닿음)
+	{
+		if (drc == DIREC::LUP)
+			drc = DIREC::LDOWN;
+		else if (drc == DIREC::RUP)
+			drc = DIREC::RDOWN;
+	}
+	//공이 바닥에 닿은 상황
+	else if (vBallPos.y >= WINSIZEY - ball.getScale().y / 2)//공의 y축중심이 y해상도사이즈에서 공사이절반사이즈를 뺀 값과 같다면(바닥에닿음)
+	{
+		if (drc == DIREC::RDOWN)
+			drc = DIREC::RUP;
+		else if (drc == DIREC::LDOWN)
+			drc = DIREC::LUP;
+	}
+	//공이 왼쪽을 통과한 상황
+	else if (vBallPos.x <= ball.getScale().x) //공의 x축이 공의사이즈만큼 0에서 -로 넘어갔을 때
+	{
+		++rightPoint;
+		//오른쪽승리 점수+=1 -> 공 초기화 오른쪽으로 쏘기
+	}
+	//공이 오른쪽을 통과한 상황
+	else if (vBallPos.x >= WINSIZEX + ball.getScale().y)
+	{
+		++leftPoint;
+		//왼쪽승리 점수+=1 -> 공 초기화 왼쪽으로 쏘기
+	}
+
 	switch (drc)
 	{
 	case DIREC::RDOWN:
@@ -98,49 +145,6 @@ void CCore::update()
 		vBallPos.x -= BSPEED * CTimeManager::getInst()->getDT();
 		vBallPos.y -= BSPEED * CTimeManager::getInst()->getDT();
 		break;
-	}
-		
-	//공이 왼쪽막대에 닿은 상황
-	if ((vLSPos.x + vLSScale.x / 2 == BLEFT) && vBallPos.y > vLSPos.y-vLSScale.y/2 && vBallPos.y < vLSPos.y + vLSScale.y / 2)
-	{
-		if (drc == DIREC::LDOWN)
-			drc = DIREC::RDOWN;
-		else if (drc == DIREC::LUP)
-			drc = DIREC::RUP;
-	}
-	//공이 오른쪽막대에 닿은 상황
-	if ((vRSPos.x - vRSScale.x / 2 == BRIGHT) && vBallPos.y > vRSPos.y - vRSScale.y / 2 && vBallPos.y < vRSPos.y + vRSScale.y / 2)
-	{
-		if (drc == DIREC::RDOWN)
-			drc = DIREC::LDOWN;
-		else if (drc == DIREC::RUP)
-			drc = DIREC::LUP;
-	}
-	//공이 천장에 닿은 상황
-	if (vBallPos.y <= ball.getScale().y / 2) //공의 y축중심이 공사이즈의절반y좌표와 같다면(천장에닿음)
-	{
-		if (drc == DIREC::LUP)
-			drc == DIREC::LDOWN;
-		else if (drc == DIREC::RUP)
-			drc == DIREC::RDOWN;
-	}
-	//공이 바닥에 닿은 상황
-	if (vBallPos.y >= WINSIZEY - ball.getScale().y / 2)//공의 y축중심이 y해상도사이즈에서 공사이절반사이즈를 뺀 값과 같다면(바닥에닿음)
-	{
-		if (drc == DIREC::RDOWN)
-			drc == DIREC::RUP;
-		else if (drc == DIREC::LDOWN)
-			drc == DIREC::LUP;
-	}
-	//공이 왼쪽을 통과한 상황
-	if (vBallPos.x <= ball.getScale().x) //공의 x축이 공의사이즈만큼 0에서 -로 넘어갔을 때
-	{
-		//오른쪽승리 점수+=1 -> 공 초기화 오른쪽으로 쏘기
-	}
-	//공이 오른쪽을 통과한 상황
-	if (vBallPos.x >= WINSIZEX + ball.getScale().y)
-	{
-		//왼쪽승리 점수+=1 -> 공 초기화 왼쪽으로 쏘기
 	}
 
 	leftStick.setPos(vLSPos);
