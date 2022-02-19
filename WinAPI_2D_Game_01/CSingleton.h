@@ -3,7 +3,7 @@
 #define SINGLETON(type)								\
 													\
 public:												\
-	static type* getInst()							\
+	static type* GetInst()							\
 	{												\
 		static type _instance;						\
 		return &_instance;							\

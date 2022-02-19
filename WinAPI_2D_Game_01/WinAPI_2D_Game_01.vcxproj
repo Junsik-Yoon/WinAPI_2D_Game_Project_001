@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h" />
+    <ClInclude Include="CObject.h" />
     <ClInclude Include="CSingleton.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>

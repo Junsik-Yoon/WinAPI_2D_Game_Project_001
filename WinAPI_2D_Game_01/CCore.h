@@ -1,17 +1,17 @@
 #pragma once
-
 class CCore
 {
-public:
-	SINGLETON(CCore);
-public:
-	void init();
-	void update();
-	void render();
+	SINGLETON(CCore)
 
 private:
-	HDC		m_hDC;		//윈도우DC
-	HDC		m_hMemDC;	//메모리DC
-	HBITMAP	m_hBMP;		//메모리비트맵
+	HWND m_hWnd; //메인 윈도우 핸들
+	POINT m_ptResolution;//메인 윈도우 해상도
+	HDC m_hDC;
+public:
+	int init(HWND _hWnd, POINT _ptResolution);
+	void progress();
+private:
+	void update();
+	void render();
 };
 

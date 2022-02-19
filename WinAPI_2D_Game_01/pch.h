@@ -7,6 +7,7 @@
 #include "CCore.h"
 #include "struct.h"
 
+#include <Windows.h>
 //STL
 #include <vector>
 #include <list>

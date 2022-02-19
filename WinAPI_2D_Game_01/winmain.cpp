@@ -1,19 +1,17 @@
-﻿// main.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
-
+#include "pch.h"
+#include "CCore.h"
 #include "framework.h"
 #include "winmain.h"
-#include "pch.h"
 
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
-HWND hWnd;                                      // 윈도우의 핸들
+HWND hWnd;
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
-
-//HWND wHnd;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -21,62 +19,62 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-//hInstance: 실행된 프로세스의 시작주소, 인스턴스 핸들
-//nCmdShow:프로그램이 시작될 형태
-
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //실행된 프로세스의 시작 주소 -> 가상메모리로 실행하므로 같은 주소가 들어오므로 밑에 prevInstance는 현재는 아무 의미가 없다
+    _In_opt_ HINSTANCE hPrevInstance,//전에 실행된 프로세스의 시작주소 -> 지금은 이걸로 동작하지 않음
+    _In_ LPWSTR    lpCmdLine, //추가명령어를 입력해서 쓸 수 있게 -> 게임만들때는 잘 안씀
+    _In_ int       nCmdShow)
 {
-    UNREFERENCED_PARAMETER(hPrevInstance);//안씀
+    UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-    //필요한 초기화 작업들을 진행
 
     // 전역 문자열을 초기화합니다.
-    // 리소스 뷰의 String Table에서 ID값으로 String을 가져오는 함수
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINAPI2DGAME01, szWindowClass, MAX_LOADSTRING);
-    //윈도우의 속성들을 정해주는 함수
+
+    //윈도우 정보 등록
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
+    //윈도우 생성
+    if (!InitInstance(hInstance, nCmdShow))
+    {
         return FALSE;
+    }
 
-    //단축키에 대한 내용을 리소스에서 가져오는 함수
+    //Core 초기화
+    if (FAILED(CCore::GetInst()->init(hWnd, POINT{ 1280,768 })))
+    {
+        MessageBox(nullptr, L"core 객체 초기화 실패", L"ERROR", MB_OK);
+        return FALSE;
+    }
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI2DGAME01));
-    CCore::getInst()->init();
+
     MSG msg;
-    //GetMessage: 메세지queue에 메세지가 없으면 대기, 메세지가 들어오면 true 반환
-    //PeekMessage: 메세지 queue에 메세지가 없다면 false반환, 메세지가 있다면 true반환
+
+
     // 기본 메시지 루프입니다:
     while (true)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            if (WM_QUIT == msg.message)//윈도우종료시 프로그램도 종료되도록 처리
+            if (WM_QUIT == msg.message)
                 break;
-            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))//메세지가 단축키메세지인지 번역
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
             {
-                TranslateMessage(&msg); // 메세지번역
-                DispatchMessage(&msg);  // 메세지가 온대로 처리 //WndProc()가실행됨
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
             }
         }
         else
         {
-            //게임 처리
-            //게임 업데이트
-            CCore::getInst()->update();
-            //게임 렌더링
-            CCore::getInst()->render();
-            
+            CCore::GetInst()->progress();
         }
     }
 
-    return (int) msg.wParam;
+    return (int)msg.wParam;
 }
 
 
@@ -88,23 +86,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
-    //윈도우창의 정보를 저장하기 위한 구조체
     WNDCLASSEXW wcex;
 
-    wcex.cbSize = sizeof(WNDCLASSEX); //구조체의 크기를 넣어준것
+    wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;//윈도우 클래스의 스타일 지정
-    wcex.lpfnWndProc    = WndProc;//함수포인터에 함수를 넣음 // 윈도우의 메세지를 처리하는 함수 WndProc지정
-    wcex.cbClsExtra     = 0;//윈도우클래스에서 사용하고자하는 여분의 메모리 양//잘안씀
-    wcex.cbWndExtra     = 0;
-    wcex.hInstance      = hInstance;//윈도우 클래스를 등록한 인스턴스 핸들 지정
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI2DGAME01));//윈도우의 아이콘
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));//스몰아이콘
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW); //윈도우에서 제공하는 기본커서중에 하나 골라서 쓰거나 커서를 추가해서 사용할 수 있음 
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);//윈도우 백그라운드 컬러,게임은 어차피 렌더링하면서 계속 그리기떄문에 큰 의미가 없다
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINAPI2DGAME01);//윈도우의 메뉴 지정 -> nullptr로 지정하면 메뉴가 사라지게 할 수 있다
-    wcex.lpszClassName  = szWindowClass;
-   // wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));//스몰아이콘 ->아이콘끼리 모으기위해 위치변경함
+    wcex.style = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc = WndProc;
+    wcex.cbClsExtra = 0;
+    wcex.cbWndExtra = 0;
+    wcex.hInstance = hInstance;
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI2DGAME01));
+    wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_WINAPI2DGAME01);
+    wcex.lpszClassName = szWindowClass;
+    wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
 }
@@ -121,45 +117,20 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   //윈도우를 생성하는 함수 -> hWnd에 담음
-   hWnd = CreateWindowW(
-                szWindowClass,      //클래스이름
-                szTitle,            //윈도우 타이틀 String
-                //WS_OVERLAPPEDWINDOW,//윈도우 스타일
-                //WS_CAPTION | WS_SYSMENU, //이런식으로 스타일을 변경가능(최대화없애기 크기못바꾸게 등)
-                WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, //게임에서 크기가 바뀌거나 하면 곤란하기때문에 이 형태로 쓰기로
-                CW_USEDEFAULT,      //윈도우 시작 X //변경하면 변경값으로 윈도우가 생성됨
-                0,                  //윈도우 시작 Y
-                CW_USEDEFAULT,      //윈도우 가로 크기
-                0,                  //윈도우 세로 크기
-                nullptr,            //부모 윈도우 핸들값
-                nullptr,            //메뉴 핸들값
-                hInstance,          //프로세스 인스턴스의 핸들
-                nullptr             //추가 매개변수
-                            );
+    hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
-      return FALSE;
-   
-   //사각형 만들기
-   RECT rc;
-   rc.left = 0;
-   rc.top = 0;
-   rc.right = WINSIZEX;//pch
-   rc.bottom = WINSIZEY;
+    if (!hWnd)
+    {
+        return FALSE;
+    }
 
-   //실제 내용 창이 크기에 맞게끔 하도록 사이즈를 변경해야함 -> 외각선,메뉴크기같은걸 제외하고 게임에서 적용해야하므로
-   AdjustWindowRect(&rc, WINSTYLE, false);
-   //위에서 얻은 사이즈로 윈도우 사이즈를 세팅
-   SetWindowPos(hWnd, NULL, WINSTARTX, WINSTARTY, (rc.right - rc.left), (rc.bottom - rc.top), SWP_NOZORDER | SWP_NOMOVE);
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
 
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-
-   return TRUE;
+    return TRUE;
 }
 
 //
@@ -172,75 +143,70 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+#include <vector>
+using namespace std;
+struct tObjInfo
+{
+    POINT g_ptObjPos;
+    POINT g_ptObjScale;
+};
+vector<tObjInfo> g_vecInfo;
+//좌상단좌표
+POINT g_ptLT;
 
-POINT g_mouseStart = { 0,0 };
-POINT g_mouseEnd = { 0,0 };
-POINT g_mousePos = { 0,0 };
-POINT g_keyPos = {0,0};
-
+//POINT g_ptObjPos = {300,300}; //오브젝트중앙위치
+//POINT g_ptObjScale = { 100, 100 };//오브젝트 크기
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
     case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        // 메뉴 선택을 구문 분석합니다:
+        switch (wmId)
         {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+        case IDM_ABOUT:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
         }
-        break;
+    }
+    break;
 
-    case WM_LBUTTONDOWN:
-        g_mouseStart.x = LOWORD(lParam); //lparam은 8바이트
-        g_mouseStart.y = HIWORD(lParam); //LOWORD는 뒤의4바이트 HIWORD는 앞의4바이트
-       
-        break;
-    case WM_LBUTTONUP: 
-        InvalidateRect(hWnd, NULL, true);
-        break;
-    case WM_MOUSEMOVE:
-        g_mouseEnd.x = LOWORD(lParam);
-        g_mouseEnd.y = HIWORD(lParam);
-        
-        break;
-      
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            //Device Context를 만들어서 ID를 반환
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            //HPEN hRedPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-            //HBRUSH hGreenBrush = CreateSolidBrush(RGB(0, 255, 0));
+       // Rectangle(hdc, 1180, 0, 1280, 100);
+        EndPaint(hWnd, &ps);
+    }
+    break;
 
-            //HPEN hOldPen = (HPEN)SelectObject(hdc, hRedPen);
-            //HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hGreenBrush);
+    case WM_KEYDOWN:
+    {
+        //switch (wParam)
 
+    }break;
+    case WM_LBUTTONDOWN:
+    {
+        g_ptLT.x = LOWORD(lParam);
+        g_ptLT.y = HIWORD(lParam);
+    }
+    break;
+    case WM_MOUSEMOVE:
+    {
+        //g_x = LOWORD(lParam);//x좌표
+        //g_y = HIWORD(lParam);//y좌표
+    }
+    break;
 
-            
-           // Ellipse(hdc, g_mousePos.x - 50, g_mousePos.y - 50, g_mousePos.x + 50, g_mousePos.y + 50);
-            //Rectangle(hdc, g_keyPos.x - 100, g_keyPos.y - 100, g_keyPos.x +100, g_keyPos.y+100);
-            //Rectangle(hdc, g_mouseStart.x, g_mouseStart.y, g_mouseEnd.x, g_mouseEnd.y );
-            EndPaint(hWnd, &ps);
-
-            //SelectObject(hdc, hOldPen);
-            //SelectObject(hdc, hOldBrush);
-
-            //DeleteObject(hRedPen);
-            //DeleteObject(hGreenBrush);
-        }
-        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
