@@ -28,6 +28,9 @@
     <Filter Include="Engine\Object">
       <UniqueIdentifier>{c705457b-d20a-4617-9345-33a1317e67a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\KeyManager">
+      <UniqueIdentifier>{75a3d251-1181-4c65-940f-0960cbfd8653}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="CObject.h">
       <Filter>Engine\Object</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyManager.h">
+      <Filter>Engine\KeyManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -76,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyManager.cpp">
+      <Filter>Engine\KeyManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

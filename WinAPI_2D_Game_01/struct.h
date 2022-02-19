@@ -23,3 +23,4 @@ struct fPoint
 		this->y = y;
 	}
 };
+

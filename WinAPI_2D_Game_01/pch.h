@@ -1,17 +1,19 @@
 #pragma once
 #include "framework.h"
+//STL
+#include <vector>
+#include <list>
+#include <chrono>
+using std::vector;
 //
 #include "CSingleton.h"
 #include "CTimeManager.h"
+#include "CKeyManager.h"
 #include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
 
 #include <Windows.h>
-//STL
-#include <vector>
-#include <list>
-#include <chrono>
 
 
 //macro
@@ -30,3 +32,7 @@ extern HWND hWnd;
 //3.정적변수 : 함수 내부에서 만들지만 데이터영역에 존재
 //4.외부변수 : 다른곳에서 만들어진다
 //5.멤버변수 : 클래스 안에서 선언되고 인스턴스가 생성될 당시에 만들어진다
+
+//define
+#define fDT CTimeManager::GetInst()->getfDT()
+#define DT CTimeManager::GetInst()->getDT()
