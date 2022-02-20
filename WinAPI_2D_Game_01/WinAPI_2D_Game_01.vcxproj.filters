@@ -22,14 +22,29 @@
     <Filter Include="Util">
       <UniqueIdentifier>{2379f06a-509f-4ec7-b00b-84204f55320b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\TimeManager">
-      <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Object">
       <UniqueIdentifier>{c705457b-d20a-4617-9345-33a1317e67a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\KeyManager">
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{1e3490ef-2e9e-4c53-a054-965dd4f84514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager">
+      <UniqueIdentifier>{d29bb183-85c1-4a92-8213-e8ca01981481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\KeyManager">
       <UniqueIdentifier>{75a3d251-1181-4c65-940f-0960cbfd8653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\SceneManager">
+      <UniqueIdentifier>{91d59a36-6f85-43b4-9050-e9e00f10a306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\TimeManager">
+      <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene\SCENE_START">
+      <UniqueIdentifier>{70fd3c74-bcc1-4321-b725-e170a7248555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene\SCENE_TOOL">
+      <UniqueIdentifier>{6bd42553-f792-4c47-be3a-efbad825b704}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,13 +76,22 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="CTimeManager.h">
-      <Filter>Engine\TimeManager</Filter>
+      <Filter>Engine\Manager\TimeManager</Filter>
     </ClInclude>
     <ClInclude Include="CObject.h">
       <Filter>Engine\Object</Filter>
     </ClInclude>
     <ClInclude Include="CKeyManager.h">
-      <Filter>Engine\KeyManager</Filter>
+      <Filter>Engine\Manager\KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Engine\Manager\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Engine\Scene\SCENE_START</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,13 +102,22 @@
       <Filter>Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
-      <Filter>Engine\TimeManager</Filter>
+      <Filter>Engine\Manager\TimeManager</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>Engine\Object</Filter>
     </ClCompile>
     <ClCompile Include="CKeyManager.cpp">
-      <Filter>Engine\KeyManager</Filter>
+      <Filter>Engine\Manager\KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Engine\Manager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Engine\Scene\SCENE_START</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
