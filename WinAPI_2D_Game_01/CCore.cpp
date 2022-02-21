@@ -6,8 +6,6 @@
 #define SSPEED 300//막대속도
 #define BLEFT vBallPos.x - vBallScale.x/2
 #define BRIGHT vBallPos.x + vBallScale.x/2
-#define BUP vBallPos.y - vBallScale.y/2
-#define BDOWN vBallPos.y + vBallScale.y/2
 bool isFirstTime = true;
 enum class DIREC { RUP, RDOWN, LDOWN, LUP, STILL };
 DIREC drc; //방향
@@ -44,14 +42,14 @@ void CCore::update()
 	//Player1 위아래
 	if (GetAsyncKeyState('W') & 0x8000)//Player1 위
 	{
-		if (vLSPos.y > leftStick.getScale().y / 2)
+		if (vLSPos.y > vLSScale.y / 2)
 		{
 			vLSPos.y -= SSPEED * CTimeManager::getInst()->getDT();
 		}
 	}
 	if (GetAsyncKeyState('S') & 0x8000)//Player1 아래
 	{
-		if (vLSPos.y < WINSIZEY - leftStick.getScale().y / 2)
+		if (vLSPos.y < WINSIZEY - vLSScale.y / 2)
 		{
 			vLSPos.y += SSPEED * CTimeManager::getInst()->getDT();
 		}
@@ -60,14 +58,14 @@ void CCore::update()
 	//player2 위아래
 	if (GetAsyncKeyState(VK_UP) & 0x8000)//player2 위
 	{
-		if (vRSPos.y > rightStick.getScale().y / 2)
+		if (vRSPos.y > vRSScale.y / 2)
 		{
 			vRSPos.y -= SSPEED * CTimeManager::getInst()->getDT();
 		}
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)//player2 아래
 	{
-		if (vRSPos.y < WINSIZEY - rightStick.getScale().y / 2)
+		if (vRSPos.y < WINSIZEY - vRSScale.y / 2)
 		{
 			vRSPos.y += SSPEED * CTimeManager::getInst()->getDT();
 		}
@@ -87,6 +85,8 @@ void CCore::update()
 			drc = DIREC::RDOWN;
 		else if (drc == DIREC::LUP)
 			drc = DIREC::RUP;
+		vLSScale.y -= 10;
+		//테스트해보니 난이도가 쉬워 게임이 안끝나서 공이 막대에 맞을때마다 사이즈가 줄도록 기능추가
 	}
 	//공이 오른쪽막대에 닿은 상황
 	else if ((vRSPos.x + vRSScale.x / 2 >= BRIGHT) && (vRSPos.x - vRSScale.x / 2 <= BRIGHT) && vBallPos.y > vRSPos.y - vRSScale.y / 2 && vBallPos.y < vRSPos.y + vRSScale.y / 2)
@@ -95,6 +95,7 @@ void CCore::update()
 			drc = DIREC::LDOWN;
 		else if (drc == DIREC::RUP)
 			drc = DIREC::LUP;
+		vRSScale.y -= 10;
 	}
 	//공이 천장에 닿은 상황
 	else if (vBallPos.y <= 0) //공의 y축중심이 공사이즈의절반y좌표와 같다면(천장에닿음)
@@ -103,6 +104,7 @@ void CCore::update()
 			drc = DIREC::LDOWN;
 		else if (drc == DIREC::RUP)
 			drc = DIREC::RDOWN;
+
 	}
 	//공이 바닥에 닿은 상황
 	else if (vBallPos.y >= WINSIZEY - ball.getScale().y / 2)//공의 y축중심이 y해상도사이즈에서 공사이절반사이즈를 뺀 값과 같다면(바닥에닿음)
