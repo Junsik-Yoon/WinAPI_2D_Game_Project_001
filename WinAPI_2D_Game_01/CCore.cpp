@@ -2,6 +2,9 @@
 #include "CCore.h"
 #include "CObject.h"
 
+#include <stdlib.h>
+#include <time.h>
+
 #define BSPEED 600//공속도
 #define SSPEED 300//막대속도
 #define BLEFT vBallPos.x - vBallScale.x/2
@@ -11,6 +14,13 @@ enum class DIREC { RUP, RDOWN, LDOWN, LUP, STILL };
 DIREC drc; //방향
 int leftPoint = 0;//왼쪽승점
 int rightPoint = 0;//오른쪽승점
+
+int rando()
+{
+	srand(time(NULL));
+	return (rand() % 4);
+}
+
 
 CCore::CCore()
 {
@@ -71,11 +81,25 @@ void CCore::update()
 		}
 	}
 
+	//게임종료
+	if(GetAsyncKeyState(VK_ESCAPE)&0x8000) //esc입력시 게임 종료
+		PostQuitMessage(0);
+
 	//공
-	//공 방향 처음 RDOWN
+	//공 방향 처음 랜덤
 	if (true == isFirstTime)
 	{
-		drc = DIREC::LUP;
+		switch (rando())//공 방향 랜덤
+		{
+		case 0: drc = DIREC::RDOWN;
+			break;
+		case 1: drc = DIREC::LDOWN;
+			break;
+		case 2: drc = DIREC::RUP;
+			break;
+		case 3: drc = DIREC::LUP;
+			break;
+		}
 		isFirstTime = false;
 	}
 	//공이 왼쪽막대에 닿은 상황
@@ -85,7 +109,8 @@ void CCore::update()
 			drc = DIREC::RDOWN;
 		else if (drc == DIREC::LUP)
 			drc = DIREC::RUP;
-		vLSScale.y -= 10;
+		if (vLSScale.y > 20)//줄어들 수 있는 사이즈 20으로 제한
+			vLSScale.y -= 10;
 		//테스트해보니 난이도가 쉬워 게임이 안끝나서 공이 막대에 맞을때마다 사이즈가 줄도록 기능추가
 	}
 	//공이 오른쪽막대에 닿은 상황
@@ -95,7 +120,8 @@ void CCore::update()
 			drc = DIREC::LDOWN;
 		else if (drc == DIREC::RUP)
 			drc = DIREC::LUP;
-		vRSScale.y -= 10;
+		if(vRSScale.y>20)
+			vRSScale.y -= 10;
 	}
 	//공이 천장에 닿은 상황
 	else if (vBallPos.y <= 0) //공의 y축중심이 공사이즈의절반y좌표와 같다면(천장에닿음)
@@ -120,7 +146,17 @@ void CCore::update()
 		++rightPoint;
 		vBallPos.x = WINSIZEX / 2;
 		vBallPos.y = WINSIZEY / 2;
-		drc = DIREC::RUP;
+		switch (rando())//공 방향 랜덤
+		{
+		case 0: drc = DIREC::RDOWN;
+			break;
+		case 1: drc = DIREC::LDOWN;
+			break;
+		case 2: drc = DIREC::RUP;
+			break;
+		case 3: drc = DIREC::LUP;
+			break;
+		}
 		if (5 == rightPoint)
 		{
 			MessageBoxW(hWnd, L"player2가 승리하였습니다", L"player2승리", MB_OK);
@@ -133,7 +169,17 @@ void CCore::update()
 		++leftPoint;
 		vBallPos.x = WINSIZEX / 2;
 		vBallPos.y = WINSIZEY / 2;
-		drc = DIREC::LUP;
+		switch (rando())//공 방향 랜덤
+		{
+		case 0: drc = DIREC::RDOWN;
+			break;
+		case 1: drc = DIREC::LDOWN;
+			break;
+		case 2: drc = DIREC::RUP;
+			break;
+		case 3: drc = DIREC::LUP;
+			break;
+		}
 		if (5 == leftPoint)
 		{
 			MessageBoxW(hWnd, L"player1가 승리하였습니다", L"player1승리", MB_OK);
@@ -169,11 +215,6 @@ void CCore::update()
 	rightStick.setPos(vRSPos);
 	ball.setPos(vBallPos);
 
-	//fps를 표현
-	WCHAR strFPS[6];
-	swprintf_s(strFPS, L"%d", CTimeManager::getInst()->GetFPS());
-	TextOutW(m_hDC, WINSIZEX - 50, 10, strFPS,5);
-	//SetWindowTextW(hWnd, strFPS);
 }
 
 void CCore::render()
@@ -200,7 +241,19 @@ void CCore::render()
 	Rectangle(m_hMemDC, vRSPos.x - vRSScale.x / 2, vRSPos.y - vRSScale.y / 2, vRSPos.x + vRSScale.x / 2, vRSPos.y + vRSScale.y / 2);
 	Ellipse(m_hMemDC, vBallPos.x - vBallScale.x / 2, vBallPos.y - vBallScale.y / 2, vBallPos.x + vBallScale.x / 2, vBallPos.y + vBallScale.y / 2);
 
+	WCHAR exitMessage[18];
+	if (leftPoint >= 5 || rightPoint >= 5)
+	{		
+		swprintf_s(exitMessage, L"종료하시려면 esc를 눌러주세요");//FPS표시 깜빡이는현상 수정
+		TextOutW(m_hMemDC, WINSIZEX/2-140,WINSIZEY/2, exitMessage, 17);
+	}
 	
+	//fps를 표현
+	WCHAR strFPS[6];
+	swprintf_s(strFPS, L"%d", CTimeManager::getInst()->GetFPS());//FPS표시 깜빡이는현상 수정
+	TextOutW(m_hMemDC, WINSIZEX - 50, 10, strFPS, 5);
+	//SetWindowTextW(hWnd, strFPS);
+
 	//memDC 그린 복사본을 원본 DC에 그리는 작업
 	BitBlt(m_hDC, 0, 0, WINSIZEX, WINSIZEY, m_hMemDC, 0, 0, SRCCOPY);
 }
