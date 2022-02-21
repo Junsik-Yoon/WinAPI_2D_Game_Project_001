@@ -16,5 +16,7 @@ public:
 private:
 	void update();
 	void render();
+public:
+	POINT GetResolution() { return m_ptResolution; }
 };
 

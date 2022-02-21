@@ -25,7 +25,7 @@ public:
 	virtual void Enter() = 0;//해당 씬 진입시에 호출 //순수가상함수로 구현
 	virtual void Exit() = 0; //해당 씬 나갈시에 호출
 
-protected:
+public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType) { m_arrObj[(UINT)_eType].push_back(_pObj); }
 
 public:

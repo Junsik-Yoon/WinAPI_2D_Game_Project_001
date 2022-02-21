@@ -15,25 +15,7 @@ CObject::~CObject()
 {
 }
 
-void CObject::update()
-{
-	if (CKeyManager::GetInst()->GetKeyState(KEY::W) == KEY_STATE::HOLD)
-	{
-		m_vPos.y -= 200.f * fDT;
-	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::S) == KEY_STATE::HOLD)
-	{
-		m_vPos.y += 200.f * fDT;
-	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::A) == KEY_STATE::HOLD)
-	{
-		m_vPos.x -= 200.f * fDT;
-	}
-	if (CKeyManager::GetInst()->GetKeyState(KEY::D) == KEY_STATE::HOLD)
-	{
-		m_vPos.x += 200.f * fDT;
-	}
-}
+
 
 void CObject::render(HDC _dc)
 {

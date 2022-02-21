@@ -46,6 +46,15 @@
     <Filter Include="Engine\Scene\SCENE_TOOL">
       <UniqueIdentifier>{6bd42553-f792-4c47-be3a-efbad825b704}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Object\Player">
+      <UniqueIdentifier>{1dae0431-0953-4de5-bacc-32ecae3173d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object\Monster">
+      <UniqueIdentifier>{7391a197-ba4e-4d40-9b15-ccc6057bf59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object\Missile">
+      <UniqueIdentifier>{d3ed5922-03f7-4c85-80d5-3194bed3f141}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -93,6 +102,15 @@
     <ClInclude Include="CScene_Start.h">
       <Filter>Engine\Scene\SCENE_START</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Engine\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Engine\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>Engine\Object\Missile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -118,6 +136,15 @@
     </ClCompile>
     <ClCompile Include="CScene_Start.cpp">
       <Filter>Engine\Scene\SCENE_START</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Engine\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Engine\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>Engine\Object\Missile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

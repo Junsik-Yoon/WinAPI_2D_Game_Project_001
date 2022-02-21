@@ -4,6 +4,13 @@
 #define fDT CTimeManager::GetInst()->getfDT()
 #define DT CTimeManager::GetInst()->getDT()
 
+#define KEY_CHECK(key, state) CKeyManager::GetInst()->GetKeyState(key)==state
+#define KEY_HOLD(key) KEY_CHECK(key, KEY_STATE::HOLD)
+#define KEY_TAP(key) KEY_CHECK(key, KEY_STATE::TAP)
+#define KEY_AWAY(key) KEY_CHECK(key, KEY_STATE::AWAY)
+#define KEY_NONE(key) KEY_CHECK(key, KEY_STATE::NONE)
+
+
 enum class GROUP_TYPE
 {//씬에 존재하는 오브젝트들을 분류
 	DEFAULT,//0

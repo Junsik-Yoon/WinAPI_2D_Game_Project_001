@@ -12,8 +12,8 @@ public:
 	fPoint GetScale() { return m_vScale; }
 
 public:
-	void update();
-	void render(HDC _dc);
+	virtual void update()=0;//각자 자기가 구현해야지 update가 공통되는건 말이 안되므로 순수가상함수로 구현
+	virtual void render(HDC _dc);
 public:
 	CObject();
 	virtual ~CObject();
