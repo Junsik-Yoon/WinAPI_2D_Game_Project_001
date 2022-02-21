@@ -25,6 +25,18 @@
     <Filter Include="Engine\TimeManager">
       <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\KeyManager">
+      <UniqueIdentifier>{d8893df5-6ff4-4236-8e82-2c15f3a041c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object">
+      <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\SceneManager">
+      <UniqueIdentifier>{f12928e1-287f-4652-ae60-180bb329c6fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -57,6 +69,15 @@
     <ClInclude Include="CTimeManager.h">
       <Filter>Engine\TimeManager</Filter>
     </ClInclude>
+    <ClInclude Include="CKeyManager.h">
+      <Filter>Engine\KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameObject.h">
+      <Filter>Engine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -67,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
       <Filter>Engine\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyManager.cpp">
+      <Filter>Engine\KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameObject.cpp">
+      <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

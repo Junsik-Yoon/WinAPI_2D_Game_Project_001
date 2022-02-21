@@ -1,14 +1,32 @@
 #pragma once
+
 #include "framework.h"
 //
 #include "CSingleton.h"
 #include "CTimeManager.h"
+#include "CKeyManager.h"
 #include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
 
+
+//Object Group
+enum class GROUP_GAMEOBJ
+{
+	DEFAULT,
+	PLAYER,
+	MONSTER,
+	MISSILE,
+
+	SIZE,
+};
+
+#include <string>
+using std::string;
+using std::wstring;
 //STL
 #include <vector>
+using std::vector;
 #include <list>
 #include <chrono>
 
@@ -19,6 +37,12 @@
 #define WINSTARTY 100
 #define WINSIZEX 1280
 #define WINSIZEY 720
+
+//
+#define DT CTimeManager::getInst()->GetDT()
+#define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
+#define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
+#define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)
 
 //전역변수
 extern HINSTANCE hInst;
