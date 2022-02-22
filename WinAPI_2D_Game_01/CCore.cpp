@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "CCore.h"
+#include "CGameObject.h"
+#include "CScene.h"
 
 CCore::CCore()
 {
@@ -15,23 +17,11 @@ void CCore::update()
 {
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
+	CSceneManager::getInst()->update();
 	//게임의 정보를 갱신
-	if (CKeyManager::getInst()->GetButton(VK_LEFT))
-	{
-
-	}
-	if (CKeyManager::getInst()->GetButton(VK_RIGHT))//눌렸는지 확인
-	{
-
-	}
-	if (CKeyManager::getInst()->GetButton(VK_UP))//눌렸는지 확인
-	{
-
-	}
-	if (CKeyManager::getInst()->GetButton(VK_DOWN))//눌렸는지 확인
-	{
-
-	}
+	
+//	if (KEYDOWN(VK_SPACE)) //씬전환예시
+	//	sceneChange = true; //불타입
 
 }
 
@@ -41,6 +31,7 @@ void CCore::render()
 	Rectangle(m_hMemDC, -1 ,- 1, WINSIZEX + 1, WINSIZEY + 1);
 
 
+	CSceneManager::getInst()->render(m_hMemDC);
 
 
 	//fps를 표현
@@ -57,6 +48,7 @@ void CCore::init()
 	//Core의 초기화
 	CTimeManager::getInst()->init();
 	CKeyManager::getInst()->init();
+	CSceneManager::getInst()->init();
 
 	m_hDC = GetDC(hWnd);
 	m_hMemDC = CreateCompatibleDC(m_hDC);
@@ -64,6 +56,9 @@ void CCore::init()
 	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hMemDC, m_hBMP);
 	DeleteObject(hOldBitmap);
 
+	//CGameObject* obj1 = new CGameObject;
+
+	
 }
 
 

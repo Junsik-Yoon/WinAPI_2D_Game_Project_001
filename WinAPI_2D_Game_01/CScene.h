@@ -10,14 +10,19 @@ class CScene
 	wstring m_strName;
 public:
 	CScene();
-	~CScene();
+	virtual ~CScene();
 
 	virtual void update();
 	virtual void render(HDC hDC);
+
+	virtual void Enter()=0;//씬이라는 자기자신을 만들 일이 없기때문에 순수가상함수
+	virtual void Exit()=0;
 
 	void SetName(const wstring& strName) { m_strName = strName; }
 	wstring GetName() { return m_strName; }
 
 	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+protected:
+	void ClearObject();
 };
 

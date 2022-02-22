@@ -37,6 +37,12 @@
     <Filter Include="Engine\SceneManager">
       <UniqueIdentifier>{f12928e1-287f-4652-ae60-180bb329c6fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Scene\scene_start">
+      <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene\scene_stage1">
+      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -78,6 +84,15 @@
     <ClInclude Include="CScene.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Engine\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Engine\Scene\scene_start</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Stage1.h">
+      <Filter>Engine\Scene\scene_stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -97,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Engine\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Engine\Scene\scene_start</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Stage1.cpp">
+      <Filter>Engine\Scene\scene_stage1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

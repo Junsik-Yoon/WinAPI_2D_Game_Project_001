@@ -2,16 +2,16 @@
 class CGameObject
 {
 private:
-	fPoint m_fptPos;
-	fPoint m_fptScale;
+	fPoint m_fptPos; //물체의좌표
+	fPoint m_fptScale;//물체의크기
 
 public:
 	CGameObject();
 	~CGameObject();
 
 public:
-	virtual void update()= 0;//순수가상함수처리
-	virtual void render(HDC hDC) = 0;
+	virtual void update();//TODO: 순수가상함수처리
+	virtual void render(HDC hDC) ;
 
 	void SetPos(fPoint pos)		{ m_fptPos		= pos; }
 	void SetScale(fPoint scale) { m_fptScale	= scale; }

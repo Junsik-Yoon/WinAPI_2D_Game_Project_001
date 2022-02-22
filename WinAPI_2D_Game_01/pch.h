@@ -1,15 +1,4 @@
 #pragma once
-
-#include "framework.h"
-//
-#include "CSingleton.h"
-#include "CTimeManager.h"
-#include "CKeyManager.h"
-#include "Logger.h"
-#include "CCore.h"
-#include "struct.h"
-
-
 //Object Group
 enum class GROUP_GAMEOBJ
 {
@@ -18,8 +7,31 @@ enum class GROUP_GAMEOBJ
 	MONSTER,
 	MISSILE,
 
+	SIZE, //enum의 마지막을 size나 end, length로 해놓으면 배열의 인덱스총개수로 사용하거나 for문을 돌릴 때 좋음
+};
+
+//Scene Group
+enum class GROUP_SCENE
+{
+	DEFAULT,
+	START,
+	STAGE1,
+	STAGE2,
+	TOOL,
 	SIZE,
 };
+#include "framework.h"
+//
+#include "CSingleton.h"
+#include "CTimeManager.h"
+#include "CKeyManager.h"
+#include "CSceneManager.h"
+#include "Logger.h"
+#include "CCore.h"
+#include "struct.h"
+
+
+
 
 #include <string>
 using std::string;
