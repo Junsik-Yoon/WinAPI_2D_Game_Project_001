@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -22,24 +18,36 @@
     <Filter Include="Util">
       <UniqueIdentifier>{2379f06a-509f-4ec7-b00b-84204f55320b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\TimeManager">
+    <Filter Include="Engine\Manager">
+      <UniqueIdentifier>{35864b30-527d-4a50-863b-ff16f647c193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\SceneManager">
+      <UniqueIdentifier>{6f93c168-f9a4-4cd6-b43c-2a53655c30ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\TimeManager">
       <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Object">
+    <Filter Include="Engine\Things">
+      <UniqueIdentifier>{c47f7828-b4d2-4412-bb7b-b9d8110acda7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Object">
       <UniqueIdentifier>{e56f053d-94aa-4879-b569-af0a2589cd72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Scene">
+      <UniqueIdentifier>{90fd66ef-2e13-4d41-b89c-f525d495717d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\KeyManager">
+      <UniqueIdentifier>{94ab5295-c924-445b-8d4f-8c3efedaf912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Scene\SubScene">
+      <UniqueIdentifier>{ad041e9f-ecaa-4216-9b27-27cfc96fb251}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="winmain.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -58,24 +66,92 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="CTimeManager.h">
-      <Filter>Engine\TimeManager</Filter>
+      <Filter>Engine\Manager\TimeManager</Filter>
     </ClInclude>
     <ClInclude Include="CObject.h">
-      <Filter>Engine\Object</Filter>
+      <Filter>Engine\Things\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyManager.h">
+      <Filter>Engine\Manager\KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Engine\Manager\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\Things\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Stage.h">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Ending.h">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CBall.h">
+      <Filter>Engine\Things\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CStick.h">
+      <Filter>Engine\Things\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CRStick.h">
+      <Filter>Engine\Things\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CText.h">
+      <Filter>Engine\Things\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackG.h">
+      <Filter>Engine\Things\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\Core</Filter>
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
-      <Filter>Engine\TimeManager</Filter>
+      <Filter>Engine\Manager\TimeManager</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
-      <Filter>Engine\Object</Filter>
+      <Filter>Engine\Things\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyManager.cpp">
+      <Filter>Engine\Manager\KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Engine\Manager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\Things\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Stage.cpp">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Ending.cpp">
+      <Filter>Engine\Things\Scene\SubScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CBall.cpp">
+      <Filter>Engine\Things\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CStick.cpp">
+      <Filter>Engine\Things\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CRStick.cpp">
+      <Filter>Engine\Things\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CText.cpp">
+      <Filter>Engine\Things\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackG.cpp">
+      <Filter>Engine\Things\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
