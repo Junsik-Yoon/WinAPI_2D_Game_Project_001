@@ -3,8 +3,8 @@
 
 #include "CTimeManager.h"
 
-CMissile::CMissile()
-	:m_fDir(1.f)
+CMissile::CMissile() //0이면 우측으로
+	:m_fTheta(3.f*PI / 2.f)   //윈도우좌표는 위아래가 뒤집어져있기때문에 위아래를 반대로 봐야함
 {
 }
 
@@ -15,7 +15,8 @@ CMissile::~CMissile()
 void CMissile::update()
 {
 	fPoint vPos = GetPos();
-	vPos.y += 600.f * fDT * m_fDir;
+	vPos.x += 600.f * cosf(m_fTheta) * fDT;
+	vPos.y -= 600.f * sinf(m_fTheta) * fDT;
 	SetPos(vPos);
 }
 

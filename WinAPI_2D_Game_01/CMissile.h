@@ -3,16 +3,10 @@
 class CMissile :public CObject
 {
 private:
-	float m_fDir; //미사일 위 아래 방향
+	float m_fTheta; //이동방향
 public:
 
-	void SetDir(bool _bUp)
-	{
-		if (_bUp)
-			m_fDir = -1.f;
-		else
-			m_fDir = 1.f;
-	}
+	void SetDir(float _fTheta){m_fTheta = _fTheta;}
 
 	virtual void update();
 	virtual void render(HDC _dc);
