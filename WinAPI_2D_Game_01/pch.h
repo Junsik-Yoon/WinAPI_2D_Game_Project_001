@@ -36,6 +36,7 @@ enum class SCENE_TYPE
 #include "framework.h"
 
 #include <string>
+#include <assert.h>
 //STL
 #include <vector>
 #include <list>

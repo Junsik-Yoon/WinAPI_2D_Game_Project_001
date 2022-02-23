@@ -11,6 +11,19 @@ struct fPoint
 	float x;
 	float y;
 
+	float Length()//빗변길이
+	{
+		return sqrt(x * x + y * y);
+	}
+	fPoint& Normalize()
+	{//1보다 작았으면 1이되고 1보다 컸어도 1이되게
+		float fLen = Length();
+		assert(fLen != 0.f);
+		x /= fLen;
+		y /= fLen;
+		return *this;
+	}
+
 	fPoint& operator= (POINT _fPoint)
 	{
 		x = (float)_fPoint.x;
