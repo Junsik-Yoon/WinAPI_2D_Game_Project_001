@@ -18,8 +18,6 @@ CSceneManager::~CSceneManager()
 		if (nullptr != m_arrScene[i])
 			delete m_arrScene[i];
 	}
-//	if (nullptr != m_pCurScene)
-	//	delete m_pCurScene;
 }
 
 void CSceneManager::ChangeScene(GROUP_SCENE group)
@@ -34,14 +32,14 @@ void CSceneManager::ChangeScene(GROUP_SCENE group)
 
 void CSceneManager::update()
 {
-	if (KEYDOWN(VK_SPACE))
-	{
-		ChangeScene(GROUP_SCENE::STAGE1);
-	}
-	else if (KEYDOWN(VK_ESCAPE))
-	{
-		ChangeScene(GROUP_SCENE::START);
-	}
+	//if (KEYDOWN(VK_SPACE))
+	//{
+	//	ChangeScene(GROUP_SCENE::STAGE1);
+	//}
+	//else if (KEYDOWN(VK_ESCAPE))
+	//{
+	//	ChangeScene(GROUP_SCENE::START);
+	//}
 
 	m_pCurScene->update(); //현재 선택된 씬만 업데이트
 }

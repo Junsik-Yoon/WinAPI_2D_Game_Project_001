@@ -7,11 +7,11 @@ private:
 
 public:
 	CGameObject();
-	~CGameObject();
+	virtual ~CGameObject();
 
 public:
-	virtual void update();//TODO: 순수가상함수처리
-	virtual void render(HDC hDC) ;
+	virtual void update()=0;//TODO: 순수가상함수처리
+	virtual void render(HDC hDC)=0 ;
 
 	void SetPos(fPoint pos)		{ m_fptPos		= pos; }
 	void SetScale(fPoint scale) { m_fptScale	= scale; }

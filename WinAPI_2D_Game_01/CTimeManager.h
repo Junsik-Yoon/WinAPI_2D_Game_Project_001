@@ -14,6 +14,6 @@ public:
 	void init();   //
 
 	unsigned int	GetFPS(){ return m_uiFPS; } //1초에 몇 프레임
-	double			getDT() { return m_dDT; } //1프레임당 시간
+	double			GetDT() { return m_dDT; } //1프레임당 시간
 };
 

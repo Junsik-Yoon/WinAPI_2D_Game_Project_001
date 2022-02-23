@@ -23,3 +23,21 @@ struct fPoint
 		this->y = y;
 	}
 };
+
+struct fVec2
+{
+	float x;
+	float y;
+
+	fVec2()
+	{
+		x = 0;
+		y = 0;
+	}
+
+	fVec2(float x, float y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+};
