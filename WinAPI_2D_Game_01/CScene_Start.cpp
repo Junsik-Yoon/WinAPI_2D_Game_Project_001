@@ -5,6 +5,9 @@
 
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CPathManager.h"
+#include "CTexture.h"
+
 
 #include "CCore.h"
 
@@ -20,6 +23,14 @@ CScene_Start::~CScene_Start()
 
 void CScene_Start::Enter()
 {
+	//Texture 로딩하기
+	CTexture* pTex = new CTexture;
+	wstring strFilePath = CPathManager::GetInst()->GetContentPath();
+	strFilePath += L"texture\\Pac.bmp";
+	pTex->Load(strFilePath);
+
+	delete pTex;
+
 	//Player object추가
 	CObject* pObj = new CPlayer;//실제로 생성된객체는 플레이어지만 플레이어의 주소를 받은건 부모포인터타입
 

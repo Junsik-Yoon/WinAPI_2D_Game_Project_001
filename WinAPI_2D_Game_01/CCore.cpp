@@ -4,6 +4,7 @@
 #include "CTimeManager.h"
 #include "CKeyManager.h"
 #include "CSceneManager.h"
+#include "CPathManager.h"
 
 #include "CObject.h"
 
@@ -24,6 +25,7 @@ CCore::~CCore()
 }
 int CCore::init(HWND _hWnd, POINT _ptResolution)
 {
+	CPathManager::GetInst()->init();
 	CTimeManager::GetInst()->init();
 	CKeyManager::GetInst()->init();
 	CSceneManager::GetInst()->init();
@@ -42,8 +44,6 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
 	DeleteObject(hOldBit);
 
-	//g_obj.SetPos(fPoint((float)m_ptResolution.x/2,(float)m_ptResolution.y/2));
-	//g_obj.SetScale(fPoint(100,100));
 
 	return S_OK;//init실패체크용
 }
@@ -66,33 +66,10 @@ void CCore::progress()
 
 	//복붙
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
-	//update();
-	//render();
+
+	//CTimeManager::GetInst()->render(); //TODO: 주석복구
 }
 
-//void CCore::update()
-//{
-//
-//	fPoint vPos = g_obj.GetPos();
-//	if (CKeyManager::GetInst()->GetKeyState(KEY::LEFT)==KEY_STATE::HOLD)//GetAsyncKeyState(VK_LEFT) & 0x8000)
-//	{
-//		vPos.x -= 200 *CTimeManager::GetInst()->getDT();
-//	}
-//	if (CKeyManager::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::HOLD)
-//	{
-//		vPos.x += (200 * CTimeManager::GetInst()->getDT());
-//	}
-//	if (CKeyManager::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::HOLD)
-//	{
-//		vPos.y -= 200 * CTimeManager::GetInst()->getDT();
-//	}
-//	if (CKeyManager::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::HOLD)
-//	{
-//		vPos.y += 200 * CTimeManager::GetInst()->getDT();
-//	}
-//	g_obj.SetPos(vPos);
-//
-//}
 
 
 
