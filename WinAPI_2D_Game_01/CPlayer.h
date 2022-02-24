@@ -9,6 +9,11 @@ public:
 private:
 	fVec2 m_fptScale;
 	double m_velocity;
+	int hp;
+	float m_acc;
+	float m_grav;
+	bool isAir;
+	bool isUpside;
 
 public:
 	void update();

@@ -3,7 +3,7 @@
 
 CMissile::CMissile()
 {
-	m_fVelocity = 500;
+	m_fVelocity = 600.f;
 	SetScale(fVec2(25, 25));
 	
 }
@@ -16,9 +16,18 @@ void CMissile::update()
 {
 	fVec2 vPos = GetPos();
 
-	vPos.x += 600.f * m_fDir.x * fDT;
-	vPos.y += 600.f * m_fDir.y * fDT;
-
+	m_grav = 1000.f;
+	if (m_fDir.x > m_fDir.y)
+	{
+		vPos.x += m_fVelocity * m_fDir.x * fDT;
+		vPos.y += m_fVelocity * m_fDir.y * fDT;
+	}
+	else
+	{
+		m_fVelocity -= m_grav* fDT;
+		vPos.x += 800.f * m_fDir.x * fDT;
+		vPos.y += m_fVelocity * m_fDir.y * fDT;
+	}
 	SetPos(vPos);
 }
 

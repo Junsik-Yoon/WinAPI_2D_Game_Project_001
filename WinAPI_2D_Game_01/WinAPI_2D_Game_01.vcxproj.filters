@@ -55,6 +55,9 @@
     <Filter Include="Engine\Manager\TimeManager">
       <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Object\Land">
+      <UniqueIdentifier>{a52d7828-9352-49c8-a960-1dfe50873f25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -112,6 +115,9 @@
       <Filter>Engine\Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CLand.h">
+      <Filter>Engine\Object\Land</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -149,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Engine\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CLand.cpp">
+      <Filter>Engine\Object\Land</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
