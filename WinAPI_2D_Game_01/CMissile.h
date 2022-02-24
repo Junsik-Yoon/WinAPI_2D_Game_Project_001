@@ -11,8 +11,8 @@ public:
     virtual void update();
     virtual void render(HDC hdc);
 
-    void SetDir(fVec2 _fDir) { m_fDir = _fDir; }
-
+    void SetDir(fVec2 _fDir) { m_fDir = _fDir; m_fDir.Normalize(); }
+    void SetDir(float theta) {}
 public:
     CMissile();
     ~CMissile();

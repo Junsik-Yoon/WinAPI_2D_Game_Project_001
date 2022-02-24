@@ -5,8 +5,8 @@
 
 CPlayer::CPlayer()
 {
-	SetPos(fPoint(300, 300));
-	SetScale(fPoint(50, 50));
+	SetPos(fVec2(300, 300));
+	SetScale(fVec2(50, 50));
 	m_velocity = 200;
 }
 
@@ -16,7 +16,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::update()
 {
-	fPoint vPos = GetPos();
+	fVec2 vPos = GetPos();
 
 	if (KEY(VK_UP))
 	{
@@ -53,13 +53,25 @@ void CPlayer::render(HDC hDC)
 
 void CPlayer::CreateMissile()
 {
-	fPoint fptMissilePos = GetPos();
+	fVec2 fptMissilePos = GetPos();
 	fptMissilePos.x += GetScale().x / 2.f;
 
 	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(fptMissilePos);
-	pMissile->SetDir(fVec2(1.f, 0.f));
+	pMissile->SetScale(fVec2(25.f, 25.f));
+	pMissile->SetDir(fVec2(cos(3.14/1),sin(3.14/1)));
 
 	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
 	pCurScene->AddObject(pMissile, GROUP_GAMEOBJ::MISSILE); //불완전한 코드 이벤트 동기화가 안일어남
+
+	//대각선미사일
+
+	CMissile* pMissile2 = new CMissile;
+	pMissile2->SetPos(fptMissilePos);
+	pMissile2->SetDir(fVec2(WINSIZEX - fptMissilePos.x, 0 - fptMissilePos.y));;
+	
+	pCurScene = CSceneManager::getInst()->GetCurScene();
+	pCurScene->AddObject(pMissile2, GROUP_GAMEOBJ::MISSILE); //불완전한 코드 이벤트 동기화가 안일어남
+
+
 }

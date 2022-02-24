@@ -21,6 +21,8 @@ enum class GROUP_SCENE
 	SIZE,
 };
 #include "framework.h"
+#include <assert.h>
+#include <math.h>
 //
 #include "CSingleton.h"
 #include "CTimeManager.h"
@@ -29,9 +31,6 @@ enum class GROUP_SCENE
 #include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
-
-
-
 
 #include <string>
 using std::string;
@@ -50,8 +49,11 @@ using std::vector;
 #define WINSIZEX 1280
 #define WINSIZEY 720
 
+#define PI2 = 3.14
+
 //
 #define DT CTimeManager::getInst()->GetDT()
+#define fDT CTimeManager::getInst()->GetfDT()
 #define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
 #define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)

@@ -7,7 +7,7 @@ public:
 	~CPlayer();
 
 private:
-	fPoint m_fptScale;
+	fVec2 m_fptScale;
 	double m_velocity;
 
 public:

@@ -3,7 +3,7 @@
 class CMonster : public CGameObject
 {
 private:
-	fPoint m_fPtCenterPos;
+	fVec2 m_fPtCenterPos;
 	float m_fVelocity;
 	float m_fDistance;
 	bool m_bIsUpDir = true;
@@ -14,8 +14,8 @@ public:
 	virtual void update();
 	virtual void render(HDC hDC);
 
-	void SetCenterPos(fPoint point) { m_fPtCenterPos = point; }
-	fPoint GetCenterPos(){ return m_fPtCenterPos; }
+	void SetCenterPos(fVec2 point) { m_fPtCenterPos = point; }
+	fVec2 GetCenterPos(){ return m_fPtCenterPos; }
 
 };
 

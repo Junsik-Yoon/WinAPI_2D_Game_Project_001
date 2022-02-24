@@ -4,7 +4,8 @@
 CMissile::CMissile()
 {
 	m_fVelocity = 500;
-	SetScale(fPoint(25, 25));
+	SetScale(fVec2(25, 25));
+	
 }
 
 CMissile::~CMissile()
@@ -13,18 +14,18 @@ CMissile::~CMissile()
 
 void CMissile::update()
 {
-	fPoint vPos = GetPos();
+	fVec2 vPos = GetPos();
 
-	vPos.x += (float)(m_fVelocity * m_fDir.x * DT);
-	vPos.y += (float)(m_fVelocity * m_fDir.x * DT);
+	vPos.x += 600.f * m_fDir.x * fDT;
+	vPos.y += 600.f * m_fDir.y * fDT;
 
 	SetPos(vPos);
 }
 
 void CMissile::render(HDC hDC)
 {
-	fPoint vPos = GetPos();
-	fPoint vScale = GetScale();
+	fVec2 vPos = GetPos();
+	fVec2 vScale = GetScale();
 	Ellipse(hDC,
 		(int)vPos.x - vScale.x / 2.f,
 		(int)vPos.y - vScale.y / 2.f,

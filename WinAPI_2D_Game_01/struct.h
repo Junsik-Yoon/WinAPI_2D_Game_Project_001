@@ -6,23 +6,6 @@ struct iPoint
 	int y;
 };
 
-struct fPoint
-{
-	float x;
-	float y;
-
-	fPoint()
-	{
-		x = 0;
-		y = 0;
-	}
-
-	fPoint(float x, float y)
-	{
-		this->x = x;
-		this->y = y;
-	}
-};
 
 struct fVec2
 {
@@ -39,5 +22,14 @@ struct fVec2
 	{
 		this->x = x;
 		this->y = y;
+	}
+
+	fVec2 Normalize()
+	{
+		float z = sqrt(x * x + y * y);
+		assert(z != 0.f);
+		x = x / z;
+		y = y / z;
+		return fVec2(x / z, y / z);
 	}
 };

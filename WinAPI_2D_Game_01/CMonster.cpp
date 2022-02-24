@@ -3,7 +3,7 @@
 
 CMonster::CMonster()
 {
-	SetScale(fPoint(200, 200));
+	SetScale(fVec2(200, 200));
 	m_fVelocity = 200;
 	m_fDistance = 250;
 	m_bIsUpDir = true;
@@ -15,7 +15,7 @@ CMonster::~CMonster()
 
 void CMonster::update()
 {
-	fPoint vPos = GetPos();
+	fVec2 vPos = GetPos();
 	
 	if (m_bIsUpDir)
 	{

@@ -15,5 +15,6 @@ public:
 
 	unsigned int	GetFPS(){ return m_uiFPS; } //1초에 몇 프레임
 	double			GetDT() { return m_dDT; } //1프레임당 시간
+	float			GetfDT() { return(float)m_dDT; }
 };
 
