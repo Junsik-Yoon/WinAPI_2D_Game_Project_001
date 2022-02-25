@@ -15,6 +15,7 @@ CCore::~CCore()
 
 void CCore::update()
 {
+	
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
 	CSceneManager::getInst()->update();
@@ -46,6 +47,7 @@ void CCore::render()
 void CCore::init()
 {
 	//Core의 초기화
+	CPathManager::getInst()->init();
 	CTimeManager::getInst()->init();
 	CKeyManager::getInst()->init();
 	CSceneManager::getInst()->init();

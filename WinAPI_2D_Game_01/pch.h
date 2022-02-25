@@ -20,13 +20,15 @@ enum class GROUP_SCENE
 	TOOL,
 	SIZE,
 };
+#include "Logger.h"
 #include "framework.h"
+#include <assert.h>
 //
 #include "CSingleton.h"
+#include "CPathManager.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
 #include "CSceneManager.h"
-#include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
 

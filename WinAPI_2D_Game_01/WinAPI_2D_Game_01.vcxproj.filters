@@ -55,6 +55,18 @@
     <Filter Include="Engine\Manager\TimeManager">
       <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{c2b26f23-4048-4683-9a28-2bd16bbc7a94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{3a9686b8-698d-42bc-a551-bb158759ef20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sound">
+      <UniqueIdentifier>{6a7bfa36-2ea9-4aa1-86f7-a3f0f870c4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\PathManager">
+      <UniqueIdentifier>{aeebdc74-07d3-4328-86dc-e16785a95c79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -112,6 +124,15 @@
       <Filter>Engine\Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="CResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathManager.h">
+      <Filter>Engine\Manager\PathManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -149,6 +170,15 @@
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>Engine\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathManager.cpp">
+      <Filter>Engine\Manager\PathManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
