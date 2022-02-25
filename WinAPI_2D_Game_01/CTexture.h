@@ -7,10 +7,15 @@ class CTexture :public CResource
 private:
 	HDC		m_hDC;
 	HBITMAP m_hBMP;
+	BITMAP m_bmpInfo;
 public:
 	void Load(const wstring& strFilePath);
 	HDC GetDC() { return m_hDC; }
-	HBITMAP GETBitMap() { return m_hBMP; }
+	HBITMAP GetBitMap() { return m_hBMP; }
+	BITMAP GetBmpInfo() { return m_bmpInfo; }
+
+	int GetBmpWidth();
+	int GetBmpHeight();
 public:
 	CTexture();
 	virtual ~CTexture();

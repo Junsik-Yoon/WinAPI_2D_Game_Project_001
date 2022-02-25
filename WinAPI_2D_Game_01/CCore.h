@@ -9,6 +9,8 @@ public:
 	void update();
 	void render();
 
+	HDC GetMainDC() { return m_hMemDC; }
+
 private:
 	HDC		m_hDC;		//윈도우DC
 	HDC		m_hMemDC;	//메모리DC

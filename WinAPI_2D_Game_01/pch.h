@@ -20,6 +20,21 @@ enum class GROUP_SCENE
 	TOOL,
 	SIZE,
 };
+#pragma comment(lib,"Msimg32.lib")
+
+#include <string>
+using std::string;
+using std::wstring;
+//STL
+#include <vector>
+using std::vector;
+
+#include <map>
+using std::map;
+#include <list>
+#include <chrono>
+
+
 #include "Logger.h"
 #include "framework.h"
 #include <assert.h>
@@ -28,6 +43,7 @@ enum class GROUP_SCENE
 #include "CPathManager.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
+#include "CResourceManager.h"
 #include "CSceneManager.h"
 #include "CCore.h"
 #include "struct.h"
@@ -35,14 +51,7 @@ enum class GROUP_SCENE
 
 
 
-#include <string>
-using std::string;
-using std::wstring;
-//STL
-#include <vector>
-using std::vector;
-#include <list>
-#include <chrono>
+
 
 
 //macro

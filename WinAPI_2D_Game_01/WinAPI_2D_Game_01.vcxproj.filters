@@ -22,27 +22,6 @@
     <Filter Include="Util">
       <UniqueIdentifier>{2379f06a-509f-4ec7-b00b-84204f55320b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Object">
-      <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Scene">
-      <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Scene\scene_start">
-      <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Scene\scene_stage1">
-      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Object\Player">
-      <UniqueIdentifier>{979ddfa2-a2ca-4fe0-89bc-3aa8f5d52934}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Object\Monster">
-      <UniqueIdentifier>{b3163e0b-3ba3-4ada-9315-5b5e77ad3db4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Object\Missile">
-      <UniqueIdentifier>{207db5eb-75e5-468c-87a3-675b1db69ea8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Manager">
       <UniqueIdentifier>{50d7facb-1371-4fe5-8b95-3babf740c317}</UniqueIdentifier>
     </Filter>
@@ -66,6 +45,33 @@
     </Filter>
     <Filter Include="Engine\Manager\PathManager">
       <UniqueIdentifier>{aeebdc74-07d3-4328-86dc-e16785a95c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things">
+      <UniqueIdentifier>{6b4e1b16-a99b-4572-95dd-34a4f70f908c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object">
+      <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Player">
+      <UniqueIdentifier>{979ddfa2-a2ca-4fe0-89bc-3aa8f5d52934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Monster">
+      <UniqueIdentifier>{b3163e0b-3ba3-4ada-9315-5b5e77ad3db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Missile">
+      <UniqueIdentifier>{207db5eb-75e5-468c-87a3-675b1db69ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Scene">
+      <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Scene\scene_start">
+      <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Scene\scene_stage1">
+      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\ResourceManager">
+      <UniqueIdentifier>{4ced7329-1dd5-45dc-8e7c-c4239cd32f41}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,28 +106,28 @@
       <Filter>Engine\Manager\KeyManager</Filter>
     </ClInclude>
     <ClInclude Include="CGameObject.h">
-      <Filter>Engine\Object</Filter>
+      <Filter>Things\Object</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Things\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CSceneManager.h">
       <Filter>Engine\Manager\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="CScene_Start.h">
-      <Filter>Engine\Scene\scene_start</Filter>
+      <Filter>Things\Scene\scene_start</Filter>
     </ClInclude>
     <ClInclude Include="CScene_Stage1.h">
-      <Filter>Engine\Scene\scene_stage1</Filter>
+      <Filter>Things\Scene\scene_stage1</Filter>
     </ClInclude>
     <ClInclude Include="CMissile.h">
-      <Filter>Engine\Object\Missile</Filter>
+      <Filter>Things\Object\Missile</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>Engine\Object\Player</Filter>
+      <Filter>Things\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
-      <Filter>Engine\Object\Monster</Filter>
+      <Filter>Things\Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="CResource.h">
@@ -132,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="CPathManager.h">
       <Filter>Engine\Manager\PathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourceManager.h">
+      <Filter>Engine\Manager\ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,28 +157,28 @@
       <Filter>Engine\Manager\KeyManager</Filter>
     </ClCompile>
     <ClCompile Include="CGameObject.cpp">
-      <Filter>Engine\Object</Filter>
+      <Filter>Things\Object</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Things\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneManager.cpp">
       <Filter>Engine\Manager\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="CScene_Start.cpp">
-      <Filter>Engine\Scene\scene_start</Filter>
+      <Filter>Things\Scene\scene_start</Filter>
     </ClCompile>
     <ClCompile Include="CScene_Stage1.cpp">
-      <Filter>Engine\Scene\scene_stage1</Filter>
+      <Filter>Things\Scene\scene_stage1</Filter>
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
-      <Filter>Engine\Object\Missile</Filter>
+      <Filter>Things\Object\Missile</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>Engine\Object\Player</Filter>
+      <Filter>Things\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
-      <Filter>Engine\Object\Monster</Filter>
+      <Filter>Things\Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CResource.cpp">
       <Filter>Resource</Filter>
@@ -179,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="CPathManager.cpp">
       <Filter>Engine\Manager\PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourceManager.cpp">
+      <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

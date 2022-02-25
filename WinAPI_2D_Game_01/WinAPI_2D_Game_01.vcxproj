@@ -146,6 +146,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -157,6 +158,7 @@
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CResource.h" />
+    <ClInclude Include="CResourceManager.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CScene_Stage1.h" />
@@ -181,6 +183,7 @@
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CResource.cpp" />
+    <ClCompile Include="CResourceManager.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CScene_Stage1.cpp" />

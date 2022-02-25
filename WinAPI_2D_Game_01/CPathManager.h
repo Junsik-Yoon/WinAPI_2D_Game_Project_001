@@ -8,6 +8,7 @@ private:
 public:
 	void init();
 
-
+	const WCHAR* GetContentPath() { return m_szContentPath; }
+	
 };
 

@@ -6,6 +6,7 @@ CTexture::CTexture()
 {
 	m_hDC = 0;
 	m_hBMP = 0;
+	m_bmpInfo = {};
 }
 
 CTexture::~CTexture()
@@ -25,5 +26,26 @@ void CTexture::Load(const wstring& strFilePath)
 
 	if (0 == m_hBMP)//이미지를 load하는데 실패했다면
 		assert(nullptr);
+
+	//비트맵을 가지고 BmpInfo를 알아내야함
+	//비트맵을 다룰 DC만들기
+	m_hDC = CreateCompatibleDC(CCore::getInst()->GetMainDC());
+
+	//비트맵과 DC를 연결
+	HBITMAP hOldBitmap = (HBITMAP)SelectObject(m_hDC, m_hBMP);
+
+	//비트맵 info 추출
+	GetObject(m_hBMP, sizeof(BITMAP), &m_bmpInfo);
+}
+
+
+int CTexture::GetBmpWidth()
+{
+	return m_bmpInfo.bmWidth;
+}
+
+int CTexture::GetBmpHeight()
+{
+	return m_bmpInfo.bmHeight;
 }
 
