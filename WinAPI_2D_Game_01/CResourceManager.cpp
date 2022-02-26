@@ -17,30 +17,17 @@ CResourceManager::~CResourceManager()
 	}
 }
 
-CTexture* CResourceManager::FindTexture(const wstring& strKey)
-{
-	map<wstring, CTexture*>::iterator iter = m_mapTex.find(strKey);
-	
-	if (m_mapTex.end() == iter)
-	{
-		return nullptr;//못찾음
-	}
-	else
-		return iter->second;
-	
-	return nullptr;
-}
+
 
 
 CTexture* CResourceManager::LoadTexture(const wstring& strKey, const wstring& strPath)
 {
-	//이미 있던거면 있던걸 주면된다
+	//이미 키값이 있을 시
 	CTexture* pTex = FindTexture(strKey);
 	if (nullptr != pTex)
 		return pTex;
 	
-	//없던 거면 추가진행하면 된다
-
+	//없을 시 동적할당
 	wstring strFilePath = CPathManager::getInst()->GetContentPath();
 	strFilePath += strPath;
 
@@ -49,8 +36,20 @@ CTexture* CResourceManager::LoadTexture(const wstring& strKey, const wstring& st
 	pTex->SetKey(strKey);
 	pTex->SetPath(strPath);
 	
-	m_mapTex.insert(make_pair(strKey,pTex));//makepair두개를 묶어서 하나의 엘리먼트로 만들어줌
+	m_mapTex.insert(make_pair(strKey,pTex));
 	return pTex;
+}
+
+CTexture* CResourceManager::FindTexture(const wstring& strKey)
+{
+	map<wstring, CTexture*>::iterator iter = m_mapTex.find(strKey);
+
+	if (m_mapTex.end() == iter)
+	{
+		return nullptr;//못찾음
+	}
+	else
+		return iter->second;
 }
 
 

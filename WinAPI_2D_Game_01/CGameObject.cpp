@@ -2,6 +2,8 @@
 #include "CGameObject.h"
 
 CGameObject::CGameObject()
+	:m_fptPos{}
+	, m_fptScale{}
 {
 }
 

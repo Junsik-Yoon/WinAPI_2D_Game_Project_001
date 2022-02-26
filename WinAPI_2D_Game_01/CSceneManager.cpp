@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "CSceneManager.h"
 #include "CScene_Start.h"
-#include "CScene_Stage1.h"
 
 CSceneManager::CSceneManager()
 {
@@ -22,41 +21,31 @@ CSceneManager::~CSceneManager()
 
 void CSceneManager::ChangeScene(GROUP_SCENE group)
 {
-	//°°Àº ¾ÀÀÏ °æ¿ì
+	//°°Àº ¾ÀÀÏ °æ¿ì ¿¹¿ÜÃ³¸®
 	if (m_arrScene[(UINT)group]==m_pCurScene)
 		return;
 	m_pCurScene->Exit();
-	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];
+	//m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];//ÀüÈ¯ÇÒ ¾À
 	m_pCurScene->Enter();
 }
 
 void CSceneManager::update()
 {
-	//if (KEYDOWN(VK_SPACE))
-	//{
-	//	ChangeScene(GROUP_SCENE::STAGE1);
-	//}
-	//else if (KEYDOWN(VK_ESCAPE))
-	//{
-	//	ChangeScene(GROUP_SCENE::START);
-	//}
-
-	m_pCurScene->update(); //ÇöÀç ¼±ÅÃµÈ ¾À¸¸ ¾÷µ¥ÀÌÆ®
+	m_pCurScene->update(); //ÇöÀç ¼±ÅÃµÈ ¾À ¾÷µ¥ÀÌÆ®
 }
 
 void CSceneManager::render(HDC hDC)
 {
-	m_pCurScene->render(hDC); //ÇöÀç ¼±ÅÃµÈ ¾À¸¸ ·»´õ 
+	m_pCurScene->render(hDC); //ÇöÀç ¼±ÅÃµÈ ¾À ·»´õ 
 }
 
 void CSceneManager::init()
 {
+	//TODO: ¸ðµç ¾À »ý¼º
+
 	m_arrScene[(UINT)GROUP_SCENE::START] = new CScene_Start;
 	m_arrScene[(UINT)GROUP_SCENE::START]->SetName(L"Start_Scene");
 
-	m_arrScene[(UINT)GROUP_SCENE::STAGE1] = new CScene_Stage1;
-	m_arrScene[(UINT)GROUP_SCENE::STAGE1]->SetName(L"Stage01_Scene");
-
-	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];
+	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];//ÇöÀç¾ÀÁöÁ¤
 	m_pCurScene->Enter();
 }

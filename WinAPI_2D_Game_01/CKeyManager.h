@@ -4,7 +4,7 @@ class CKeyManager
 	SINGLETON(CKeyManager);
 
 private:
-	static const int VKEY_SIZE = 0xFF;		//VK의 최대 개수
+	static const int VKEY_SIZE = 0xFF;	
 
 	bool m_arrPrevKey[VKEY_SIZE];	//이전 키의 입력상태를 저장할 배열
 	bool m_arrCurKey[VKEY_SIZE];	//현재 키의 입력상태를 저장할 배열

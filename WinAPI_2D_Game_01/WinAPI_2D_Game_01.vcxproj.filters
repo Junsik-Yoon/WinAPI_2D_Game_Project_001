@@ -1,23 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{91fc4960-7dfd-4f91-bd3c-6078bec1871b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Core">
-      <UniqueIdentifier>{480770f3-46bd-4cfc-9226-11a2452be797}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{2379f06a-509f-4ec7-b00b-84204f55320b}</UniqueIdentifier>
@@ -25,41 +10,11 @@
     <Filter Include="Engine\Manager">
       <UniqueIdentifier>{50d7facb-1371-4fe5-8b95-3babf740c317}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Manager\KeyManager">
-      <UniqueIdentifier>{d8893df5-6ff4-4236-8e82-2c15f3a041c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Manager\SceneManager">
-      <UniqueIdentifier>{f12928e1-287f-4652-ae60-180bb329c6fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Manager\TimeManager">
-      <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{c2b26f23-4048-4683-9a28-2bd16bbc7a94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Texture">
-      <UniqueIdentifier>{3a9686b8-698d-42bc-a551-bb158759ef20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Sound">
-      <UniqueIdentifier>{6a7bfa36-2ea9-4aa1-86f7-a3f0f870c4f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Manager\PathManager">
-      <UniqueIdentifier>{aeebdc74-07d3-4328-86dc-e16785a95c79}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Things">
       <UniqueIdentifier>{6b4e1b16-a99b-4572-95dd-34a4f70f908c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Things\Object">
       <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Player">
-      <UniqueIdentifier>{979ddfa2-a2ca-4fe0-89bc-3aa8f5d52934}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Monster">
-      <UniqueIdentifier>{b3163e0b-3ba3-4ada-9315-5b5e77ad3db4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Missile">
-      <UniqueIdentifier>{207db5eb-75e5-468c-87a3-675b1db69ea8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Things\Scene">
       <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
@@ -67,26 +22,45 @@
     <Filter Include="Things\Scene\scene_start">
       <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Things\Scene\scene_stage1">
-      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
+    <Filter Include="Things\Resource">
+      <UniqueIdentifier>{c2b26f23-4048-4683-9a28-2bd16bbc7a94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Resource\Texture">
+      <UniqueIdentifier>{3a9686b8-698d-42bc-a551-bb158759ef20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Resource\Sound">
+      <UniqueIdentifier>{6a7bfa36-2ea9-4aa1-86f7-a3f0f870c4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{8634badd-66d4-43b8-8b4c-b9e4106ce21d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default\Header">
+      <UniqueIdentifier>{69729902-259a-4415-bcd2-175fac5f7608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{480770f3-46bd-4cfc-9226-11a2452be797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\TimeManager">
+      <UniqueIdentifier>{13ce11a4-4a68-4534-990a-1d6ed230e499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\SceneManager">
+      <UniqueIdentifier>{f12928e1-287f-4652-ae60-180bb329c6fb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Manager\ResourceManager">
       <UniqueIdentifier>{4ced7329-1dd5-45dc-8e7c-c4239cd32f41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager\PathManager">
+      <UniqueIdentifier>{aeebdc74-07d3-4328-86dc-e16785a95c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\KeyManager">
+      <UniqueIdentifier>{d8893df5-6ff4-4236-8e82-2c15f3a041c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="winmain.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CCore.h">
       <Filter>Engine\Core</Filter>
     </ClInclude>
@@ -117,24 +91,12 @@
     <ClInclude Include="CScene_Start.h">
       <Filter>Things\Scene\scene_start</Filter>
     </ClInclude>
-    <ClInclude Include="CScene_Stage1.h">
-      <Filter>Things\Scene\scene_stage1</Filter>
-    </ClInclude>
-    <ClInclude Include="CMissile.h">
-      <Filter>Things\Object\Missile</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>Things\Object\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>Things\Object\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="CResource.h">
-      <Filter>Resource</Filter>
+      <Filter>Things\Resource</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
-      <Filter>Resource\Texture</Filter>
+      <Filter>Things\Resource\Texture</Filter>
     </ClInclude>
     <ClInclude Include="CPathManager.h">
       <Filter>Engine\Manager\PathManager</Filter>
@@ -142,11 +104,20 @@
     <ClInclude Include="CResourceManager.h">
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="winmain.h">
+      <Filter>Default\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\Core</Filter>
     </ClCompile>
@@ -168,23 +139,11 @@
     <ClCompile Include="CScene_Start.cpp">
       <Filter>Things\Scene\scene_start</Filter>
     </ClCompile>
-    <ClCompile Include="CScene_Stage1.cpp">
-      <Filter>Things\Scene\scene_stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="CMissile.cpp">
-      <Filter>Things\Object\Missile</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>Things\Object\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>Things\Object\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="CResource.cpp">
-      <Filter>Resource</Filter>
+      <Filter>Things\Resource</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
-      <Filter>Resource\Texture</Filter>
+      <Filter>Things\Resource\Texture</Filter>
     </ClCompile>
     <ClCompile Include="CPathManager.cpp">
       <Filter>Engine\Manager\PathManager</Filter>
@@ -192,18 +151,19 @@
     <ClCompile Include="CResourceManager.cpp">
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2D_Game_01.rc">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </Image>
     <Image Include="WinAPI_2D_Game_01.ico">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </Image>
   </ItemGroup>
 </Project>

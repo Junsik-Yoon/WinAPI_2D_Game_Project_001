@@ -1,6 +1,6 @@
 #pragma once
 
-class CScene;//전방선언
+class CScene;
 
 class CSceneManager
 {

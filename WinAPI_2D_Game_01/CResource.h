@@ -16,6 +16,6 @@ public:
 
 public:
 	CResource();
-	virtual ~CResource(); //상속할때 자식의 소멸자가 생성되도록
+	virtual ~CResource(); 
 };
 

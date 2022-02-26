@@ -20,7 +20,7 @@ CScene::~CScene()
 
 void CScene::update()
 {
-	//씬이 가지고 있는 모든 오브젝트들을 업데이트해준다
+	//씬이 가지고 있는 모든 오브젝트 업데이트
 	for (UINT i = 0; i < (UINT)GROUP_GAMEOBJ::SIZE; ++i)
 	{
 		for (int j = 0; j < m_arrObj[i].size(); ++j)
@@ -32,7 +32,7 @@ void CScene::update()
 
 void CScene::render(HDC hDC)
 {
-	//씬이 가지고 있는 모든 오브젝트들을 렌더해준다
+	//씬이 가지고 있는 모든 오브젝트 렌더
 	for (UINT i = 0; i < (UINT)GROUP_GAMEOBJ::SIZE; ++i)
 	{
 		for (int j = 0; j < m_arrObj[i].size(); ++j)
