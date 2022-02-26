@@ -48,3 +48,45 @@ struct fPoint
 	{}
 };
 
+struct Vec2
+{
+	float x;
+	float y;
+
+	float Length()//빗변길이
+	{
+		return sqrt(x * x + y * y);
+	}
+	Vec2& Normalize()
+	{//1보다 작았으면 1이되고 1보다 컸어도 1이되게
+		float fLen = Length();
+		assert(fLen != 0.f);
+		x /= fLen;
+		y /= fLen;
+		return *this;
+	}
+
+	Vec2& operator= (POINT _fPoint)
+	{
+		x = (float)_fPoint.x;
+		y = (float)_fPoint.y;
+	}
+
+	Vec2()
+	{
+		x = 0;
+		y = 0;
+	}
+
+	Vec2(float x, float y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
+	Vec2(const POINT& _pt)
+		: x((float)_pt.x)
+		, y((float)_pt.y)
+	{}
+};
+

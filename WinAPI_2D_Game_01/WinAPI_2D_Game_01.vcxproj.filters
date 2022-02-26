@@ -67,6 +67,9 @@
     <Filter Include="Engine\Manager\PathManager">
       <UniqueIdentifier>{a6716f09-c52d-4a47-bdf5-12d5b2988163}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager\ResourceManager">
+      <UniqueIdentifier>{9fa07198-ec2c-4e58-b6c5-412a52d7a5f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -135,6 +138,9 @@
     <ClInclude Include="CPathManager.h">
       <Filter>Engine\Manager\PathManager</Filter>
     </ClInclude>
+    <ClInclude Include="CResourceManager.h">
+      <Filter>Engine\Manager\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -181,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="CPathManager.cpp">
       <Filter>Engine\Manager\PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CResourceManager.cpp">
+      <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

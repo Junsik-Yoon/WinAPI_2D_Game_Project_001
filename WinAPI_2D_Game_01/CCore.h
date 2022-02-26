@@ -18,5 +18,6 @@ private:
 	void render();
 public:
 	POINT GetResolution() { return m_ptResolution; }
+	HDC GetMainDC() { return m_hDC; }
 };
 

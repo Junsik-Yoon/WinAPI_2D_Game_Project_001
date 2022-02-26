@@ -24,6 +24,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //실행된 프로세스의 시�
     _In_ LPWSTR    lpCmdLine, //추가명령어를 입력해서 쓸 수 있게 -> 게임만들때는 잘 안씀
     _In_ int       nCmdShow)
 {
+    //메모리 leak(누수) 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(214); //문제점이생겼을때 중단점을 걸어준다
+
+    
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 

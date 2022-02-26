@@ -67,7 +67,7 @@ void CCore::progress()
 	//복붙
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
 
-	//CTimeManager::GetInst()->render(); //TODO: 주석복구
+	CTimeManager::GetInst()->render();
 }
 
 
