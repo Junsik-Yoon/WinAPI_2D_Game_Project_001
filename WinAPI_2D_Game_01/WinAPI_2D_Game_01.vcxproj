@@ -78,9 +78,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Output\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,17 +146,43 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCore.h" />
+    <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CKeyManager.h" />
+    <ClInclude Include="CPathManager.h" />
+    <ClInclude Include="CResource.h" />
+    <ClInclude Include="CResourceManager.h" />
+    <ClInclude Include="CScene.h" />
+    <ClInclude Include="CSceneManager.h" />
+    <ClInclude Include="CSingleton.h" />
+    <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="CScene_Start.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="WinAPI_2D_Game_01.h" />
+    <ClInclude Include="winmain.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WinAPI_2D_Game_01.cpp" />
+    <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CKeyManager.cpp" />
+    <ClCompile Include="CPathManager.cpp" />
+    <ClCompile Include="CResource.cpp" />
+    <ClCompile Include="CResourceManager.cpp" />
+    <ClCompile Include="CScene.cpp" />
+    <ClCompile Include="CSceneManager.cpp" />
+    <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CTimeManager.cpp" />
+    <ClCompile Include="CScene_Start.cpp" />
+    <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2D_Game_01.rc" />
