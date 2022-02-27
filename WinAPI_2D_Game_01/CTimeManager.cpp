@@ -5,9 +5,9 @@ CTimeManager::CTimeManager()
 {
 	m_uiFPS = 0;
 	m_dDT = 0;
-	m_llPrevCount;
-	m_llCurCount;
-	m_llFrequency;
+	m_llPrevCount = {};
+	m_llCurCount = {};
+	m_llFrequency = {};
 }
 CTimeManager::~CTimeManager()
 {

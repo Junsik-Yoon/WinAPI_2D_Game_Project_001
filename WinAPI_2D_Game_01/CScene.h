@@ -19,6 +19,7 @@ public:
 	const wstring& GetName() { return m_strName; }
 
 	void update();
+	void finalupdate(); //모든걸 마무리해주는 업데이트
 	void render(HDC _dc);
 
 
@@ -27,6 +28,7 @@ public:
 
 public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType) { m_arrObj[(UINT)_eType].push_back(_pObj); }
+	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType) { return m_arrObj[(UINT)_eType]; }
 
 public:
 	CScene();

@@ -2,22 +2,36 @@
 #include "CMonster.h"
 
 #include "CTimeManager.h"
+#include "CCollider.h"
 
 CMonster::CMonster()
 	:m_fSpeed(100.f),
-	m_vCenterPos(fPoint(0.f, 0.f)),
+	m_vCenterPos(Vec2(0.f, 0.f)),
 	m_fMaxDistance(50.f),
 	m_iDir(1)
 {
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(40.f, 40.f));
 }
 
 CMonster::~CMonster()
 {
 }
 
+void CMonster::OnCollisionEnter(CCollider* _pOther)
+{
+	//충돌시 할 것
+	//CObject* pOtherObj = _pOther->GetObj();
+	//if(pOtherObj->GetName() == L"Missile")
+	//{
+	// 미사일 맞으면 삭제되게 할 때 그냥 삭제시키면 벡터안에서 포인터를 빼줘야함
+	//}
+
+}
+
 void CMonster::update()
 {
-	fPoint vCurPos = GetPos();
+	Vec2 vCurPos = GetPos();
 
 	//잔행방향으로 시간당 m_fSpeed만큼 이동
 	vCurPos.x += fDT * m_fSpeed * m_iDir;

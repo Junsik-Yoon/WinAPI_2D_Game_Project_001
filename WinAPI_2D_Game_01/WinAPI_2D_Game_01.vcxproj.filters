@@ -70,6 +70,12 @@
     <Filter Include="Engine\Manager\ResourceManager">
       <UniqueIdentifier>{9fa07198-ec2c-4e58-b6c5-412a52d7a5f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{681651ad-e8ac-4eda-89d3-da535bf3e740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\CollisionManager">
+      <UniqueIdentifier>{ac752d5f-32b8-44b4-b418-5914e236dee8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -141,6 +147,15 @@
     <ClInclude Include="CResourceManager.h">
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>Engine\Manager\CollisionManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -190,6 +205,15 @@
     </ClCompile>
     <ClCompile Include="CResourceManager.cpp">
       <Filter>Engine\Manager\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>Engine\Manager\CollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

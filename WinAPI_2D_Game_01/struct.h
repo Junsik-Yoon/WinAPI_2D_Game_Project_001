@@ -66,10 +66,29 @@ struct Vec2
 		return *this;
 	}
 
-	Vec2& operator= (POINT _fPoint)
+	Vec2& operator= (POINT _other)
 	{
-		x = (float)_fPoint.x;
-		y = (float)_fPoint.y;
+		x = (float)_other.x;
+		y = (float)_other.y;
+	}
+
+	Vec2 operator+ (Vec2 _vOther)
+	{
+		return Vec2(x + _vOther.x, y + _vOther.y);
+	}
+	Vec2 operator- (Vec2 _vOther)
+	{
+		return Vec2(x - _vOther.x, y - _vOther.y);
+	}
+	Vec2 operator* (Vec2 _vOther)
+	{
+		return Vec2(x * _vOther.x, y * _vOther.y);
+	}
+	Vec2 operator/ (Vec2 _vOther)
+	{
+		if (0.f == _vOther.x || 0.f == _vOther.y)
+			assert(nullptr);
+		return Vec2(x + _vOther.x, y + _vOther.y);
 	}
 
 	Vec2()
