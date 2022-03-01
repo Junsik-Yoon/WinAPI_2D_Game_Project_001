@@ -152,6 +152,7 @@
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CCore.h" />
+    <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="func.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
+    <ClCompile Include="func.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>

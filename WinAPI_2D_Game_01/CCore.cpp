@@ -6,6 +6,7 @@
 #include "CSceneManager.h"
 #include "CPathManager.h"
 #include "CCollisionManager.h"
+#include "CEventManager.h"
 
 CCore::CCore()
 	:m_hWnd(0)
@@ -60,9 +61,17 @@ void CCore::progress()
 {
 	CTimeManager::GetInst()->update();
 	CKeyManager::GetInst()->update();
+
+	//==============
+	// Scene update
+	//==============
+
 	CSceneManager::GetInst()->update();
 	CCollisionManager::GetInst()->update();
 	
+
+	
+
 	//=========
 	//Rendering
 	//=========
@@ -76,6 +85,11 @@ void CCore::progress()
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_memDC, 0, 0, SRCCOPY);
 
 	CTimeManager::GetInst()->render();
+
+	//===============
+	//이벤트 지연처리
+	//==============
+	CEventManager::GetInst()->update();
 }
 
 void CCore::CreateBrushPen()

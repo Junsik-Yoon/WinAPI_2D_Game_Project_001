@@ -15,11 +15,10 @@
 enum class GROUP_TYPE
 {//씬에 존재하는 오브젝트들을 분류
 	DEFAULT,//0
-
 	PLAYER,//1
-	MISSILE,//2
-	MONSTER,//3
-
+	MONSTER,//2
+	PROJ_PLAYER,//3
+	PROJ_MONSTER,//4
 
 	END = 32,
 };
@@ -45,6 +44,16 @@ enum class PEN_TYPE
 	BLUE,
 	END,
 };
+
+enum class EVENT_TYPE
+{
+	CREATE_OBJECT,
+	DELETE_OBJECT,
+	SCENE_CHANGE,
+	
+	END,
+};
+
 #include "framework.h"
 
 #include <string>
@@ -65,6 +74,7 @@ using std::vector;
 #include "Logger.h"
 #include "CCore.h"
 #include "struct.h"
+#include "func.h"
 
 #include <Windows.h>
 
@@ -80,9 +90,4 @@ using std::vector;
 extern HINSTANCE hInst;
 extern HWND hWnd;
 
-//1.지역변수 : 함수 내 생성  /스택영역
-//2.전역변수 : 함수 외부 전역에서 생성 /데이터영역
-//3.정적변수 : 함수 내부에서 만들지만 데이터영역에 존재
-//4.외부변수 : 다른곳에서 만들어진다
-//5.멤버변수 : 클래스 안에서 선언되고 인스턴스가 생성될 당시에 만들어진다
 

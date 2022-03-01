@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "CMissile.h"
-
 #include "CTimeManager.h"
+#include "CCollider.h"
+
+
 
 CMissile::CMissile() //0이면 우측으로
 	:m_fTheta(3.f * PI / 2.f)   //윈도우좌표는 위아래가 뒤집어져있기때문에 위아래를 반대로 봐야함
@@ -9,6 +11,7 @@ CMissile::CMissile() //0이면 우측으로
 {
 	m_vDir.Normalize();
 	CreateCollider();
+	GetCollider()->SetScale(Vec2(15.f,15.f));
 }
 
 CMissile::~CMissile()
@@ -35,4 +38,14 @@ void CMissile::render(HDC _dc)
 		(int)vPos.y - vScale.y / 2.f,
 		(int)vPos.x + vScale.x / 2.f,
 		(int)vPos.y + vScale.y / 2.f);
+	component_render(_dc);
+}
+
+void CMissile::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
 }

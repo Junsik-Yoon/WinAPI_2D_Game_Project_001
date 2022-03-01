@@ -36,7 +36,7 @@ void CScene_Start::Enter()
 
 
 	//몬스터 배치
-	int iMonCount = 1;
+	int iMonCount = 10;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 	float fTerm = (WINSIZEX - ((fMoveDist + fObjScale / 2.f) * 2)) / iMonCount - 1;
@@ -47,6 +47,7 @@ void CScene_Start::Enter()
 		CMonster* pMonsterObj = new CMonster;
 		pMonsterObj->SetPos(Vec2(((fMoveDist + fObjScale / 2.f) * 2) + (float)i * fTerm, 50.f));
 		pMonsterObj->SetCenterPos(pMonsterObj->GetPos());
+		pMonsterObj->SetName(L"Monster");
 		pMonsterObj->SetMoveDistance(fMoveDist);
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
@@ -56,6 +57,7 @@ void CScene_Start::Enter()
 	//player그룹과 monster그룹간의 충돌 체크
 	CCollisionManager::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	//1개뿐만아니라 여러개의 충돌을 지정할 수 있음
+	CCollisionManager::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 
 }
 

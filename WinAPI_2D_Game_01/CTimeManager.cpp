@@ -23,7 +23,10 @@ void CTimeManager::update()
 	m_dDT= (double)(m_llCurCount.QuadPart - m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;//현재업데이트-이젠업데이트카운트
 	m_llPrevCount = m_llCurCount;
 
-	
+#ifdef _DEBUG
+	if(m_dDT >(1./60.))
+		m_dDT = (1. / 60.);
+#endif
 
 }
 

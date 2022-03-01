@@ -7,6 +7,7 @@ CObject::CObject()
 	 :m_vPos{}
 	, m_vScale{}
 , m_pCollider(nullptr)
+,m_bAlive(true)
 {
 	
 }
