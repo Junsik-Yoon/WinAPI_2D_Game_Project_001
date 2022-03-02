@@ -18,18 +18,21 @@ void CScene_Start::Enter()
 	
 	//Player 추가
 	CGameObject* pPlayer = new CPlayer;
-	pPlayer->SetPos(fPoint(300, 500));
-	pPlayer->SetScale(fPoint(50, 50));
+	pPlayer->SetPos(fVec2(300, 500));
+	pPlayer->SetScale(fVec2(50, 50));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
 	//Monster 추가
 	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(fPoint(1000, 300));
+	pMonster->SetPos(fVec2(1000, 300));
 	pMonster->SetCenterPos(pMonster->GetPos());
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
+
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::MISSILE);
 }
 
 void CScene_Start::Exit()
 {
-	ClearObject();
+	CCollisionManager::getInst()->Reset();
 }

@@ -32,16 +32,8 @@ void CSceneManager::ChangeScene(GROUP_SCENE group)
 
 void CSceneManager::update()
 {
-	//if (KEYDOWN(VK_SPACE))
-	//{
-	//	ChangeScene(GROUP_SCENE::STAGE1);
-	//}
-	//else if (KEYDOWN(VK_ESCAPE))
-	//{
-	//	ChangeScene(GROUP_SCENE::START);
-	//}
-
 	m_pCurScene->update(); //현재 선택된 씬만 업데이트
+	m_pCurScene->finalupdate();
 }
 
 void CSceneManager::render(HDC hDC)

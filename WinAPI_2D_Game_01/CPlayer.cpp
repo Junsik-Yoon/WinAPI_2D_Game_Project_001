@@ -3,14 +3,18 @@
 #include "CMissile.h"
 #include "CScene.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 {
-	SetPos(fPoint(300, 300));
-	SetScale(fPoint(50, 50));
+	SetPos(fVec2(300, 300));
+	SetScale(fVec2(50, 50));
 	m_velocity = 200;
 
 	m_pTex = CResourceManager::getInst()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	CreateCollider();
+	GetCollider()->SetScale(fVec2(40.f, 40.f));
+	GetCollider()->SetOffset(fVec2(0.f, 8.f));
 }
 
 CPlayer::~CPlayer()
@@ -19,7 +23,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::update()
 {
-	fPoint vPos = GetPos();
+	fVec2 vPos = GetPos();
 
 	if (KEY(VK_UP))
 	{
@@ -67,21 +71,34 @@ void CPlayer::render(HDC hDC)
 		0, 0, width, height,
 		RGB(255, 0, 255));
 
-	/*Rectangle(hDC, GetPos().x - GetScale().x,
-		GetPos().y - GetScale().y,
-		GetPos().x + GetScale().x,
-		GetPos().y + GetScale().y);*/
+	component_render(hDC);
 }
 
 void CPlayer::CreateMissile()
 {
-	fPoint fptMissilePos = GetPos();
+	fVec2 fptMissilePos = GetPos();
 	fptMissilePos.x += GetScale().x / 2.f;
 
 	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(fptMissilePos);
-	pMissile->SetDir(fVec2(1.f, 0.f));
+	pMissile->SetDir(fVec2(1.f, 1.f));
 
 	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
 	pCurScene->AddObject(pMissile, GROUP_GAMEOBJ::MISSILE); //불완전한 코드 이벤트 동기화가 안일어남
+}
+
+void CPlayer::OnCollision(CCollider* pOther)
+{
+}
+
+void CPlayer::OnCollisionEnter(CCollider* pOther)
+{
+	fVec2 pos = GetPos();
+	pos.x -= 100;
+	SetPos(pos);
+
+}
+
+void CPlayer::OnCollisionExit(CCollider* pOther)
+{
 }

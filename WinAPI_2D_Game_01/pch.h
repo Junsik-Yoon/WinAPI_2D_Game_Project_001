@@ -20,7 +20,26 @@ enum class GROUP_SCENE
 	TOOL,
 	SIZE,
 };
+
+//Core DC GDI GROUP
+enum class TYPE_PEN
+{
+	RED,
+	GREEN,
+	BLUE,
+
+	SIZE,
+};
+enum class TYPE_BRUSH
+{
+	HOLLOW,
+	
+
+	SIZE,
+};
 #pragma comment(lib,"Msimg32.lib")
+
+
 
 #include <string>
 using std::string;
@@ -45,9 +64,11 @@ using std::map;
 #include "CKeyManager.h"
 #include "CResourceManager.h"
 #include "CSceneManager.h"
+#include "CCollisionManager.h"
+#include "CEventManager.h"
 #include "CCore.h"
 #include "struct.h"
-
+#include "SelectGDI.h"
 
 
 

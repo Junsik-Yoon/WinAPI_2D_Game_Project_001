@@ -1,10 +1,14 @@
 #include "pch.h"
 #include "CMissile.h"
+#include "CCollider.h"
 
 CMissile::CMissile()
 {
 	m_fVelocity = 500;
-	SetScale(fPoint(25, 25));
+	SetScale(fVec2(25, 25));
+
+	CreateCollider();
+	GetCollider()->SetScale(fVec2(20.f, 20.f));
 }
 
 CMissile::~CMissile()
@@ -13,7 +17,7 @@ CMissile::~CMissile()
 
 void CMissile::update()
 {
-	fPoint vPos = GetPos();
+	fVec2 vPos = GetPos();
 
 	vPos.x += (float)(m_fVelocity * m_fDir.x * DT);
 	vPos.y += (float)(m_fVelocity * m_fDir.x * DT);
@@ -23,11 +27,12 @@ void CMissile::update()
 
 void CMissile::render(HDC hDC)
 {
-	fPoint vPos = GetPos();
-	fPoint vScale = GetScale();
+	fVec2 vPos = GetPos();
+	fVec2 vScale = GetScale();
 	Ellipse(hDC,
 		(int)vPos.x - vScale.x / 2.f,
 		(int)vPos.y - vScale.y / 2.f,
 		(int)vPos.x + vScale.x / 2.f,
 		(int)vPos.y + vScale.y / 2.f);
+	component_render(hDC);
 }

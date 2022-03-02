@@ -73,6 +73,15 @@
     <Filter Include="Engine\Manager\ResourceManager">
       <UniqueIdentifier>{4ced7329-1dd5-45dc-8e7c-c4239cd32f41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{6e78e54e-43fb-4c65-850c-3a4612fb7e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\CollisionManager">
+      <UniqueIdentifier>{d0dca21c-9950-4090-a562-553aec1f9265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\EventManager">
+      <UniqueIdentifier>{97279575-96d4-41f4-95a0-277257bac1f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -142,6 +151,18 @@
     <ClInclude Include="CResourceManager.h">
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>Engine\Manager\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventManager.h">
+      <Filter>Engine\Manager\EventManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -191,6 +212,15 @@
     </ClCompile>
     <ClCompile Include="CResourceManager.cpp">
       <Filter>Engine\Manager\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>Engine\Manager\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventManager.cpp">
+      <Filter>Engine\Manager\EventManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

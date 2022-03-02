@@ -13,11 +13,13 @@ public:
 	virtual ~CScene();
 
 	virtual void update();
+	void finalupdate();
 	virtual void render(HDC hDC);
 
 	virtual void Enter()=0;//씬이라는 자기자신을 만들 일이 없기때문에 순수가상함수
 	virtual void Exit()=0;
 
+	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group) { return m_arrObj[(UINT)group]; }
 	void SetName(const wstring& strName) { m_strName = strName; }
 	wstring GetName() { return m_strName; }
 

@@ -11,6 +11,10 @@ CCore::~CCore()
 	ReleaseDC(hWnd, m_hDC);
 	DeleteObject(m_hMemDC);
 	DeleteObject(m_hBMP);
+	for (int i = 0; i < (UINT)TYPE_PEN::SIZE; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
 }
 
 void CCore::update()
@@ -19,6 +23,7 @@ void CCore::update()
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
 	CSceneManager::getInst()->update();
+	CCollisionManager::getInst()->update();
 	//게임의 정보를 갱신
 	
 //	if (KEYDOWN(VK_SPACE)) //씬전환예시
@@ -44,6 +49,26 @@ void CCore::render()
 	//memDC 그린 복사본을 원본 DC에 그리는 작업
 	BitBlt(m_hDC, 0, 0, WINSIZEX, WINSIZEY, m_hMemDC, 0, 0, SRCCOPY);
 }
+void CCore::CreateBrushPen()
+{
+	//brush
+	m_arrBrush[(UINT)TYPE_BRUSH::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	
+	//pen
+	m_arrPen[(UINT)TYPE_PEN::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)TYPE_PEN::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)TYPE_PEN::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+
+	
+}
+HPEN CCore::GetPen(TYPE_PEN type)
+{
+	return m_arrPen[(UINT)type];
+}
+HBRUSH CCore::GetBrush(TYPE_BRUSH type)
+{
+	return m_arrBrush[(UINT)type];
+}
 void CCore::init()
 {
 	//Core의 초기화
@@ -51,6 +76,9 @@ void CCore::init()
 	CTimeManager::getInst()->init();
 	CKeyManager::getInst()->init();
 	CSceneManager::getInst()->init();
+	CCollisionManager::getInst()->init();
+
+	CreateBrushPen();
 
 	m_hDC = GetDC(hWnd);
 	m_hMemDC = CreateCompatibleDC(m_hDC);
