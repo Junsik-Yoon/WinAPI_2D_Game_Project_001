@@ -30,9 +30,9 @@ public:
 	fVec2 GetOffset(){ return m_fptOffset; }
 	void SetScale(fVec2 _scale) { m_fptScale = _scale; }
 	fVec2 GetScale() { return m_fptScale; }
-	fVec2 GetFinalPose(){ return m_fptScale; }
+	fVec2 GetFinalPose() { return m_fptFinalPos; }
 	UINT GetID() { return m_iID; }
-
+	CGameObject* GetGameObject() { return m_pOwner;  }
 public:
 	void finalupdate();
 	void render(HDC hDC);

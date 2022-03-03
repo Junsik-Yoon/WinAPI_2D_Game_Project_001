@@ -2,6 +2,7 @@
 #include "CSceneManager.h"
 #include "CScene_Start.h"
 #include "CScene_Stage1.h"
+#include "CScene_Tool.h"
 
 CSceneManager::CSceneManager()
 {
@@ -22,11 +23,8 @@ CSceneManager::~CSceneManager()
 
 void CSceneManager::ChangeScene(GROUP_SCENE group)
 {
-	//°°Àº ¾ÀÀÏ °æ¿ì
-	if (m_arrScene[(UINT)group]==m_pCurScene)
-		return;
 	m_pCurScene->Exit();
-	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];
+	m_pCurScene = m_arrScene[(UINT)group];
 	m_pCurScene->Enter();
 }
 
@@ -48,6 +46,9 @@ void CSceneManager::init()
 
 	m_arrScene[(UINT)GROUP_SCENE::STAGE1] = new CScene_Stage1;
 	m_arrScene[(UINT)GROUP_SCENE::STAGE1]->SetName(L"Stage01_Scene");
+
+	m_arrScene[(UINT)GROUP_SCENE::TOOL] = new CScene_Tool;
+	m_arrScene[(UINT)GROUP_SCENE::TOOL]->SetName(L"Tool_Scene");
 
 	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];
 	m_pCurScene->Enter();

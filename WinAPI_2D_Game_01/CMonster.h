@@ -11,6 +11,8 @@ private:
 public:
 	CMonster();
 	~CMonster();
+	virtual CMonster* Clone() { return new  CMonster(*this); }
+
 	virtual void update();
 	virtual void render(HDC hDC);
 

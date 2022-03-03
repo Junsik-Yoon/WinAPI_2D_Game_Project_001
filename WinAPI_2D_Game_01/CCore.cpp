@@ -19,16 +19,11 @@ CCore::~CCore()
 
 void CCore::update()
 {
-	
+	CEventManager::getInst()->update();
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
 	CSceneManager::getInst()->update();
 	CCollisionManager::getInst()->update();
-	//게임의 정보를 갱신
-	
-//	if (KEYDOWN(VK_SPACE)) //씬전환예시
-	//	sceneChange = true; //불타입
-
 }
 
 void CCore::render()
@@ -36,9 +31,7 @@ void CCore::render()
 	//게임의 정보를 토대로 그려주는 작업
 	Rectangle(m_hMemDC, -1 ,- 1, WINSIZEX + 1, WINSIZEY + 1);
 
-
 	CSceneManager::getInst()->render(m_hMemDC);
-
 
 	//fps를 표현
 	WCHAR strFPS[6];

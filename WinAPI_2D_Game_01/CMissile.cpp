@@ -4,6 +4,7 @@
 
 CMissile::CMissile()
 {
+	SetName(L"Missile");
 	m_fVelocity = 500;
 	SetScale(fVec2(25, 25));
 

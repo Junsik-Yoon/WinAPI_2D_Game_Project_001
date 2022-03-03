@@ -67,6 +67,21 @@ struct fVec2
 		return fVec2(x + _vOther.x, y + _vOther.y);
 	}
 
+	template<typename T>
+	fVec2 operator*(T num)
+	{
+		return fVec2(x * num, y * num);
+	}
+
+	template<typename T>
+	fVec2 operator/(T num)
+	{
+		if(num == 0)
+			assert(nullptr);
+		return fVec2(x / num, y / num);
+	}
+
+
 	fVec2()
 	{
 		x = 0;

@@ -24,6 +24,8 @@ public:
 	wstring GetName() { return m_strName; }
 
 	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ type);
+	void DeleteGroup(GROUP_GAMEOBJ obj);
+	void DeleteAll();
 protected:
 	void ClearObject();
 };

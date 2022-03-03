@@ -37,6 +37,17 @@ enum class TYPE_BRUSH
 
 	SIZE,
 };
+
+//event group
+enum class TYPE_EVENT
+{
+	CRAETE_OBJECT,
+	DELETE_OBJECT,
+	CHANGE_SCENE,
+	
+	SIZE,
+};
+
 #pragma comment(lib,"Msimg32.lib")
 
 
@@ -83,10 +94,15 @@ using std::map;
 #define WINSIZEY 720
 
 //
+#define fDT CTimeManager::getInst()->GetfDT()
 #define DT CTimeManager::getInst()->GetDT()
 #define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
 #define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)
+
+#define EventCreateObj(obj,group) CEventManager::getInst()->EventCreateGameObject(obj,group);
+#define EventDeleteObj(obj) CEventManager::getInst()->EventDeleteGameObject(obj);
+#define CHANGESCENE(group) CEventManager::getInst()->EventChangeScene(group);
 
 //전역변수
 extern HINSTANCE hInst;

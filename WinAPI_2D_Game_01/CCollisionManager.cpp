@@ -3,6 +3,7 @@
 #include "CGameObject.h"
 #include "CScene.h"
 #include "CCollider.h"
+#include "CSceneManager.h"
 
 CCollisionManager::CCollisionManager()
 {
@@ -19,90 +20,104 @@ void CCollisionManager::CollisionGroupUpdate(GROUP_GAMEOBJ objLeft, GROUP_GAMEOB
 	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
 	const vector<CGameObject*>& vecLeft = pCurScene->GetGroupObject(objLeft);
 	const vector<CGameObject*>& vecRight = pCurScene->GetGroupObject(objRight);
-
-	for (int i = 0; i < vecLeft.size(); ++i)
+	map<ULONGLONG, bool>::iterator iter;
+	for (size_t i = 0; i < vecLeft.size(); ++i)
 	{
-		//충돌체 컴포넌트가 없는 경우 무시
-		if (nullptr == vecLeft[i]->GetCollider())
+		if (nullptr == vecLeft[i]->GetCollider()) //i번째 물체가 충돌체가 없다면
 			continue;
-		for (int j = 0; j < vecRight.size(); ++j)
+		for (size_t j = 0; j < vecRight.size(); ++j)
 		{
-			//충돌체 컴포넌트가 없는 경우 무시
-			if (nullptr == vecRight[j]->GetCollider())
-				continue;
-			//자기 자신과의 충돌 예외처리
-			if (vecLeft[i] == vecRight[j])
-				continue;
-
-			//두 충돌체의 ID를 이용해서, 유일한 키를 만들기
-			COLLIDER_ID id;
-			id.left_id = vecLeft[i]->GetCollider()->GetID();
-			id.right_id = vecRight[j]->GetCollider()->GetID();
-
-			map<ULONGLONG, bool>::iterator iter = m_mapColInfo.find(id.ID);
-			//충돌 정보가 없는 경우(즉, 처음으로 충돌하는 경우) 충돌하지 않은 상태를 넣어줌.
-			if (m_mapColInfo.end() == iter)//find하지못했을경우
+			if (nullptr == vecRight[j]->GetCollider() //i번째 물체랑 충돌할 j가 충돌체가없다면
+				//만약 같은 그룹끼리 충돌을 하게 한다면 꼭 자기자신이 자신과 충돌하는것을 예외처리해야한다
+				|| vecLeft[i] == vecRight[j]) //또는 자기자신과 같은경우
 			{
-				m_mapColInfo.insert(std::make_pair(id.ID, false));
-				iter = m_mapColInfo.find(id.ID);
+				continue;
 			}
-			
 
-			//충돌처리
-			if (IsCollision(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()))
+			CCollider* pLeftCol = vecLeft[i]->GetCollider();
+			CCollider* pRightCol = vecRight[j]->GetCollider();
+
+			//두 충돌체 조합 아이디 생성
+			COLLIDER_ID ID;
+			ID.left_id = pLeftCol->GetID();
+			ID.right_id = pRightCol->GetID();
+
+			iter = m_mapColInfo.find(ID.ID);
+			//ID.ID;//두충돌체간의고유조합ID -> 맵의 키값으로
+
+			//충돌정보가 미등록상태인 경우 등록(충돌하지 않았다로)
+			if (m_mapColInfo.end() == iter)//이전프레임에 충돌한 적이 없다||아얘 등록조차 된 적이 없다(최초검사)
 			{
-				//충돌함
-				
-				//prev0, cur0
-				if (iter->second)
+				m_mapColInfo.insert(std::make_pair(ID.ID, false));
+				iter = m_mapColInfo.find(ID.ID);
+			}
+
+			if (IsCollision(pLeftCol, pRightCol))
+			{//충돌
+				//iter->second; //이전프레임정보
+
+				//현재 충돌중이다
+				if (true == iter->second) //이전에도 충돌하고 있었다
 				{
-					//충돌중
-					//vecLeft[i]에도 충돌중이라고 알려줘야하고
-					vecLeft[i]->GetCollider()->OnCollision(vecRight[j]->GetCollider());
-					//vecRight[j]에도 충돌중이라고 알려줘야한다
-					vecRight[j]->GetCollider()->OnCollision(vecLeft[i]->GetCollider());
+					//충돌체 중 하나가 Dead상태라면 충돌 해제
+					if (vecLeft[i]->isDead() || vecRight[j]->isDead())
+					{
+						//근데 둘 중 하나가 삭제예정이라면, 충돌을 해제시켜준다
+						pLeftCol->OnCollisionExit(pRightCol);
+						pRightCol->OnCollisionExit(pLeftCol);
+						iter->second = false;
+					}
+					else
+					{
+						pLeftCol->OnCollision(pRightCol);
+						pRightCol->OnCollision(pLeftCol);
+					}
+					
+
 				}
-				//prev x , cur 0
-				else
-				{
-					//충돌발생
-					vecLeft[i]->GetCollider()->OnCollisionEnter(vecRight[j]->GetCollider());
-					vecRight[j]->GetCollider()->OnCollisionEnter(vecLeft[i]->GetCollider());
+				else//이전에는 충돌하지 않았다
+				{//처음 충돌함 , 딱만남
+						//근데 둘 중 하나가 삭제예정이라면, 충돌하지 않은것으로 취급한다
+
+					if (vecLeft[i]->isDead() || vecRight[j]->isDead())
+					{
+					}
+					else
+					{
+						pLeftCol->OnCollisionEnter(pRightCol);
+						pRightCol->OnCollisionEnter(pLeftCol);
+						iter->second = true;//충돌함으로 토글
+					}
+
+
 				}
-				iter->second = true;
 			}
 			else
-			{
-				
-				//충돌안함
-				//prev o , cur x
-				if (iter->second)
+			{//비충돌
+				//현재 충돌하고 있지 않다
+				if (true == iter->second)
 				{
-					//충돌해제
-					vecLeft[i]->GetCollider()->OnCollisionExit(vecRight[j]->GetCollider());
-					vecRight[j]->GetCollider()->OnCollisionExit(vecLeft[i]->GetCollider());
-
+					//이전에는 충돌하고 있었다 -> 이번 프레임에 충돌이 벗어나진 시점
+					pLeftCol->OnCollisionExit(pRightCol);
+					pRightCol->OnCollisionExit(pLeftCol);
+					iter->second = false;//충돌안함으로 토글
 				}
-				iter->second = false;
-				//prev x, cur x
-
-					//충돌이계속없었음
 			}
 		}
 	}
+
 }
 
 bool CCollisionManager::IsCollision(CCollider* pLeftCol, CCollider* pRightCol)
 
 {
-	//사각충돌
-	fVec2 fptLeftPos = pLeftCol->GetFinalPose();
-	fVec2 fptLeftScale = pLeftCol->GetScale();
+	fVec2 vLeftPos = pLeftCol->GetFinalPose();
+	fVec2 vLeftScale = pLeftCol->GetScale();
+	fVec2 vRightPos = pRightCol->GetFinalPose();
+	fVec2 vRightScale = pRightCol->GetScale();
 
-	fVec2 fptRightPos = pRightCol->GetFinalPose();
-	fVec2 fptRightScale = pRightCol->GetScale();
-	if (abs(fptLeftPos.x - fptRightPos.x) < (fptLeftScale.x + fptRightScale.x) / 2.f
-		&& abs(fptLeftPos.y - fptRightPos.y) < (fptLeftScale.y + fptRightScale.y) / 2.f)
+	if (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) / 2.f &&
+		abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) / 2.f)
 	{
 		return true;
 	}
@@ -118,14 +133,14 @@ void CCollisionManager::init()
 
 void CCollisionManager::update()
 {
-	for (int iRow = 0; iRow < (UINT)GROUP_GAMEOBJ::SIZE; ++iRow)
+	//체크된 그룹끼리 충돌하는지 검사
+	for (UINT iRow = 0; iRow < (UINT)GROUP_GAMEOBJ::SIZE; ++iRow)
 	{
-		for (int iCol = iRow; iCol < (UINT)GROUP_GAMEOBJ::SIZE; ++iCol)
+		for (UINT iCol = iRow; iCol < (UINT)GROUP_GAMEOBJ::SIZE; ++iCol)
 		{
 			if (m_arrCheck[iRow] & (1 << iCol))
-			{
-				//충돌을 검사해야 하는 두 그룹
-				CollisionGroupUpdate((GROUP_GAMEOBJ)iRow,(GROUP_GAMEOBJ)iCol);
+			{//걸리면
+				CollisionGroupUpdate((GROUP_GAMEOBJ)iRow, (GROUP_GAMEOBJ)iCol);
 			}
 		}
 	}
@@ -133,22 +148,21 @@ void CCollisionManager::update()
 
 void CCollisionManager::CheckGroup(GROUP_GAMEOBJ objLeft, GROUP_GAMEOBJ objRight)
 {
-	//[행][렬]
-	UINT y; //열
-	UINT x; //행
-
-	//더 작은 수를 행으로 둔다 -> 절반만 쓰기위해서
-	if ((UINT)objLeft > (UINT)objRight)
+	UINT iRow = (UINT)objLeft;
+	UINT iCol = (UINT)objRight;
+	if (iCol < iRow)
 	{
-		y = (UINT)objLeft;
-		x = (UINT)objRight;
+		iRow = (UINT)objRight;
+		iCol = (UINT)objLeft;
+	}
+	if (m_arrCheck[iRow] & (1 << iCol))//이미 비트가 채워져있었다면
+	{
+		m_arrCheck[iRow] &= ~(1 << iCol);//비트를 빼고
 	}
 	else
 	{
-		y = (UINT)objRight;
-		x = (UINT)objLeft;
+		m_arrCheck[iRow] |= (1 << iCol);//아니면 비트를 넣는다
 	}
-	m_arrCheck[y] |= (1 << x); 
 
 
 }

@@ -4,6 +4,7 @@
 
 CMonster::CMonster()
 {
+	SetName(L"Monster");
 	SetScale(fVec2(60, 60));
 	m_fVelocity = 200;
 	m_fDistance = 250;

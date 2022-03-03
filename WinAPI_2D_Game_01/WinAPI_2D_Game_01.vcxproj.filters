@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Engine">
       <UniqueIdentifier>{91fc4960-7dfd-4f91-bd3c-6078bec1871b}</UniqueIdentifier>
     </Filter>
@@ -46,35 +34,8 @@
     <Filter Include="Engine\Manager\PathManager">
       <UniqueIdentifier>{aeebdc74-07d3-4328-86dc-e16785a95c79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Things">
-      <UniqueIdentifier>{6b4e1b16-a99b-4572-95dd-34a4f70f908c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object">
-      <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Player">
-      <UniqueIdentifier>{979ddfa2-a2ca-4fe0-89bc-3aa8f5d52934}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Monster">
-      <UniqueIdentifier>{b3163e0b-3ba3-4ada-9315-5b5e77ad3db4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Object\Missile">
-      <UniqueIdentifier>{207db5eb-75e5-468c-87a3-675b1db69ea8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Scene">
-      <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Scene\scene_start">
-      <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Things\Scene\scene_stage1">
-      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Manager\ResourceManager">
       <UniqueIdentifier>{4ced7329-1dd5-45dc-8e7c-c4239cd32f41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Component">
-      <UniqueIdentifier>{6e78e54e-43fb-4c65-850c-3a4612fb7e1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Manager\CollisionManager">
       <UniqueIdentifier>{d0dca21c-9950-4090-a562-553aec1f9265}</UniqueIdentifier>
@@ -82,25 +43,53 @@
     <Filter Include="Engine\Manager\EventManager">
       <UniqueIdentifier>{97279575-96d4-41f4-95a0-277257bac1f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Things">
+      <UniqueIdentifier>{6b4e1b16-a99b-4572-95dd-34a4f70f908c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Object">
+      <UniqueIdentifier>{48fe6f42-0884-4e1c-8a37-4b7ea9fb97a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Object\Player">
+      <UniqueIdentifier>{979ddfa2-a2ca-4fe0-89bc-3aa8f5d52934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Object\Monster">
+      <UniqueIdentifier>{b3163e0b-3ba3-4ada-9315-5b5e77ad3db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Object\Missile">
+      <UniqueIdentifier>{207db5eb-75e5-468c-87a3-675b1db69ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Scene">
+      <UniqueIdentifier>{9f141b11-b155-4078-a1c8-c2f8d0358be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Scene\scene_start">
+      <UniqueIdentifier>{53c563da-0d91-405b-b2b7-469b5c31dc16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Scene\scene_stage1">
+      <UniqueIdentifier>{c05fd025-8c1c-4dfd-96a8-7160e6ee529e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Component">
+      <UniqueIdentifier>{6e78e54e-43fb-4c65-850c-3a4612fb7e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{4cb3b3f1-6c73-44e8-83d5-a68a20988495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Engine\Things\Scene\scene_tool">
+      <UniqueIdentifier>{65c72a39-1ffe-4849-9e62-c56e54749fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Component\Animator">
+      <UniqueIdentifier>{94bda100-0533-40b7-a382-441e829a0aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Things\Component\Animator\Animation">
+      <UniqueIdentifier>{6a56ad58-e7ee-4722-bc6c-7bf106e1614b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="winmain.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CCore.h">
       <Filter>Engine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CSingleton.h">
-      <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Util</Filter>
@@ -115,28 +104,28 @@
       <Filter>Engine\Manager\KeyManager</Filter>
     </ClInclude>
     <ClInclude Include="CGameObject.h">
-      <Filter>Things\Object</Filter>
+      <Filter>Engine\Things\Object</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
-      <Filter>Things\Scene</Filter>
+      <Filter>Engine\Things\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CSceneManager.h">
       <Filter>Engine\Manager\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="CScene_Start.h">
-      <Filter>Things\Scene\scene_start</Filter>
+      <Filter>Engine\Things\Scene\scene_start</Filter>
     </ClInclude>
     <ClInclude Include="CScene_Stage1.h">
-      <Filter>Things\Scene\scene_stage1</Filter>
+      <Filter>Engine\Things\Scene\scene_stage1</Filter>
     </ClInclude>
     <ClInclude Include="CMissile.h">
-      <Filter>Things\Object\Missile</Filter>
+      <Filter>Engine\Things\Object\Missile</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>Things\Object\Player</Filter>
+      <Filter>Engine\Things\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
-      <Filter>Things\Object\Monster</Filter>
+      <Filter>Engine\Things\Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="CResource.h">
@@ -152,7 +141,7 @@
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="CCollider.h">
-      <Filter>Engine\Component</Filter>
+      <Filter>Engine\Things\Component</Filter>
     </ClInclude>
     <ClInclude Include="SelectGDI.h">
       <Filter>Util</Filter>
@@ -163,11 +152,32 @@
     <ClInclude Include="CEventManager.h">
       <Filter>Engine\Manager\EventManager</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="winmain.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CSingleton.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Engine\Things\Scene\scene_tool</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Engine\Things\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>Engine\Things\Component\Animator\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winmain.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\Core</Filter>
     </ClCompile>
@@ -178,28 +188,28 @@
       <Filter>Engine\Manager\KeyManager</Filter>
     </ClCompile>
     <ClCompile Include="CGameObject.cpp">
-      <Filter>Things\Object</Filter>
+      <Filter>Engine\Things\Object</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
-      <Filter>Things\Scene</Filter>
+      <Filter>Engine\Things\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneManager.cpp">
       <Filter>Engine\Manager\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="CScene_Start.cpp">
-      <Filter>Things\Scene\scene_start</Filter>
+      <Filter>Engine\Things\Scene\scene_start</Filter>
     </ClCompile>
     <ClCompile Include="CScene_Stage1.cpp">
-      <Filter>Things\Scene\scene_stage1</Filter>
+      <Filter>Engine\Things\Scene\scene_stage1</Filter>
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
-      <Filter>Things\Object\Missile</Filter>
+      <Filter>Engine\Things\Object\Missile</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>Things\Object\Player</Filter>
+      <Filter>Engine\Things\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
-      <Filter>Things\Object\Monster</Filter>
+      <Filter>Engine\Things\Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CResource.cpp">
       <Filter>Resource</Filter>
@@ -214,7 +224,7 @@
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
-      <Filter>Engine\Component</Filter>
+      <Filter>Engine\Things\Component</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
       <Filter>Engine\Manager\CollisionManager</Filter>
@@ -222,18 +232,28 @@
     <ClCompile Include="CEventManager.cpp">
       <Filter>Engine\Manager\EventManager</Filter>
     </ClCompile>
+    <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Engine\Things\Scene\scene_tool</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Engine\Things\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>Engine\Things\Component\Animator\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2D_Game_01.rc">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </Image>
     <Image Include="WinAPI_2D_Game_01.ico">
-      <Filter>리소스 파일</Filter>
+      <Filter>Default\리소스 파일</Filter>
     </Image>
   </ItemGroup>
 </Project>

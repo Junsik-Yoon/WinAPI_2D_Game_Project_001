@@ -18,6 +18,8 @@ public:
 	void update();
 	void render(HDC hDC);
 
+	virtual CPlayer* Clone() { return new  CPlayer(*this); }
+
 	void CreateMissile();
 
 	virtual void OnCollision(CCollider* pOther);

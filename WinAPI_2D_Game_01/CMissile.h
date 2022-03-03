@@ -16,5 +16,6 @@ public:
 public:
     CMissile();
     ~CMissile();
+    virtual CMissile* Clone() { return new  CMissile(*this); }
 };
 

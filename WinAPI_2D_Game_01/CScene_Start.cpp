@@ -12,6 +12,15 @@ CScene_Start::~CScene_Start()
 {
 }
 
+void CScene_Start::update()
+{
+	CScene::update();
+	if (KEYDOWN(VK_TAB))
+	{
+		CEventManager::getInst()->EventChangeScene(GROUP_SCENE::TOOL);
+	}
+}
+
 void CScene_Start::Enter()
 {
 
@@ -28,11 +37,14 @@ void CScene_Start::Enter()
 	pMonster->SetCenterPos(pMonster->GetPos());
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
+	CMonster* pOtherMonster = pMonster->Clone();
+
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::MISSILE);
 }
 
 void CScene_Start::Exit()
 {
+	DeleteAll();
 	CCollisionManager::getInst()->Reset();
 }
