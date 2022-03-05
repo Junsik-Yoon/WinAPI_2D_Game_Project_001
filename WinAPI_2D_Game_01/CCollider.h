@@ -41,5 +41,6 @@ public:
 	void OnCollision(CCollider* pOther);
 	void OnCollisionEnter(CCollider* pOther);
 	void OnCollisionExit(CCollider* pOther);
+	//void OnCollisionNone(CCollider* pOther);
 };
 

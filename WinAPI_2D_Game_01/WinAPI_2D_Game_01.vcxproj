@@ -159,6 +159,8 @@
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CKeyManager.h" />
+    <ClInclude Include="CMario.h" />
+    <ClInclude Include="CMidLine.h" />
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CResource.h" />
     <ClInclude Include="CResourceManager.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CSingleton.h" />
     <ClInclude Include="CTexture.h" />
+    <ClInclude Include="CTile.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Logger.h" />
@@ -187,12 +190,15 @@
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
+    <ClCompile Include="CMario.cpp" />
+    <ClCompile Include="CMidLine.cpp" />
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CResource.cpp" />
     <ClCompile Include="CResourceManager.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="SelectGDI.cpp" />

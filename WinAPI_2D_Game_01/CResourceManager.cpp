@@ -15,6 +15,7 @@ CResourceManager::~CResourceManager()
 			delete iter->second;
 		}
 	}
+	m_mapTex.clear();
 }
 
 

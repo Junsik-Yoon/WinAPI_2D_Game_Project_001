@@ -5,8 +5,10 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	PLAYER,
 	MONSTER,
+	LAND,
 	MISSILE_PLAYER,
 	MISSILE_MONSTER,
+	MIDLINE,
 
 	SIZE,
 };
@@ -87,14 +89,14 @@ using std::map;
 #define WINSTYLE WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU 
 #define WINSTARTX 100
 #define WINSTARTY 100
-#define WINSIZEX 1280
-#define WINSIZEY 720
+#define WINSIZEX 600
+#define WINSIZEY 460
 //
 #define fDT CTimeManager::getInst()->GetfDT()
 #define DT CTimeManager::getInst()->GetDT()
 #define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
-#define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)
+#define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUP(vk_key)
 //
 #define MousePos()		CKeyManager::getInst()->GetMousePos()
 //

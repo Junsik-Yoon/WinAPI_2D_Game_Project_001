@@ -64,7 +64,7 @@ struct Vec2
 	template <typename T>
 	Vec2 operator*(T num)
 	{
-		return fPoint(x * num, y * num);
+		return Vec2(x * num, y * num);
 	}
 
 	template <typename T>
@@ -72,7 +72,7 @@ struct Vec2
 	{
 		assert(0 != num);
 
-		return fPoint(x / num, y / num);
+		return Vec2(x / num, y / num);
 	}
 
 

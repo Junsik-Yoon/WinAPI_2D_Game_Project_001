@@ -11,6 +11,8 @@ private:
 	Vec2 m_fptPos;		//ÁÂÇ¥
 	Vec2 m_fptScale;	//Å©±â
 
+
+
 	bool m_bAlive;
 
 	CCollider* m_pCollider;
@@ -22,7 +24,7 @@ private:
 public:
 	virtual void update()		=0;
 	virtual void finalupdate() final;
-	virtual void render(HDC hDC)=0;
+	virtual void render(HDC hDC);
 	virtual void component_render(HDC hDC);
 
 	void SetPos(Vec2 pos)		{ m_fptPos		= pos; }
@@ -32,6 +34,8 @@ public:
 	void SetName(wstring name)	{ m_strName=name; }
 	wstring GetName()			{ return m_strName; }
 
+
+
 	bool isDead(){ return !m_bAlive; }
 
 	CCollider* GetCollider(){ return m_pCollider; }
@@ -40,6 +44,7 @@ public:
 	virtual void OnCollision(CCollider* _pOther)		{}
 	virtual void OnCollisionEnter(CCollider* _pOther)	{}
 	virtual void OnCollisionExit(CCollider* _pOther)	{}
+	//virtual void OnCollisionNone(CCollider* _pOther)	{}
 
 	CAnimator* GetAnimator(){ return m_pAnimator; }
 	void CreateAnimator();

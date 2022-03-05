@@ -97,6 +97,9 @@ void CCollisionManager::CollisionGroupUpdate(GROUP_GAMEOBJ objLeft, GROUP_GAMEOB
 				else
 				{
 					// 아무것도 하지 않음
+					//vecLeft[i]->OnCollisionNone(vecRight[j]->GetCollider());
+					//vecRight[j]->OnCollisionNone(vecLeft[i]->GetCollider());
+					//
 				}
 			}
 		}

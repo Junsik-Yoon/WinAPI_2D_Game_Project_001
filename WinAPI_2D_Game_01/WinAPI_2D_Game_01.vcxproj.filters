@@ -77,8 +77,26 @@
     <Filter Include="Engine\Component\Animator">
       <UniqueIdentifier>{b742d7e3-3334-4d54-b6c5-3f97c3cf5abd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component\Animator\Animation">
+    <Filter Include="Things\Object\Mario">
+      <UniqueIdentifier>{3bc5c26e-47f4-49d2-b1ef-029091563b8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Mushroom">
+      <UniqueIdentifier>{0a8eb7cb-ba34-4e7b-8711-d13cc2f15c25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Turtle">
+      <UniqueIdentifier>{f1ebccdb-27ad-4847-aa84-6d0947d67d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Tile">
+      <UniqueIdentifier>{09ff6de1-0250-4355-960c-44fd1901ddfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Brick">
+      <UniqueIdentifier>{9efc48a1-e6c7-4e91-a841-5d7d3c46f6f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Resource\Animation">
       <UniqueIdentifier>{3a66d8a0-db21-4cbd-81b6-45fce8e4793b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\MidLine">
+      <UniqueIdentifier>{dd23535c-3a25-4f3a-9058-6701b4aa4710}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +174,16 @@
       <Filter>Engine\Component\Animator</Filter>
     </ClInclude>
     <ClInclude Include="CAnimation.h">
-      <Filter>Engine\Component\Animator\Animation</Filter>
+      <Filter>Things\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CMario.h">
+      <Filter>Things\Object\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Things\Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CMidLine.h">
+      <Filter>Things\Object\MidLine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +240,16 @@
       <Filter>Engine\Component\Animator</Filter>
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
-      <Filter>Engine\Component\Animator\Animation</Filter>
+      <Filter>Things\Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CMario.cpp">
+      <Filter>Things\Object\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Things\Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CMidLine.cpp">
+      <Filter>Things\Object\MidLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

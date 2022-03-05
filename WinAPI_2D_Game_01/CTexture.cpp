@@ -36,13 +36,5 @@ void CTexture::Load(const wstring& strFilePath)
 }
 
 
-int CTexture::GetBmpWidth()
-{
-	return m_bmpInfo.bmWidth;
-}
 
-int CTexture::GetBmpHeight()
-{
-	return m_bmpInfo.bmHeight;
-}
 

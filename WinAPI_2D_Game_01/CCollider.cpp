@@ -78,14 +78,13 @@ void CCollider::finalupdate()
 
 void CCollider::render(HDC hDC)
 {
-	TYPE_PEN typePen;
-	if (m_iColCount)
-		typePen = TYPE_PEN::RED;
-	else
-		typePen = TYPE_PEN::GREEN;
+	TYPE_PEN ePen = TYPE_PEN::GREEN;
 
-	SelectGDI brush(hDC, TYPE_BRUSH::HOLLOW);
-	SelectGDI pen(hDC, typePen);
+	if (m_iColCount)
+		ePen = TYPE_PEN::RED;
+
+	SelectGDI pTemp(hDC, ePen);
+	SelectGDI bTemp(hDC, TYPE_BRUSH::HOLLOW);
 
 	Vec2 fptRenderPos = CCameraManager::getInst()->GetRenderPos(m_fptFinalPos);
 
@@ -112,3 +111,8 @@ void CCollider::OnCollisionExit(CCollider* pOther)
 	m_pOwner->OnCollisionExit(pOther);
 	m_iColCount--;
 }
+//void CCollider::OnCollisionNone(CCollider* pOther)
+//{
+//	m_pOwner->OnCollisionNone(pOther);
+//}
+

@@ -26,9 +26,10 @@ void CCore::update()
 	CEventManager::getInst()->update();
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
+	CCameraManager::getInst()->update();
 	CSceneManager::getInst()->update();
 	CCollisionManager::getInst()->update();
-	CCameraManager::getInst()->update();
+	
 }
 
 void CCore::render()

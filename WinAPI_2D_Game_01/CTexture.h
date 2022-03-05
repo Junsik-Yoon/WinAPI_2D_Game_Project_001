@@ -14,8 +14,9 @@ public:
 	HBITMAP GetBitMap() { return m_hBMP; }
 	BITMAP GetBmpInfo() { return m_bmpInfo; }
 
-	int GetBmpWidth();
-	int GetBmpHeight();
+	UINT GetBmpWidth(){ return m_bmpInfo.bmWidth; }
+	UINT GetBmpHeight(){ return m_bmpInfo.bmHeight; }
+
 public:
 	CTexture();
 	virtual ~CTexture();
