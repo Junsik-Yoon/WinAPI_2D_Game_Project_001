@@ -5,7 +5,8 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	PLAYER,
 	MONSTER,
-	MISSILE,
+	MISSILE_PLAYER,
+	MISSILE_MONSTER,
 
 	SIZE,
 };
@@ -17,8 +18,38 @@ enum class GROUP_SCENE
 	STAGE1,
 	STAGE2,
 	TOOL,
+		
 	SIZE,
 };
+
+
+//GDI
+enum class TYPE_BRUSH
+{
+	HOLLOW,
+
+	SIZE,
+};
+
+enum class TYPE_PEN
+{
+	RED,
+	GREEN,
+	BLUE,
+
+	SIZE,
+};
+
+//이벤트타입
+enum class TYPE_EVENT
+{
+	CREATE_OBJECT,
+	DELETE_OBJECT,
+	CHANGE_SCENE,
+
+	SIZE,
+};
+
 //라이브러리
 #pragma comment(lib,"Msimg32.lib")
 
@@ -29,6 +60,7 @@ using std::string;
 using std::wstring;
 #include <vector>
 using std::vector;
+using std::make_pair;
 #include <map>
 using std::map;
 #include <list>
@@ -36,16 +68,20 @@ using std::map;
 #include <assert.h>
 #include "Logger.h"
 #include "framework.h"
-
+#include "struct.h"
 //
 #include "CSingleton.h"
-#include "CPathManager.h"
+//
+#include "CCore.h"
 #include "CTimeManager.h"
 #include "CKeyManager.h"
-#include "CResourceManager.h"
 #include "CSceneManager.h"
-#include "CCore.h"
-#include "struct.h"
+#include "CPathManager.h"
+#include "CCollisionManager.h"
+#include "CEventManager.h"
+#include "CResourceManager.h"
+#include "CCameraManager.h"
+
 
 //매크로
 #define WINSTYLE WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU 
@@ -59,6 +95,12 @@ using std::map;
 #define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
 #define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)
+//
+#define MousePos()		CKeyManager::getInst()->GetMousePos()
+//
+#define CreateObj(pObj, group)	CEventManager::getInst()->EventCreateObject(pObj, group)
+#define DeleteObj(pObj)			CEventManager::getInst()->EventDeleteObject(pObj)
+#define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
 //
 #define PI 3.1415926535f
 

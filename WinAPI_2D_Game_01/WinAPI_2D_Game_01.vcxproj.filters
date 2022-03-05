@@ -59,6 +59,27 @@
     <Filter Include="Engine\Manager\KeyManager">
       <UniqueIdentifier>{d8893df5-6ff4-4236-8e82-2c15f3a041c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager\CollisionManager">
+      <UniqueIdentifier>{b3eaa898-d74c-4c90-bd02-a1dd191cf7bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\EventManager">
+      <UniqueIdentifier>{59332155-db5a-495d-95db-cba8ccc3d63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{97d11fc3-e1e2-4828-bea9-07393e70fc44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{6b706f31-70c3-4ac2-87d5-1cc73e9ce739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\CameraManager">
+      <UniqueIdentifier>{eaf0aec1-824c-4599-acb7-d12eb16ea2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Animator">
+      <UniqueIdentifier>{b742d7e3-3334-4d54-b6c5-3f97c3cf5abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Animator\Animation">
+      <UniqueIdentifier>{3a66d8a0-db21-4cbd-81b6-45fce8e4793b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -116,6 +137,27 @@
     <ClInclude Include="winmain.h">
       <Filter>Default\Header</Filter>
     </ClInclude>
+    <ClInclude Include="CCollisionManager.h">
+      <Filter>Engine\Manager\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventManager.h">
+      <Filter>Engine\Manager\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCameraManager.h">
+      <Filter>Engine\Manager\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>Engine\Component\Animator\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -152,6 +194,27 @@
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="CCollisionManager.cpp">
+      <Filter>Engine\Manager\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventManager.cpp">
+      <Filter>Engine\Manager\EventManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraManager.cpp">
+      <Filter>Engine\Manager\CameraManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>Engine\Component\Animator\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2D_Game_01.rc">

@@ -25,13 +25,14 @@ void CSceneManager::ChangeScene(GROUP_SCENE group)
 	if (m_arrScene[(UINT)group]==m_pCurScene)
 		return;
 	m_pCurScene->Exit();
-	//m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];//전환할 씬
+	m_pCurScene = m_arrScene[(UINT)group];
 	m_pCurScene->Enter();
 }
 
 void CSceneManager::update()
 {
 	m_pCurScene->update(); //현재 선택된 씬 업데이트
+	m_pCurScene->finalupdate();
 }
 
 void CSceneManager::render(HDC hDC)

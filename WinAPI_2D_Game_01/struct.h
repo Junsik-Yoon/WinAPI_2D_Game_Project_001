@@ -6,35 +6,6 @@ struct iPoint
 	int y;
 };
 
-struct fPoint
-{
-	float x;
-	float y;
-
-	fPoint& operator= (POINT _fPoint)
-	{
-		x = (float)_fPoint.x;
-		y = (float)_fPoint.y;
-	}
-
-	fPoint()
-	{
-		x = 0;
-		y = 0;
-	}
-
-	fPoint(float x, float y)
-	{
-		this->x = x;
-		this->y = y;
-	}
-
-	fPoint(const POINT& _pt)
-		: x((float)_pt.x)
-		, y((float)_pt.y)
-	{}
-};
-
 struct Vec2
 {
 	float x;
@@ -53,11 +24,6 @@ struct Vec2
 		return *this;
 	}
 
-	Vec2& operator= (POINT _fPoint)
-	{
-		x = (float)_fPoint.x;
-		y = (float)_fPoint.y;
-	}
 
 	Vec2()
 	{
@@ -75,5 +41,42 @@ struct Vec2
 		: x((float)_pt.x)
 		, y((float)_pt.y)
 	{}
+
+
+	Vec2& operator=(const Vec2& other)
+	{
+		x = other.x;
+		y = other.y;
+
+		return *this;
+	}
+
+	Vec2 operator+(const Vec2& other)
+	{
+		return Vec2(x + other.x, y + other.y);
+	}
+
+	Vec2 operator-(const Vec2& other)
+	{
+		return Vec2(x - other.x, y - other.y);
+	}
+
+	template <typename T>
+	Vec2 operator*(T num)
+	{
+		return fPoint(x * num, y * num);
+	}
+
+	template <typename T>
+	Vec2 operator/(T num)
+	{
+		assert(0 != num);
+
+		return fPoint(x / num, y / num);
+	}
+
+
+
+
 };
 
