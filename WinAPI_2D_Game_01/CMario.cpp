@@ -5,10 +5,15 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
+#include "CFoot.h"
 
 #define DEFAULT_V 400.f
 #define DEFAULTGRAV 800.f
 #define MAXACC 150.f
+#define JUMPBOOST 1.7f
+
+float CMario::sCountTime = 0.f;
+float CMario::sCountTime2 = 0.f;
 
 CMario::CMario()
 {
@@ -16,7 +21,7 @@ CMario::CMario()
 	SetPos(Vec2(300.f,300.f));
 	SetScale(Vec2(32.f, 32.f));
 	m_fVelocityUD = DEFAULT_V;
-	m_fVelocityLR = 100;
+	m_fVelocityLR = 150;
 	m_fGrav = 0.f;
 	m_fAcc = 0.f;
 	isFacedRight = true;
@@ -24,11 +29,19 @@ CMario::CMario()
 	isUpside = false;
 	canJump = true;
 
+	life = 3;
+
+	isBoost = false;
+	jumpBoost = 0.f;
+
 
 	m_pTex = CResourceManager::getInst()->LoadTexture(L"PlayerTex", L"texture\\Animation\\Animation_Mario.bmp");
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(GetScale().x, GetScale().y));
 	GetCollider()->SetOffsetPos(Vec2(0.f, 16.f));
+
+
+
 
 	CreateAnimator();
 	//작은형태
@@ -89,11 +102,21 @@ CMario::CMario()
 	GetAnimator()->CreateAnimation(L"FlowerRightShoot", m_pTex, Vec2(140.f, 0.f), Vec2(70.f, 70.f), Vec2(70.f, 0.f), 0.25f, 1);
 	GetAnimator()->CreateAnimation(L"FlowerLeftShoot", m_pTex, Vec2(140.f, 0.f), Vec2(70.f, 70.f), Vec2(70.f, 0.f), 0.25f, 1);
 
+
 	GetAnimator()->Play(L"SmallRightStill");
 
 	//CAnimation* pAni;
 	//pAni = GetAnimator()->FindAnimation(L"SmallRightStill");
 	//pAni->GetFrame(1).fptOffset = fVec2(0.f, -10.f);
+
+	CreateFoot();
+	GetFoot()->SetName(L"Foot");
+	GetFoot()->SetScale(Vec2(20.f, 20.f));
+	;; GetFoot()->SetPos(Vec2(WINSIZEX / 3, WINSIZEY / 2));
+	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
+	pCurScene->AddObject(GetFoot(), GROUP_GAMEOBJ::COLLIDER);
+	
+
 
 	CCameraManager::getInst()->GetRenderPos(GetPos());
 }
@@ -103,13 +126,19 @@ CMario::~CMario()
 }
 
 
+void CMario::CreateFoot()
+{
+	m_foot = new CFoot();
+	m_foot->m_pOwner = this;
+}
+
 void CMario::update()
 {
-	
+	//m_foot->FollowOwner();
+
 	m_fGrav = DEFAULTGRAV;
 
 	Vec2 pos = GetPos();
-
 
 	
 	if (KEY(VK_LEFT))//왼키누르고있기
@@ -177,7 +206,7 @@ void CMario::update()
 		}
 	}
 
-	if (KEY(VK_LSHIFT))//속도올리기
+	if (KEY(VK_LSHIFT)&&false==isAir)//속도올리기
 	{
 		if(m_fAcc<MAXACC)
 		m_fAcc += 200*fDT;
@@ -187,7 +216,31 @@ void CMario::update()
 		m_fAcc = 0;
 	}
 
-	if (KEYDOWN(VK_UP) && true==canJump)//점프
+	if (KEY(VK_UP))//강점프
+		//TODO: 바닥에 닿을때까지 위키를 누르고있으면 부스트가 최대로된다
+	{
+		if (false == isBoost)
+		{
+			sCountTime += fDT;
+			if (sCountTime >= 0.13f)
+			{
+				isBoost = true;
+				jumpBoost += JUMPBOOST;
+				sCountTime = 0.f;
+			}
+		}
+	}
+	if (true == isBoost)//TODO:위키를 계속 누르면 문제가 생길듯?
+	{
+		sCountTime2 += fDT;
+		if (sCountTime2 >= 2.f)
+		{
+			isBoost = false;
+			jumpBoost = 0;
+			sCountTime2 = 0.f;
+		}
+	}
+	if (KEYDOWN(VK_UP) && true==canJump)//약점프
 	{
 		canJump = false;
 		isAir = true;
@@ -217,12 +270,15 @@ void CMario::update()
 
 		if (true == isUpside)
 		{
-			m_fVelocityUD -= m_fGrav * fDT;
-			pos.y -= m_fVelocityUD * fDT;
+			m_fVelocityUD -= m_fGrav  * fDT;
+			if(jumpBoost>0.f)
+				pos.y -= m_fVelocityUD * jumpBoost * fDT;
+			else
+				pos.y -= m_fVelocityUD  * fDT;
 		}
 		else if (false == isUpside)
 		{
-			m_fVelocityUD += m_fGrav * fDT;
+			m_fVelocityUD += m_fGrav  * fDT;
 			pos.y += m_fVelocityUD * fDT;
 		}
 	}
@@ -266,7 +322,20 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 		canJump = true;
 		isAir = false;
 		m_fVelocityUD = DEFAULT_V;
+
+
+		isBoost = false;
+		jumpBoost = 0;
+		sCountTime2 = 0.f;
 	}
+
+	if (pOther->GetName() == L"Mushroom")
+	{
+		Vec2 p = GetPos();
+		p.y -= 50;
+		SetPos(p);
+	}
+
 	Vec2 t = CCameraManager::getInst()->GetLook();
 	if (pOther->GetName() == L"MidLine"&&true==isFacedRight)
 	{
@@ -278,6 +347,7 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 	}
 	if (pOther->GetName() == L"FrontLine" && false == isFacedRight)
 	{
+		isAir = false;
 		Vec2 p = GetPos();
 		p.x += 2;
 		SetPos(p);

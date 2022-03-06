@@ -101,6 +101,9 @@
     <Filter Include="Things\Object\Background">
       <UniqueIdentifier>{62dbdd6c-3ab7-4c57-862c-cb1b4c786a3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Things\Object\Foot">
+      <UniqueIdentifier>{a94a1098-8406-4a90-bce4-76bbe0fc116e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -194,6 +197,9 @@
     <ClInclude Include="CBackground.h">
       <Filter>Things\Object\Background</Filter>
     </ClInclude>
+    <ClInclude Include="CFoot.h">
+      <Filter>Things\Object\Foot</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -265,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="CBackground.cpp">
       <Filter>Things\Object\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="CFoot.cpp">
+      <Filter>Things\Object\Foot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ private:
 	CCollider* m_pCollider;
 	CAnimator* m_pAnimator;
 
+
 private:
 	void SetDead(){ m_bAlive = false; }
 

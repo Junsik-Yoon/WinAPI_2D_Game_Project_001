@@ -2,6 +2,7 @@
 #include "CGameObject.h"
 
 class CTexture;
+class CFoot;
 
 enum class STATUS
 {
@@ -14,10 +15,21 @@ enum class STATUS
 class CMario: public CGameObject
 {
 private:
+	static float sCountTime;
+	static float sCountTime2;
+
+	CFoot* m_foot;//TODO: 발 객체를 따로 만들어서 밑쪽으로 몬스터를 밟으면 발과 몬스터의충돌이면 몬스터가 죽고 마리오와 몬스터의 충돌이면 마리오가 죽게 하고 싶었는데 발객체가 마리오를 따라다니게 하고싶었는데 잘 안되네요..
+
 	CTexture* m_pTex;
 	float m_fVelocityUD;
 	float m_fVelocityLR;
 	STATUS m_type;
+
+ 
+
+	int life;
+	bool isBoost;
+	float jumpBoost;
 
 	bool isFacedRight;
 
@@ -35,6 +47,9 @@ public:
 	
 public:
 	void SetAcc(float acc) { m_fAcc = acc; }
+
+	void CreateFoot();
+	CFoot* GetFoot() { return m_foot; }
 
 public:
 	virtual void update();
