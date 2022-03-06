@@ -11,6 +11,8 @@
 #define DEFAULTGRAV 800.f
 #define MAXACC 150.f
 #define JUMPBOOST 1.7f
+#define DEFAULT_LITTLE_V 15.f
+#define DEFAULT_LITTLEGRAV 100.f
 
 float CMario::sCountTime = 0.f;
 float CMario::sCountTime2 = 0.f;
@@ -21,6 +23,7 @@ CMario::CMario()
 	SetPos(Vec2(300.f,300.f));
 	SetScale(Vec2(32.f, 32.f));
 	m_fVelocityUD = DEFAULT_V;
+	m_fLittleVel = DEFAULT_LITTLE_V;
 	m_fVelocityLR = 150;
 	m_fGrav = 0.f;
 	m_fAcc = 0.f;
@@ -28,6 +31,8 @@ CMario::CMario()
 	isAir = false;
 	isUpside = false;
 	canJump = true;
+
+	isLittleJump = false;
 
 	life = 3;
 
@@ -110,13 +115,7 @@ CMario::CMario()
 	//pAni->GetFrame(1).fptOffset = fVec2(0.f, -10.f);
 
 	CreateFoot();
-	GetFoot()->SetName(L"Foot");
-	GetFoot()->SetScale(Vec2(20.f, 20.f));
-	;; GetFoot()->SetPos(Vec2(WINSIZEX / 3, WINSIZEY / 2));
-	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
-	pCurScene->AddObject(GetFoot(), GROUP_GAMEOBJ::COLLIDER);
 	
-
 
 	CCameraManager::getInst()->GetRenderPos(GetPos());
 }
@@ -128,8 +127,18 @@ CMario::~CMario()
 
 void CMario::CreateFoot()
 {
-	m_foot = new CFoot();
-	m_foot->m_pOwner = this;
+	Vec2 vPos = GetPos();
+	vPos.y += GetScale().y * 2;
+
+	CFoot* pFoot = new CFoot();
+	pFoot->SetPos(vPos);
+	pFoot->SetScale(Vec2(10.f, 10.f));
+	pFoot->SetName(L"Foot");
+
+	CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
+	pCurScene->AddObject(pFoot, GROUP_GAMEOBJ::COLLIDER);
+
+	pFoot->m_pOwner = this;
 }
 
 void CMario::update()
@@ -206,7 +215,7 @@ void CMario::update()
 		}
 	}
 
-	if (KEY(VK_LSHIFT)&&false==isAir)//속도올리기
+	if (KEY(VK_LSHIFT)&&false==isAir&&false==isLittleJump)//속도올리기
 	{
 		if(m_fAcc<MAXACC)
 		m_fAcc += 200*fDT;
@@ -240,7 +249,7 @@ void CMario::update()
 			sCountTime2 = 0.f;
 		}
 	}
-	if (KEYDOWN(VK_UP) && true==canJump)//약점프
+	if (KEYDOWN(VK_UP) && true==canJump&&false == isLittleJump)//약점프
 	{
 		canJump = false;
 		isAir = true;
@@ -298,6 +307,24 @@ void CMario::update()
 		}
 	}
 
+	if (true == isLittleJump)
+	{
+		if (m_fLittleVel <= 0)
+		{
+			isUpside = false;
+		}
+
+		if (true == isUpside)
+		{
+			m_fLittleVel -= DEFAULT_LITTLEGRAV * fDT;
+			pos.y -= m_fLittleVel * fDT;
+		}
+		else if (false == isUpside)
+		{
+			m_fLittleVel += DEFAULT_LITTLEGRAV * fDT;
+			pos.y += m_fLittleVel * fDT;
+		}
+	}
 	SetPos(pos);
 
 	GetAnimator()->update();
@@ -319,10 +346,11 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 	CGameObject* pOther = _pOther->GetObj();
 	if (pOther->GetName() == L"Tile")
 	{
+		isLittleJump = false;
 		canJump = true;
 		isAir = false;
 		m_fVelocityUD = DEFAULT_V;
-
+		m_fLittleVel = DEFAULT_LITTLE_V;
 
 		isBoost = false;
 		jumpBoost = 0;
@@ -331,9 +359,12 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOther->GetName() == L"Mushroom")
 	{
-		Vec2 p = GetPos();
-		p.y -= 50;
-		SetPos(p);
+		//Vec2 p = GetPos();
+		//if (_pOther->GetFinalPos().y> GetCollider()->GetFinalPos().y + 10.f)
+		//{
+		//	p.y -= 50;
+		//}
+		//SetPos(p);
 	}
 
 	Vec2 t = CCameraManager::getInst()->GetLook();
@@ -382,6 +413,17 @@ void CMario::OnCollision(CCollider* _pOther)
 	//	p.y -= 1;
 	//	SetPos(p);
 	//}
+	CGameObject* pOther = _pOther->GetObj();
+	if (pOther->GetName() == L"Mushroom")
+	{
+		if (_pOther->GetFinalPos().y + 10.f < GetCollider()->GetFinalPos().y)
+		{
+			CEventManager::getInst()->EventDeleteObject(pOther);
+		}
+		/*Vec2 p = GetPos();
+		p.y -= 50;
+		SetPos(p);*/
+	}
 }
 
 //void CMario::OnCollisionNone(CCollider* _pOther)

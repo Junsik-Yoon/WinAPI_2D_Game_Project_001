@@ -42,7 +42,7 @@ void CSceneManager::render(HDC hDC)
 
 void CSceneManager::init()
 {
-	//TODO: ¸ðµç ¾À »ý¼º
+
 
 	m_arrScene[(UINT)GROUP_SCENE::START] = new CScene_Start;
 	m_arrScene[(UINT)GROUP_SCENE::START]->SetName(L"Start_Scene");

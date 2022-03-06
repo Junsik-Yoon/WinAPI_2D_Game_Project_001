@@ -25,7 +25,10 @@ private:
 	float m_fVelocityLR;
 	STATUS m_type;
 
- 
+	bool isKillJump;
+	bool isLittleJump; //Á×ÀÌ°í³­µÚ ÀÜÁ¡ÇÁ
+
+	float m_fLittleVel;
 
 	int life;
 	bool isBoost;
@@ -47,6 +50,8 @@ public:
 	
 public:
 	void SetAcc(float acc) { m_fAcc = acc; }
+
+	void SetLittleJump(bool isKilled) { isLittleJump = isKilled; isUpside = true; }
 
 	void CreateFoot();
 	CFoot* GetFoot() { return m_foot; }
