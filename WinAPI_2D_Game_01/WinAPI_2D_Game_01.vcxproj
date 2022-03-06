@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CBackground.h" />
     <ClInclude Include="CCameraManager.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionManager.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CMario.h" />
     <ClInclude Include="CMidLine.h" />
+    <ClInclude Include="CMushroom.h" />
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CResource.h" />
     <ClInclude Include="CResourceManager.h" />
@@ -183,6 +185,7 @@
   <ItemGroup>
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CBackground.cpp" />
     <ClCompile Include="CCameraManager.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionManager.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CMario.cpp" />
     <ClCompile Include="CMidLine.cpp" />
+    <ClCompile Include="CMushroom.cpp" />
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CResource.cpp" />
     <ClCompile Include="CResourceManager.cpp" />

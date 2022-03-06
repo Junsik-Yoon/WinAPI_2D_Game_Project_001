@@ -107,16 +107,11 @@ void CMario::update()
 {
 	
 	m_fGrav = DEFAULTGRAV;
+
 	Vec2 pos = GetPos();
 
+
 	
-
-	if (KEYDOWN('Z'))
-	{
-		CCameraManager::getInst()->SetLookAt(Vec2(500, 500));
-		//CCameraManager::getInst()->SetTargetObj(this);
-	}
-
 	if (KEY(VK_LEFT))//왼키누르고있기
 	{
 		isFacedRight = false;
@@ -281,12 +276,24 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 		t.x += 2;
 		CCameraManager::getInst()->SetLookAt(t);
 	}
+	if (pOther->GetName() == L"FrontLine" && false == isFacedRight)
+	{
+		Vec2 p = GetPos();
+		p.x += 2;
+		SetPos(p);
+		
+	}
+
 }
 
 void CMario::OnCollisionExit(CCollider* _pOther)
 {
-	//isAir = true;
-	//canJump = false;
+	CGameObject* pOther = _pOther->GetObj();
+	if (pOther->GetName() == L"Tile")
+	{
+		isAir = true;
+		canJump = false;
+	}
 }
 
 void CMario::OnCollision(CCollider* _pOther)
@@ -297,6 +304,13 @@ void CMario::OnCollision(CCollider* _pOther)
 	//	canJump = true;
 	//	isAir = false;
 	//	m_fVelocityUD = DEFAULT_V;
+	//}
+	//CGameObject* pOther = _pOther->GetObj();
+	//if (pOther->GetName() == L"Tile")
+	//{
+	//	Vec2 p = GetPos();
+	//	p.y -= 1;
+	//	SetPos(p);
 	//}
 }
 

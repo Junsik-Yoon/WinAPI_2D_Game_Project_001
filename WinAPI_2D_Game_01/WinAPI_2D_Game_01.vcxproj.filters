@@ -98,6 +98,9 @@
     <Filter Include="Things\Object\MidLine">
       <UniqueIdentifier>{dd23535c-3a25-4f3a-9058-6701b4aa4710}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Things\Object\Background">
+      <UniqueIdentifier>{62dbdd6c-3ab7-4c57-862c-cb1b4c786a3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -185,6 +188,12 @@
     <ClInclude Include="CMidLine.h">
       <Filter>Things\Object\MidLine</Filter>
     </ClInclude>
+    <ClInclude Include="CMushroom.h">
+      <Filter>Things\Object\Mushroom</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackground.h">
+      <Filter>Things\Object\Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -250,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="CMidLine.cpp">
       <Filter>Things\Object\MidLine</Filter>
+    </ClCompile>
+    <ClCompile Include="CMushroom.cpp">
+      <Filter>Things\Object\Mushroom</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackground.cpp">
+      <Filter>Things\Object\Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
