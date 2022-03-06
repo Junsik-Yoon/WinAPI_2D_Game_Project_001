@@ -51,6 +51,6 @@ void CSceneManager::init()
 	m_arrScene[(UINT)GROUP_SCENE::DEFAULT] = new CScene_Info;
 	m_arrScene[(UINT)GROUP_SCENE::DEFAULT]->SetName(L"Info_Scene");
 
-	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];//ÇöÀç¾ÀÁöÁ¤
+	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];
 	m_pCurScene->Enter();
 }

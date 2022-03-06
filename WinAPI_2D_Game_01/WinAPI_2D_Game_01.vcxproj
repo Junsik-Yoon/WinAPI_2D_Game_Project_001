@@ -160,10 +160,12 @@
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CFoot.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CInfo.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CMario.h" />
     <ClInclude Include="CMidLine.h" />
     <ClInclude Include="CMushroom.h" />
+    <ClInclude Include="CNumber.h" />
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CResource.h" />
     <ClInclude Include="CResourceManager.h" />
@@ -195,10 +197,12 @@
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CFoot.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CInfo.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CMario.cpp" />
     <ClCompile Include="CMidLine.cpp" />
     <ClCompile Include="CMushroom.cpp" />
+    <ClCompile Include="CNumber.cpp" />
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CResource.cpp" />
     <ClCompile Include="CResourceManager.cpp" />

@@ -3,9 +3,12 @@
 class CScene_Info :
     public CScene
 {
+private:
+    float fTimeCounter;
 public:
-    virtual void Enter() {}
-    virtual void Exit(){}
+    virtual void update();
+    virtual void Enter();
+    virtual void Exit();
 public:
     CScene_Info();
     ~CScene_Info();

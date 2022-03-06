@@ -16,7 +16,9 @@
 
 float CMario::sCountTime = 0.f;
 float CMario::sCountTime2 = 0.f;
-int CMario::sLife = 3;
+float CMario::sCountTime3 = 0.f;
+
+int CMario::slife = 3;
 
 CMario::CMario()
 {
@@ -32,6 +34,7 @@ CMario::CMario()
 	isAir = false;
 	isUpside = false;
 	canJump = true;
+	is_dead = false;
 
 	isLittleJump = false;
 
@@ -148,8 +151,18 @@ void CMario::update()
 
 	Vec2 pos = GetPos();
 
+	if (true == is_dead)
+	{
+		sCountTime3 += fDT;
+	}
+	if (sCountTime3 >= 3.f)
+	{
+		CEventManager::getInst()->EventDeleteObject(this);
+		sCountTime3 = 0.f;
+	}
 	
-	if (KEY(VK_LEFT))//왼키누르고있기
+	
+	if (KEY(VK_LEFT) && false == is_dead)//왼키누르고있기
 	{
 		isFacedRight = false;
 		pos.x -= (m_fVelocityLR +m_fAcc)* fDT;
@@ -169,7 +182,7 @@ void CMario::update()
 			}break;
 		}		
 	}
-	if (KEYUP(VK_LEFT))//왼키누르다떼기
+	if (KEYUP(VK_LEFT) && false == is_dead)//왼키누르다떼기
 	{
 		switch (m_type)
 		{
@@ -179,7 +192,7 @@ void CMario::update()
 			}break;
 		}
 	}
-	if (KEY(VK_RIGHT))//오른키누르고있기
+	if (KEY(VK_RIGHT) && false == is_dead)//오른키누르고있기
 	{
 		isFacedRight = true;
 		pos.x += (m_fVelocityLR + m_fAcc) * fDT;
@@ -203,7 +216,7 @@ void CMario::update()
 		}break;
 		}
 	}
-	if (KEYUP(VK_RIGHT))//오른키누르다떼기
+	if (KEYUP(VK_RIGHT) && false == is_dead)//오른키누르다떼기
 	{
 		switch (m_type)
 		{
@@ -224,7 +237,7 @@ void CMario::update()
 		m_fAcc = 0;
 	}
 
-	if (KEY(VK_UP))//강점프
+	if (KEY(VK_UP) && false == is_dead)//강점프
 		//TODO: 바닥에 닿을때까지 위키를 누르고있으면 부스트가 최대로된다
 	{
 		if (false == isBoost)
@@ -290,7 +303,7 @@ void CMario::update()
 			pos.y += m_fVelocityUD * fDT;
 		}
 	}
-	if (KEY(VK_DOWN))
+	if (KEY(VK_DOWN) && false == is_dead)
 	{
 		//TODO: 충돌체 사이즈 앉은만큼 작아지도록 구현
 		switch (m_type)
@@ -343,7 +356,7 @@ void CMario::render(HDC hDC)
 void CMario::OnCollisionEnter(CCollider* _pOther)
 {
 	CGameObject* pOther = _pOther->GetObj();
-	if (pOther->GetName() == L"Tile")
+	if (pOther->GetName() == L"Tile"&&false==is_dead)
 	{
 		isLittleJump = false;
 		canJump = true;
@@ -356,11 +369,14 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 		sCountTime2 = 0.f;
 	}
 
-	if (pOther->GetName() == L"Mushroom")
+	if (pOther->GetName() == L"Mushroom" && false == is_dead)
 	{
 		if (_pOther->GetFinalPos().y -13.f <= GetCollider()->GetFinalPos().y )
 		{
-			CEventManager::getInst()->EventDeleteObject(this);
+			isLittleJump = true;
+			is_dead = true;
+			GetAnimator()->Play(L"SmallHit");
+			--slife;
 		}
 	}
 
@@ -387,7 +403,7 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 void CMario::OnCollisionExit(CCollider* _pOther)
 {
 	CGameObject* pOther = _pOther->GetObj();
-	if (pOther->GetName() == L"Tile")
+	if (pOther->GetName() == L"Tile" && false == is_dead)
 	{
 		isAir = true;
 		canJump = false;
@@ -410,17 +426,17 @@ void CMario::OnCollision(CCollider* _pOther)
 	//	p.y -= 1;
 	//	SetPos(p);
 	//}
-	CGameObject* pOther = _pOther->GetObj();
-	if (pOther->GetName() == L"Mushroom")
-	{
-		if (_pOther->GetFinalPos().y + 10.f < GetCollider()->GetFinalPos().y)
-		{
-			CEventManager::getInst()->EventDeleteObject(pOther);
-		}
+	//CGameObject* pOther = _pOther->GetObj();
+	//if (pOther->GetName() == L"Mushroom")
+	//{
+	//	if (_pOther->GetFinalPos().y + 10.f < GetCollider()->GetFinalPos().y)
+	//	{
+	//		CEventManager::getInst()->EventDeleteObject(pOther);
+	//	}
 		/*Vec2 p = GetPos();
 		p.y -= 50;
 		SetPos(p);*/
-	}
+	//}
 }
 
 //void CMario::OnCollisionNone(CCollider* _pOther)

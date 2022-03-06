@@ -107,6 +107,12 @@
     <Filter Include="Things\Scene\scene_info">
       <UniqueIdentifier>{8bc98252-ff2d-4e07-a324-35807f5f8873}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Things\Object\Info">
+      <UniqueIdentifier>{6e62a946-b959-47a1-ba19-0d4bcf1e1bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Number">
+      <UniqueIdentifier>{f7a415d1-d237-4220-bc8e-96260e7de469}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -206,6 +212,12 @@
     <ClInclude Include="CScene_Info.h">
       <Filter>Things\Scene\scene_info</Filter>
     </ClInclude>
+    <ClInclude Include="CInfo.h">
+      <Filter>Things\Object\Info</Filter>
+    </ClInclude>
+    <ClInclude Include="CNumber.h">
+      <Filter>Things\Object\Number</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -283,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="CScene_Info.cpp">
       <Filter>Things\Scene\scene_info</Filter>
+    </ClCompile>
+    <ClCompile Include="CInfo.cpp">
+      <Filter>Things\Object\Info</Filter>
+    </ClCompile>
+    <ClCompile Include="CNumber.cpp">
+      <Filter>Things\Object\Number</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

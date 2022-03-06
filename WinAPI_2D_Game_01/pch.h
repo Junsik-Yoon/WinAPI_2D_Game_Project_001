@@ -107,7 +107,6 @@ using std::map;
 //
 #define PI 3.1415926535f
 
-
 //핸들 전역변수
 extern HINSTANCE hInst;
 extern HWND hWnd;
