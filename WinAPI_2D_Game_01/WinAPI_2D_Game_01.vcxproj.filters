@@ -104,6 +104,9 @@
     <Filter Include="Things\Object\Foot">
       <UniqueIdentifier>{a94a1098-8406-4a90-bce4-76bbe0fc116e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Things\Scene\scene_info">
+      <UniqueIdentifier>{8bc98252-ff2d-4e07-a324-35807f5f8873}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="CFoot.h">
       <Filter>Things\Object\Foot</Filter>
     </ClInclude>
+    <ClInclude Include="CScene_Info.h">
+      <Filter>Things\Scene\scene_info</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -274,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="CFoot.cpp">
       <Filter>Things\Object\Foot</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Info.cpp">
+      <Filter>Things\Scene\scene_info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

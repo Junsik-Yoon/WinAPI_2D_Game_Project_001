@@ -8,11 +8,14 @@
 #include "CCollider.h"
 #include "CMushroom.h"
 #include "CFoot.h"
+#include "CScene_Info.h"
 
 
 
 CScene_Start::CScene_Start()
 {
+	isDead = false;
+	fWaitDeadMotion = 0.f;
 }
 
 CScene_Start::~CScene_Start()
@@ -23,6 +26,26 @@ void CScene_Start::update()
 {
 	CScene::update();
 
+	
+	if (true == pPlayer->isDead())
+	{
+		isDead = true;
+	}
+	if (true == isDead)
+	{
+		fWaitDeadMotion += fDT;
+		if (fWaitDeadMotion >= 3.f)
+		{
+			isDead = false;
+			fWaitDeadMotion = 0.f;
+			CEventManager::getInst()->EventChangeScene(GROUP_SCENE::DEFAULT);
+		}
+	}
+
+	if (KEYDOWN(VK_ESCAPE))
+	{
+		CEventManager::getInst()->EventChangeScene(GROUP_SCENE::DEFAULT);
+	}
 
 	if (KEYDOWN(VK_LBUTTON))
 	{
@@ -116,6 +139,8 @@ void CScene_Start::Enter()
 	//CCameraManager::getInst()->SetTargetObj(pMario);
 	CCameraManager::getInst()->SetLookAt(Vec2(WINSIZEX / 2.f, WINSIZEY / 2.f));
 
+
+	SetPlayer(pMario);
 }
 
 void CScene_Start::Exit()
@@ -124,3 +149,5 @@ void CScene_Start::Exit()
 
 	CCollisionManager::getInst()->Reset();
 }
+
+

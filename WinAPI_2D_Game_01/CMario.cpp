@@ -16,6 +16,7 @@
 
 float CMario::sCountTime = 0.f;
 float CMario::sCountTime2 = 0.f;
+int CMario::sLife = 3;
 
 CMario::CMario()
 {
@@ -33,8 +34,6 @@ CMario::CMario()
 	canJump = true;
 
 	isLittleJump = false;
-
-	life = 3;
 
 	isBoost = false;
 	jumpBoost = 0.f;
@@ -359,12 +358,10 @@ void CMario::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOther->GetName() == L"Mushroom")
 	{
-		//Vec2 p = GetPos();
-		//if (_pOther->GetFinalPos().y> GetCollider()->GetFinalPos().y + 10.f)
-		//{
-		//	p.y -= 50;
-		//}
-		//SetPos(p);
+		if (_pOther->GetFinalPos().y -13.f <= GetCollider()->GetFinalPos().y )
+		{
+			CEventManager::getInst()->EventDeleteObject(this);
+		}
 	}
 
 	Vec2 t = CCameraManager::getInst()->GetLook();
