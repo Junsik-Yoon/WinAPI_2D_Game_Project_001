@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CSceneManager.h"
 #include "CScene_Start.h"
+#include "CScene_Tool.h"
 
 CSceneManager::CSceneManager()
 {
@@ -46,6 +47,9 @@ void CSceneManager::init()
 
 	m_arrScene[(UINT)GROUP_SCENE::START] = new CScene_Start;
 	m_arrScene[(UINT)GROUP_SCENE::START]->SetName(L"Start_Scene");
+
+	m_arrScene[(UINT)GROUP_SCENE::TOOL] = new CScene_Tool;
+	m_arrScene[(UINT)GROUP_SCENE::TOOL]->SetName(L"Tool_Scene");
 
 	m_pCurScene = m_arrScene[(UINT)GROUP_SCENE::START];//ÇöÀç¾ÀÁöÁ¤
 	m_pCurScene->Enter();

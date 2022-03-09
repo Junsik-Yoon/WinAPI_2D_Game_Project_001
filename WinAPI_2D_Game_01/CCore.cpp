@@ -29,6 +29,7 @@ void CCore::update()
 	CSceneManager::getInst()->update();
 	CCollisionManager::getInst()->update();
 	CCameraManager::getInst()->update();
+	CUIManager::getInst()->update();
 }
 
 void CCore::render()

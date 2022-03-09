@@ -3,11 +3,14 @@
 enum class GROUP_GAMEOBJ
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	MISSILE_PLAYER,
 	MISSILE_MONSTER,
 
+
+	UI,
 	SIZE,
 };
 //Scene Group
@@ -64,6 +67,7 @@ using std::make_pair;
 #include <map>
 using std::map;
 #include <list>
+using std::list;
 #include <chrono>
 #include <assert.h>
 #include "Logger.h"
@@ -81,6 +85,7 @@ using std::map;
 #include "CEventManager.h"
 #include "CResourceManager.h"
 #include "CCameraManager.h"
+#include "CUIManager.h"
 
 
 //¸ÅÅ©·Î
@@ -95,7 +100,6 @@ using std::map;
 #define KEY(vk_key) CKeyManager::getInst()->GetButton(vk_key)
 #define KEYDOWN(vk_key) CKeyManager::getInst()->GetButtonDown(vk_key)
 #define KEYUP(vk_key) CKeyManager::getInst()->GetButtonUp(vk_key)
-//
 #define MousePos()		CKeyManager::getInst()->GetMousePos()
 //
 #define CreateObj(pObj, group)	CEventManager::getInst()->EventCreateObject(pObj, group)

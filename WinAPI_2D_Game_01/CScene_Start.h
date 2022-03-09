@@ -7,7 +7,7 @@ private:
 public:
 	CScene_Start();
 	~CScene_Start();
-	
+	virtual void update();
 	virtual void Enter();
 	virtual void Exit();
 };

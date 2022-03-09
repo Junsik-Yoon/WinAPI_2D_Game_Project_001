@@ -80,6 +80,18 @@
     <Filter Include="Engine\Component\Animator\Animation">
       <UniqueIdentifier>{3a66d8a0-db21-4cbd-81b6-45fce8e4793b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Things\Object\Tile">
+      <UniqueIdentifier>{a060bedf-7a3e-4b2a-a159-d3a45f186a77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Scene\scene_tool">
+      <UniqueIdentifier>{8e8725e5-6fbd-4668-b7be-cc714f9f0724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\UI">
+      <UniqueIdentifier>{195b55ce-53ee-4503-b952-af81640c7611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\UIManager">
+      <UniqueIdentifier>{80644c79-2d48-41d1-aca0-c421d98d8239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -158,6 +170,24 @@
     <ClInclude Include="CAnimation.h">
       <Filter>Engine\Component\Animator\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Things\Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Things\Scene\scene_tool</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Things\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>Engine\Manager\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonUI.h">
+      <Filter>Things\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Things\Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -214,6 +244,24 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Engine\Component\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Things\Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Things\Scene\scene_tool</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Things\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>Engine\Manager\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CButtonUI.cpp">
+      <Filter>Things\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Things\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

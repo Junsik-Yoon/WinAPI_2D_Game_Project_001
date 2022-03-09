@@ -29,6 +29,7 @@ public:
 
 	void SetLookAt(Vec2 lookAt);
 	void SetTargetObj(CGameObject* target) { m_pTargetObj = target; }
+	void Scroll(Vec2 vec, float velocity);
 
 	Vec2 GetLookAt()				{ return m_fptCurLookAt; }	// 현재 카메라 위치 반환
 	Vec2 GetRenderPos(Vec2 objPos)	{ return objPos - m_fptDiff; }

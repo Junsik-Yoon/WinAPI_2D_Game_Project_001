@@ -61,6 +61,13 @@ struct Vec2
 		return Vec2(x - other.x, y - other.y);
 	}
 
+	Vec2& operator+= (const Vec2 & other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+		return *this;
+	}
+
 	template <typename T>
 	Vec2 operator*(T num)
 	{
