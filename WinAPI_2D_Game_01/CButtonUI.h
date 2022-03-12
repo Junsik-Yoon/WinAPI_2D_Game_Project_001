@@ -25,6 +25,6 @@ public:
 public:
 	CButtonUI();
 	~CButtonUI();
-	
+	//virtual CButtonUI Clone();
 };
 

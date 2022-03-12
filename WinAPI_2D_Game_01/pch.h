@@ -3,6 +3,7 @@
 enum class GROUP_GAMEOBJ
 {
 	DEFAULT,
+	BACKGROUND,
 	TILE,
 	PLAYER,
 	MONSTER,
@@ -86,14 +87,15 @@ using std::list;
 #include "CResourceManager.h"
 #include "CCameraManager.h"
 #include "CUIManager.h"
+#include "CSoundManager.h"
 
 
 //¸ÅÅ©·Î
 #define WINSTYLE WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU 
 #define WINSTARTX 100
 #define WINSTARTY 100
-#define WINSIZEX 1280
-#define WINSIZEY 720
+#define WINSIZEX 600
+#define WINSIZEY 450
 //
 #define fDT CTimeManager::getInst()->GetfDT()
 #define DT CTimeManager::getInst()->GetDT()

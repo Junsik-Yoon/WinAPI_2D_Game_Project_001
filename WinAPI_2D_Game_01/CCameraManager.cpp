@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CCameraManager.h"
 #include "CGameObject.h"
+#include "CTexture.h"
 
 CCameraManager::CCameraManager()
 {
@@ -16,11 +17,18 @@ CCameraManager::CCameraManager()
 	m_fPreSpeed = m_fSpeed;								// 타겟을 따라가던 속도
 	m_fAccel = 0;										// 타겟을 따라가는 등가속도
 	m_fAccDir = 1.f;									// 등가속도의 증감
+
+	
 }
 
 CCameraManager::~CCameraManager()
 {
 
+}
+
+void CCameraManager::init()
+{
+	m_pTex = CResourceManager::getInst()->CreateTexture(L"CameraTex", WINSIZEX, WINSIZEY);
 }
 
 void CCameraManager::update()
@@ -39,6 +47,57 @@ void CCameraManager::update()
 
 	// 화면 중앙과 카메라 LookAt 좌표 사이의 차이 계산
 	CalDiff();
+}
+
+void CCameraManager::render(HDC hDC)
+{
+	//Rectangle(m_pTex->GetDC(), 0, 0, 500, 500);
+
+	if (CAM_EFFECT::NONE == m_eEffect)
+		return;
+
+	m_fCurTime += fDT;
+	if (m_fEffectDuration < m_fCurTime)
+	{
+		m_eEffect = CAM_EFFECT::NONE;
+		return;
+	}
+	float fRatio = m_fCurTime / m_fEffectDuration;
+	int iAlpha = (int)(255.f * fRatio);
+	if (CAM_EFFECT::FADE_OUT == m_eEffect)
+	{
+		iAlpha=(int)(255.f * (1 - fRatio));
+	}
+	else if (CAM_EFFECT::FADE_IN == m_eEffect)
+	{
+		iAlpha=(int)(255.f * (1 - fRatio));
+	}
+
+
+	BLENDFUNCTION bf = {};
+
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = 0;
+	bf.SourceConstantAlpha = 127; //0~255까지 조절 가능
+
+	AlphaBlend(hDC
+		, 0, 0
+		, (int)(m_pTex->GetBmpWidth())
+		, (int)(m_pTex->GetBmpHeight())
+		, m_pTex->GetDC()
+		, 0, 0
+		, (int)(m_pTex->GetBmpWidth())
+		, (int)(m_pTex->GetBmpHeight())
+		, bf);
+
+	//BitBlt(hDC, 0, 0,
+	//	(int)(m_pTex->GetBmpWidth()),
+	//	(int)(m_pTex->GetBmpHeight()),
+	//	m_pTex->GetDC(),
+	//	0,
+	//	0,
+	//	SRCCOPY);
 }
 
 
@@ -67,6 +126,17 @@ void CCameraManager::Scroll(Vec2 vec, float velocity)
 
 	Vec2 fptCenter = Vec2(WINSIZEX / 2.f, WINSIZEY / 2.f);
 	m_fptDiff = m_fptCurLookAt - fptCenter;
+}
+
+void CCameraManager::FadeIn(float duration)
+{
+	m_eEffect = CAM_EFFECT::FADE_IN;
+	m_fEffectDuration = duration;
+	m_fCurTime = 0.f;
+}
+
+void CCameraManager::FadeOut(float duration)
+{
 }
 
 

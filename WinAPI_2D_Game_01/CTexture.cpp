@@ -35,6 +35,17 @@ void CTexture::Load(const wstring& strFilePath)
 	GetObject(m_hBMP, sizeof(BITMAP), &m_bmpInfo);
 }
 
+void CTexture::Create(UINT width, UINT height)//불러오지 않고 비어있는 texture 생성
+{
+	HDC mainDC = CCore::getInst()->GetMainDC();
+	m_hBMP = CreateCompatibleBitmap(mainDC, width, height);
+	m_hDC = CreateCompatibleDC(mainDC);
+
+	HBITMAP hOldBMP = (HBITMAP)SelectObject(m_hDC, m_hBMP);
+	DeleteObject(hOldBMP);
+	GetObject(m_hBMP, sizeof(BITMAP), &m_bmpInfo);
+}
+
 
 int CTexture::GetBmpWidth()
 {

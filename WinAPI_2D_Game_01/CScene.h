@@ -32,7 +32,9 @@ public:
 
 	void CreateTile(UINT xSize, UINT ySize);
 	void LoadTile(const wstring& strPath);
-
+	
+	vector<CGameObject*>& GetUIGroup() { return m_arrObj[(UINT)GROUP_GAMEOBJ::UI]; }
+	
 public:
 	CScene();
 	virtual ~CScene();

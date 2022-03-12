@@ -16,9 +16,8 @@ private:
 
 public:
 	virtual void update();
-	virtual void render(HDC hDC);
 	virtual void finalupdate();
-
+	virtual void render(HDC hDC);
 
 	void update_child();
 	void finalupdate_child();
@@ -28,7 +27,6 @@ public:
 	virtual void MouseLbtnDown();//클릭만으로는 그자리에서 클릭하고 클릭해제하는것밖에 감지할수없음
 	virtual void MouseLbtnUp();//아니면 눌림처리에서 버튼 이펙트가 바뀐다던가 할 때 사용함
 	virtual void MouseLbtnClicked();
-
 
 public:
 	Vec2 GetFinalPos() { return m_fptFinalPos; }

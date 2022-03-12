@@ -9,6 +9,7 @@ public:
 	void init();
 
 	const WCHAR* GetContentPath() { return m_szContentPath; }
+	const WCHAR* GetContentRelativePath() { return L"..\\Release\\content\\"; }
 	
 };
 

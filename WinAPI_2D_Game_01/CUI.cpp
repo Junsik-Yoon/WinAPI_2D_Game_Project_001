@@ -42,7 +42,13 @@ void CUI::update()
 	update_child();
 }
 
-
+void CUI::update_child()
+{
+	for (UINT i = 0; i < m_vecChildUI.size(); ++i)
+	{
+		m_vecChildUI[i]->update();
+	}
+}
 
 void CUI::finalupdate()
 {
@@ -60,13 +66,7 @@ void CUI::finalupdate()
 	finalupdate_child();
 }
 
-void CUI::update_child()
-{
-	for (UINT i = 0; i < m_vecChildUI.size(); ++i)
-	{
-		m_vecChildUI[i]->update();
-	}
-}
+
 
 void CUI::finalupdate_child()
 {

@@ -86,13 +86,13 @@ void CScene_Tool::Enter()
 
     CButtonUI* pItemButton = new CButtonUI();
     pItemButton->SetScale(Vec2(50.f, 50.f));
-    pItemButton->SetPos(Vec2(150.f, 150.f));
+    pItemButton->SetPos(Vec2(200.f, 150.f));
     pItemButton->SetClickCallBack(buttonItemClicked, 0, 0);
     pUI->AddChild(pItemButton);
 
     CButtonUI* pMapButton = new CButtonUI();
     pMapButton->SetScale(Vec2(50.f, 50.f));
-    pMapButton->SetPos(Vec2(150.f, 150.f));
+    pMapButton->SetPos(Vec2(100.f, 150.f));
     pMapButton->SetClickCallBack(buttonItemClicked, 0, 0);
     AddObject(pMapButton, GROUP_GAMEOBJ::UI);
    

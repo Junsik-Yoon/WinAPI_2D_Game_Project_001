@@ -92,6 +92,15 @@
     <Filter Include="Engine\Manager\UIManager">
       <UniqueIdentifier>{80644c79-2d48-41d1-aca0-c421d98d8239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager\SoundManager">
+      <UniqueIdentifier>{c1e56a2d-ea1c-4043-951b-505d6ab05646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\BackGround">
+      <UniqueIdentifier>{04adbb46-1fed-4eec-973d-04c72abcc73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Things\Object\Player">
+      <UniqueIdentifier>{382d123c-c7d8-40c5-8483-6ef2a481be93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -188,6 +197,18 @@
     <ClInclude Include="CPanelUI.h">
       <Filter>Things\Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>Things\Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundManager.h">
+      <Filter>Engine\Manager\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CBG1.h">
+      <Filter>Things\Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="CLou.h">
+      <Filter>Things\Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">
@@ -263,6 +284,18 @@
     <ClCompile Include="CPanelUI.cpp">
       <Filter>Things\Object\UI</Filter>
     </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>Things\Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundManager.cpp">
+      <Filter>Engine\Manager\SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBG1.cpp">
+      <Filter>Things\Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="CLou.cpp">
+      <Filter>Things\Object\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_2D_Game_01.rc">
@@ -276,5 +309,8 @@
     <Image Include="WinAPI_2D_Game_01.ico">
       <Filter>Default\리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

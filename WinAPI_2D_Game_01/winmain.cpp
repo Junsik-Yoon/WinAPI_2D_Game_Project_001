@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "winmain.h"
+#include <locale.h>
 #include "pch.h"
 
 #define MAX_LOADSTRING 100
@@ -29,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
-
+    setlocale(LC_ALL, "");
     //메모리 누수 체크
     //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     //_CrtSetBreakAlloc(237);
@@ -126,7 +127,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-
+    
     //윈도우를 생성하는 함수 -> hWnd에 담음
     hWnd = CreateWindowW(
         szWindowClass,      //클래스이름

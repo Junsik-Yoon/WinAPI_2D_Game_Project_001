@@ -3,7 +3,7 @@
 class CScene_Start : public CScene
 {
 private:
-
+	float m_velocity = 300;
 public:
 	CScene_Start();
 	~CScene_Start();
