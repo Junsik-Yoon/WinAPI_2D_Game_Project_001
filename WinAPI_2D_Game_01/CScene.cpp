@@ -56,6 +56,7 @@ void CScene::render(HDC hDC)
 			render_tile(hDC);
 			continue;
 		}
+
 		for (vector<CGameObject*>::iterator iter = m_arrObj[i].begin();
 			iter != m_arrObj[i].end(); )
 		{
@@ -98,6 +99,11 @@ void CScene::render_tile(HDC hDC)
 			vecTile[iIdx]->render(hDC);
 		}
 	}
+
+}
+
+void CScene::render_background(HDC hDC)
+{
 
 }
 

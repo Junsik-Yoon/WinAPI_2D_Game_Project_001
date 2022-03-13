@@ -15,6 +15,7 @@ public:
 	virtual void render(HDC hDC);
 
 	void render_tile(HDC hDC);
+	void render_background(HDC hDC);
 
 	virtual void Enter()=0;
 	virtual void Exit()=0;
