@@ -2,6 +2,8 @@
 #include "CScene.h"
 #include "CGameObject.h"
 #include "CTile.h"
+#include "CCollider.h"
+#include "CTexture.h"
 
 CScene::CScene()
 {
@@ -144,7 +146,8 @@ void CScene::CreateTile(UINT xSize, UINT ySize)
 			CTile* pTile = new CTile();
 			pTile->SetPos(Vec2((float)(j * CTile::SIZE_TILE), (float)(i * CTile::SIZE_TILE)));
 			pTile->SetTexture(pTileTex);
-			//pTile->CreateCollider(); //충돌체만들기
+			//pTile->CreateCollider();
+			pTile->SetName(L"Tile");
 			AddObject(pTile, GROUP_GAMEOBJ::TILE);
 		}
 	}

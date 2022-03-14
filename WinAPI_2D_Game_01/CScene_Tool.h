@@ -7,11 +7,13 @@ private:
     HWND m_hWnd;
     UINT m_iIdx;
     float m_velocity = 300;
+    bool isColTile = 0;
 public:
     virtual void Enter();
     virtual void Exit();
     virtual void update();
 
+    void SetCollider(bool val) { isColTile=val; }
     void SaveTile(const wstring& strPath);
     void SaveTileData();
     void LoadTileData();

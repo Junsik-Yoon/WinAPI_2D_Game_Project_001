@@ -45,6 +45,9 @@ void CScene_Start::update()
 
 void CScene_Start::Enter()
 {
+	wstring path = CPathManager::getInst()->GetContentPath();
+	path += L"tile\\test2.tile";
+	LoadTile(path);
 	CBG1* pBG1 = new CBG1();
 	pBG1->SetPos(Vec2(0.f,0.f));
 	pBG1->SetScale(Vec2(1.f, 1.f));
@@ -55,8 +58,7 @@ void CScene_Start::Enter()
 	//LoadTile(path);
 
 	CLou* pLou = new CLou();
-	pLou->SetPos(Vec2(300.f, 300.f));
-	pLou->SetScale(Vec2(106.f, 106.f));
+	pLou->SetPos(Vec2(300.f, 200.f));
 	AddObject(pLou, GROUP_GAMEOBJ::PLAYER);
 
 
@@ -64,7 +66,7 @@ void CScene_Start::Enter()
 	//CSoundManager::getInst()->AddSound(L"test2", L"sound\\B4VLASER.wav", false);
 	//CSoundManager::getInst()->AddSound(L"test3", L"sound\\B4VHELL.wav", false);
 
-//	CCameraManager::getInst()->SetLookAt(Vec2((float)WINSIZEX / 2.f, (float)WINSIZEY / 2.f));
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::TILE);
 	CCameraManager::getInst()->SetLookAt(Vec2(float(WINSIZEX / 2.f), float(WINSIZEY / 2.f)));
 
 	//CCameraManager::getInst()->FadeIn(5.f);

@@ -8,6 +8,8 @@
 #include "CUI.h"
 #include "CButtonUI.h"
 #include "CPanelUI.h"
+#include "CCollider.h"
+#include "CBG1.h"
 
 INT_PTR CALLBACK TileWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 CScene_Tool::CScene_Tool()
@@ -60,41 +62,46 @@ void buttonMapClicked(DWORD_PTR param1, DWORD_PTR param2)
 
 void CScene_Tool::Enter()
 {
+    CBG1* pBG = new CBG1();
+    pBG->SetScale(Vec2(1.f, 1.f));
+    pBG->SetPos(Vec2(0.f, 0.f));
+    AddObject(pBG,GROUP_GAMEOBJ::BACKGROUND);
+
     CreateTile(5, 5);
     CCameraManager::getInst()->SetLookAt(Vec2(float(WINSIZEX / 2.f), float(WINSIZEY / 2.f)));
     m_hWnd = CreateDialog(hInst, MAKEINTRESOURCE(IDD_TILEBOX), hWnd, TileWndProc);
     ShowWindow(m_hWnd, SW_SHOW);
 
-    //UI생성
-    CPanelUI* pUI = new CPanelUI();
-    pUI->SetScale(Vec2(200.f, 200.f));
-    pUI->SetCameraAffected(true);
-    pUI->SetPos(Vec2(WINSIZEX / 2.f, WINSIZEY / 2.f)); //UI는 카메라의 위치와 상관없이 절대좌표를 통해 구현해야한다
-    AddObject(pUI, GROUP_GAMEOBJ::UI);
-    
-    //UI복사
-    CPanelUI* pUI2 = new CPanelUI();
-    pUI2->SetScale(Vec2(200.f, 200.f));
-    pUI2->SetCameraAffected(true);
-    pUI2->SetPos(Vec2((WINSIZEX / 2.f)+200.f, WINSIZEY / 2.f)); //UI는 카메라의 위치와 상관없이 절대좌표를 통해 구현해야한다
-    AddObject(pUI2, GROUP_GAMEOBJ::UI);
+    ////UI생성
+    //CPanelUI* pUI = new CPanelUI();
+    //pUI->SetScale(Vec2(200.f, 200.f));
+    //pUI->SetCameraAffected(true);
+    //pUI->SetPos(Vec2(WINSIZEX / 2.f, WINSIZEY / 2.f)); //UI는 카메라의 위치와 상관없이 절대좌표를 통해 구현해야한다
+    //AddObject(pUI, GROUP_GAMEOBJ::UI);
+    //
+    ////UI복사
+    //CPanelUI* pUI2 = new CPanelUI();
+    //pUI2->SetScale(Vec2(200.f, 200.f));
+    //pUI2->SetCameraAffected(true);
+    //pUI2->SetPos(Vec2((WINSIZEX / 2.f)+200.f, WINSIZEY / 2.f)); //UI는 카메라의 위치와 상관없이 절대좌표를 통해 구현해야한다
+    //AddObject(pUI2, GROUP_GAMEOBJ::UI);
 
-    CUI* pChildUI = new CUI();
-    pChildUI->SetScale(Vec2(50.f, 50.f));
-    pChildUI->SetPos(Vec2(50.f, 50.f));
-    pUI->AddChild(pChildUI);
+    //CUI* pChildUI = new CUI();
+    //pChildUI->SetScale(Vec2(50.f, 50.f));
+    //pChildUI->SetPos(Vec2(50.f, 50.f));
+    //pUI->AddChild(pChildUI);
 
-    CButtonUI* pItemButton = new CButtonUI();
-    pItemButton->SetScale(Vec2(50.f, 50.f));
-    pItemButton->SetPos(Vec2(200.f, 150.f));
-    pItemButton->SetClickCallBack(buttonItemClicked, 0, 0);
-    pUI->AddChild(pItemButton);
+    //CButtonUI* pItemButton = new CButtonUI();
+    //pItemButton->SetScale(Vec2(50.f, 50.f));
+    //pItemButton->SetPos(Vec2(200.f, 150.f));
+    //pItemButton->SetClickCallBack(buttonItemClicked, 0, 0);
+    //pUI->AddChild(pItemButton);
 
-    CButtonUI* pMapButton = new CButtonUI();
-    pMapButton->SetScale(Vec2(50.f, 50.f));
-    pMapButton->SetPos(Vec2(100.f, 150.f));
-    pMapButton->SetClickCallBack(buttonItemClicked, 0, 0);
-    AddObject(pMapButton, GROUP_GAMEOBJ::UI);
+    //CButtonUI* pMapButton = new CButtonUI();
+    //pMapButton->SetScale(Vec2(50.f, 50.f));
+    //pMapButton->SetPos(Vec2(100.f, 150.f));
+    //pMapButton->SetClickCallBack(buttonItemClicked, 0, 0);
+    //AddObject(pMapButton, GROUP_GAMEOBJ::UI);
    
 }
 
@@ -127,7 +134,14 @@ void CScene_Tool::SetTileIdx()
         UINT iIdx = iRow * iTileX + iCol;
         const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
         ((CTile*)vecTile[iIdx])->SetTileIdx(m_iIdx);
+        if (true == isColTile)
+        {
+            ((CTile*)vecTile[iIdx])->CreateCollider();
+            ((CTile*)vecTile[iIdx])->GetCollider()->SetOffsetPos(Vec2(vecTile[iIdx]->GetScale().x / 2.f, vecTile[iIdx]->GetScale().y / 2.f));
+            ((CTile*)vecTile[iIdx])->GetCollider()->SetScale(Vec2(vecTile[iIdx]->GetScale().x, vecTile[iIdx]->GetScale().y));
+            ((CTile*)vecTile[iIdx])->SetCollider(true);
 
+        }
 
     }
 }
@@ -308,6 +322,34 @@ INT_PTR CALLBACK TileWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
             //    CTile::SIZE_TILE, CTile::SIZE_TILE, SRCCOPY);
 
         }
+
+        else if (LOWORD(wParam) == IDC_CHECKCOL)
+        {
+            HWND check = GetDlgItem(hDlg, IDC_CHECKCOL);
+            if (SendMessage(check, BM_GETCHECK, 0, 0) == BST_UNCHECKED)
+            {
+                SetWindowText(hDlg, L"체크해제");
+                CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
+
+                CScene_Tool* pToolScene = dynamic_cast<CScene_Tool*>(pCurScene);
+                assert(pToolScene);
+
+                pToolScene->SetCollider(false);
+
+            }
+            else
+            {
+                SetWindowText(hDlg, L"체크됨");
+                CScene* pCurScene = CSceneManager::getInst()->GetCurScene();
+
+                CScene_Tool* pToolScene = dynamic_cast<CScene_Tool*>(pCurScene);
+                assert(pToolScene);
+
+                pToolScene->SetCollider(true);
+            }
+            
+        }
+
         break;
     }
     return (INT_PTR)FALSE;

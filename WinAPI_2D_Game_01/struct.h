@@ -4,6 +4,11 @@ struct iPoint
 {
 	int x;
 	int y;
+	iPoint(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+	}
 };
 
 struct Vec2
